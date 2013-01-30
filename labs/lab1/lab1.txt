@@ -1,0 +1,20 @@
+Lab 1 Michael Ball
+
+1: 5 Numbers:
+        6,  6
+        9,  9
+        15, F
+        9,  9
+        9,  9
+    1,1,9,9,6: J
+    0xF8F88: F
+    B: 0xE9E9E
+    N: 0xDB999
+    
+2: See file.
+
+3. 1,000 $1 bills.
+    1, 2, 4, 8, 16, 32, 64, 128, 256, 489
+    
+4. Pearls before swine...
+    
