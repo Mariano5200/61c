@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 int main(void) {
-	int i=0, j=-1, k=0, m=0;
+	int i=3, j=3, k=1, m=3;
 	int a;
 	char *s;
 
@@ -12,7 +12,7 @@ int main(void) {
 		printf("Happy ");
 	}
 	printf("\n");
-	
+
 	/* switch statement */
 	switch(j) {
 		case 0:		printf("Yoshua\n");
@@ -20,10 +20,10 @@ int main(void) {
 		case 2: 	printf("Chinese Erhu Guy\n");
 		case 3: 	printf("Yoshua\n");		break;
 		case 4:		printf("Dr. Jokemon\n");	break;
-		case 5:		printf("Hat Lady\n");		
+		case 5:		printf("Hat Lady\n");
 		default:	printf("I don't know these people!\n");
 	}
-	
+
 	/* ternary operator */
 	s = (m==3) ? "Go" : "Boo";
 

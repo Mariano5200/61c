@@ -2,7 +2,7 @@
 
 int main(void) {
 	int n;
-	n = ___;
+	n = 48;
 	printf("%c\n",n);
 
 	return 0;

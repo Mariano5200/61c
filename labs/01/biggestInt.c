@@ -7,6 +7,12 @@
    to 1 and counting or shifting until that type wraps around.  When
    it discovers the value, it prints it to the screen.
 
+   1. 32 bits, compiled in 32 bit.
+   2. 64 bits, long.
+   3. Yes.
+   4. Different addressing systems (or complie settings)
+   5. Int. Overflow. -- two's compliment returns itself
+
 **********************************************************************/
 
 /* include I/O routines. */
@@ -42,9 +48,9 @@ int main() {
     next_uint=next_uint<<1;
 
   }
-  
+
   /* Print the final value */
-  printf("\nThe most significant bit of an unsigned int is %u\n\n", 
+  printf("\nThe most significant bit of an unsigned int is %u\n\n",
 	 biggest_uint);
 
   /**********************************************************************
@@ -73,7 +79,7 @@ int main() {
     next_long=next_long | 1;
 
   }
-  
+
   /* Print the largest value */
   printf("\nThe largest signed long is %ld\n\n", biggest_long);
 
@@ -97,7 +103,7 @@ int main() {
     negative_int=negative_int<<1;
 
   }
-  
+
   /* Print the largest value */
   printf("\nThe largest negative signed int is %d\n\n", negative_int);
 
@@ -112,9 +118,9 @@ int main() {
 
   /* Invert the most negative int */
   double_negative_int = -negative_int;
-  
+
   /* Print the answer */
-  printf("\nIf you negate the most negative signed int you get %d\n\n", 
+  printf("\nIf you negate the most negative signed int you get %d\n\n",
 	 double_negative_int);
 
   return 0;
