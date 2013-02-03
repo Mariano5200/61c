@@ -1,14 +1,16 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 int pairCount(unsigned int n);
 
 int main(int argc, char *argv[]) {
     const char testStr[] = "# pairs in base 2 of %u = %d, should be %d\n";
-    if (argc > 1) {
-      printf ("%d", pairCount(*argv[1]));
+    if (argc == 2) {
+      unsigned int inp = atoi(argv[1]);
+      printf ("%d\n", pairCount(inp));
       return 0;
     } else if (argc > 2) {
-      printf ("too many arguments!");
+      printf ("too many arguments!\n");
       return 0;
     }
     printf (testStr, 0, pairCount (0), 0);
@@ -29,8 +31,9 @@ int pairCountBitWise(unsigned int n) {
   return elevCount;
 }
 
-// Use Div by 2 algo to conver to binary.
+// Use Div by 2 algo to convert to binary.
 int pairCount(unsigned int n) {
+  // printf("Int passed through: %u\n", n);
   int elevCount = 0;
   int remainprev = 0;
   int remaincurr = 0;
