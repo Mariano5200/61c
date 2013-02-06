@@ -1,0 +1,43 @@
+'\" t
+.\" Copyright (c) 1998, 2002, 2008 P. N. Hilfinger
+.\" All Rights Reserved
+.TH MAIL-RESULTS 1 "3 Jan 2008"
+.SH NAME
+mail-results \- Mail logs of test runs back to students
+.SH SYNOPSIS
+.B mail-results
+.I assignment
+[
+.IR login  \|.\|.\|.
+]
+
+.SH DESCRIPTION
+.LP
+The
+.B mail-results
+command reads searches the automated grader's test logs for 
+.I assignment
+for results that have
+not been reported back to the students, and mails them.
+Any
+.I login
+operands restrict the search to submissions for those logins.
+If the log indicates that the submission is from a partnership,
+also sends a copy of the mail to the partners indicated.
+Where possible, uses the mailing addresses that students gave when they
+registered.
+.LP
+You will typically run this command as part of a periodic cron job to mail
+results of testing.
+
+.SH "EXIT STATUS"
+.LP
+Returns an exit code of 0 on normal completion, and non-zero in case of error.
+
+.SH "SEE ALSO"
+.BR run-tests (1),
+.BR submit (1)
+
+.SH IDENTIFICATION
+Author: Paul N. Hilfinger.  
+Copyright \(co 1998, 2002, 2008

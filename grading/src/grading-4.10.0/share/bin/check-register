@@ -1,0 +1,33 @@
+#!/usr/bin/env perl
+# -*- mode: Perl;-*-
+# Version @VERSION@
+# See the file COPYING in the main distribution directory for copyright notice.
+
+unshift (@INC, '@LIBDIR@');
+if (! exists $ENV{'MASTERDIR'}) {
+    do "acquireDir.pl";
+    askForMaster($#ARGV+1, 0, 0, 
+		 "Usage: check-register",
+		 "Enter the name of the course for which you are checking"
+		 . "\n   your registration (e.g., ee245, cs164): ");
+}
+
+require "GradingBase.pl";
+CmndLine ();
+require "GradingCommon.pl";
+
+$who=MyLogin ();
+
+if ( ! -d $REGISTER_DIR ) {
+    Fatal ("It looks like registration isn't ready yet.\n" .
+	   "You are NOT registered.  Try again later.");
+}
+
+if (-e "$REGISTER_DIR/$who") {
+    print "Registration information for $who:\n\n";
+    System ("$REGISTER_PROG");
+    print "\n\nIf this is incorrect, use the 're-register' command.\n";
+    exit 0;
+} else {
+    Fatal ("$who is not currently registered, according to $COURSE records.");
+}

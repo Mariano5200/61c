@@ -1,0 +1,28 @@
+'\" t
+.\" Copyright (c) 1998 P. N. Hilfinger
+.\" All Rights Reserved
+.TH set-finger-info 1 "11 Mar 2002"
+.SH NAME
+set-finger-info \- Request change in information printed by 'finger'
+.SH SYNOPSIS
+.B set-finger-info
+[
+.I "first-names last-name"
+]
+
+.SH DESCRIPTION
+.LP
+The 
+.B set-finger-info
+command will submit a request to change the name that the
+.B finger 
+command prints for the current user's login.  If the name arguments are
+omitted, 
+.B set-finger-info
+will prompt for them.  You must quote any command-line argument that contains
+blanks.
+
+.SH IDENTIFICATION
+Author: Paul N. Hilfinger.  
+Copyright \(co 1998, 2002
+

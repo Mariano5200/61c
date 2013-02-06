@@ -1,0 +1,46 @@
+#!/usr/bin/env perl
+# -*- mode: Perl;-*-
+# Version @VERSION@
+# See the file COPYING in the main distribution directory for copyright notice.
+
+unshift (@INC, '@LIBDIR@');
+require "GradingBase.pl";
+CmndLine ("", 1, 1);
+require "GradingCommon.pl";
+
+$assgn = shift;
+
+$me = MyLogin ();
+
+if (! $AUTHORIZED{$me}) {
+    Fatal ("You are not authorized to run this command.");
+}
+
+if (! AssignmentExists ($assgn)) {
+    Fatal ("Error: assignment $assgn not found.");
+}
+
+undef %scores;
+if (open (SCORES, $ALL_GRADES)) {
+    # First from swept grades.
+    while (<SCORES>) {
+	if (($tmpReader, $tmpAssgn) = /^==\s*(\S+)\s+(\S+)/) {
+	    $oldReader = $tmpReader; $oldAssgn = $tmpAssgn;
+	    next;
+	}
+	if (/^\s*(\#.*)$/) {
+	    next;
+	}
+	if ($oldAssgn eq $assgn 
+	    && (($login, $oldScore) = /^\s*(\S+)\s+\S+\s+(\S+)/)) {
+	    $scores{$login} = $_;
+	}
+    }
+    close (SCORES);
+}
+
+foreach (sort (keys %scores)) {
+    print STDOUT $scores{$_};
+}
+
+exit 0;

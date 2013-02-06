@@ -1,0 +1,164 @@
+4.9.1 (05/23/2012): 
+
+1. enter-grades: Readers (other than instructors) can no longer override 
+   other readers' grades without proper permission.
+
+4.9.0 (05/18/2012):
+
+1. check-reader-grades: Use registered emails for readers.
+2. report-lateness: Use -E in place of -A.  Reinterpret -A to restrict report
+   to all submissions for entries that have at least one late entry.
+
+4.8.0 (03/14/2012):
+
+1. find-student: Allow for matching by login.
+
+4.7.0 (12/22/2009):
+
+1. report-lateness: Added -w option with -A and -a.
+2. bug-submit: Adjusted subject and reply-to to reflect registered email 
+   address.
+
+4.6.8 (08/21/2009):
+
+1. Various bug fixes.
+
+2. Adjust bug-submit to use registered emails as return addresses, and to 
+   skip .svn directories.
+
+4.6.0 (08/17/2009):
+
+1. Add -w option to report-lateness to allow for deadline waivers.
+
+4.5.1 (07/06/2009):
+
+1. Try new method of cleaning up temp files to avoid leaving them around
+   in the event of too many processes.
+
+4.5.0 (06/09/2009):
+
+1. New feature added to glookup, allowing glookup -s ASSGN1,ASSGN2,..., which
+   reports on the sum of scores for the listed assignments.
+
+2. Added mode averages to glookup -s.
+
+3. glookup -t now reports lateness.
+
+4. Added team-members command.
+
+5. Enter-grades can use team names, even when there is no submission for
+   an assignment.
+
+6. Modified get-submissions to skip partner submissions.
+
+7. Simplified 'configure' a bit.
+
+8. Added deadline-exceptions file to grading directory: allows instructors 
+   to specify modified deadlines for specific students and assignments.
+
+4.4.1 (02/19/2009):
+
+1. New naming convention for log files:  .../ASSGN/{ok,failed,mailed} rather
+   than  .../{ok,failed,mailed}/ASSGN.
+
+2. Add svn-check-submission program.
+
+3. Add version reporting.
+
+4. Allow enter-grades to work on teams as well as individual logins.
+
+3.20.1 (01/05/2008):
+
+1. Added email info to registration.
+
+2. Changed method of accessing registration data to allow for incompetent
+   file system implementations.
+
+3. Allow abbreviation of logins for glookup.
+
+4. Changed enter-grades interactive format so that comments go on the same
+   line as the score.
+
+5. Use registered email addresses for sending test results.
+
+6. Change treatment of partnerships.  Enter-grades now adds partnerships
+   automatically.  Removed the add-partners command.  Renamed get-partners
+   to list-partners; it is now simply informational.
+
+3.19.2 (11/08/2007):
+
+1. Correct problem with "~" in mail messages.
+
+
+3.19.1 (10/23/2007):
+
+1. run-as-class-master may now be configured with a list of directories
+   from which to get SUID scripts.  By default, $(GRADINGDIR)/suid is first
+   on this list.
+
+3.18.1 (01/09/2006):
+
+1. The submit command now allows a -u LOGIN parameter so that instructors
+   (or web-submission scripts) can submit on behalf of a student.  Submit also
+   allows -b (batch mode) to allow non-interactive submission, and -f (force)
+   to allow ignoring sanity checks.
+
+3.17.0 (12/22/2005):
+
+1. get-partners can now work without get-submissions, and can fetch 
+   partnership information about an individual.
+
+3.16.0 (11/7/2005):
+
+1. Glookup now allows you to specify a name -- LAST or LAST,FIRST -- rather
+   than a login.
+
+2. Glookup -s for an individual student now includes student's score.
+
+3.15.1 (10/14/2005):
+
+1. Bug fixes in handling of -d in glookup.
+
+3.15.0 (5/24/2005):
+
+1. New -f option for glookup for producing -a output in comma-separated values
+   (CSV) format.
+
+3.14.1 (5/19/2005):
+
+1. Removed grade directory and program.  Now obsolete.
+
+2. Extended -s option of glookup to include the Total column.
+
+3.14.0 (3/14/2005):
+
+1. glookup now has options -s and -b for producing histograms and statistics.
+
+2. The -req option now allows patterns.
+
+3. Various documentation updates.
+
+4. report-lateness distinguishes successful, unsuccessful, untested versions.
+
+3/23/2004:
+
+1. enter-grades, submit, glookup, check-missing all use setuid.  No
+   special compilation of glookup is needed.
+
+2. file-submissions is gone.
+
+3. sweep-grades is replaced by check-reader-grades, which checks for
+   missing grades and sends notices.
+
+4. As part of the installation, you must compile and install setuid programs
+   by the name of 'run-as-<class master login>' (e.g., run-as-cs61a)
+   for each class and architecture.  These should be in the standard
+   path that students see.  See the run-as-class-master source
+   directory for installation instructions.
+
+5. All documentation is updated (I think).
+
+6. The directory structure is mostly backwards compatible, but I have
+   tightened some permissions, now that that is possible.
+
+

@@ -1,0 +1,226 @@
+			  Automated Testing
+			   P. N. Hilfinger
+			   06 June 2009
+
+THE BARE BONES
+--- ---- -----
+
+In one sense, arranging for automated testing of student submissions for
+an assignment named ASSGN is easy:
+
+   Create a makefile (for GNU make) called DIR/testing/mk/ASSGN.mk,
+   whose default target performs all necessary building and testing of
+   assignment ASSGN.  Here, DIR is the name of the grading directory,
+   typically $HOME/grading, that contains all the other grading-system-
+   related files.  The commands in this makefile may assume that the
+   current directory contains the files submitted by the student.
+   They makefile's set of commands should exit with status 0 if the
+   student's submission checked out completely, and otherwise should
+   exit with a non-zero status.
+
+   The file ASSGN.mk may also contain targets OK and NOT-OK. When
+   invoked with target OK, the makefile should simply print (on stdout)
+   the message to prefix mail to the student about a successful test 
+   run.  Likewise, the NOT-OK target should print the message to prefix
+   mail about a not-entirely-successful test run.
+
+End of story.
+
+Given this setup, the command
+
+	run-tests ASSGN
+
+will test all as-yet-untested submissions for assignment ASSGN and produce
+log files in DIR/logs/ASSGN/ok/SUBM or DIR/logs/ASSGN/failed/SUBM for
+each submission DIR/submissions/ASSGN/SUBM.  The command
+
+	mail-results ASSGN
+
+will then mail all as-yet-unmailed results to the indicated students, 
+recording the mailing of results for submission SUBM of assignment ASSGN
+by creating a dummy file DIR/logs/ASSGN/mailed/SUBM.  Simply by deleting 
+DIR/logs/ASSGN/mailed/SUBM, you can cause the results to be re-mailed when
+you again issue mail-results.  By deleting the 'ok' or 'failed' log file, you
+can get run-tests to re-run the tests.  
+
+You may also use get-subm to retrieve and unpack a specific submission
+into the current directory and test-subm to test the unpacked
+submission in the current directory (without the creation of log
+files).  These are good for checking your testing programs before using
+run-tests.
+
+
+GUIDANCE
+--------
+
+Of course, although this is, in principle, the whole story, it leaves
+a great deal of innovation to the instructor.  Just as an example,
+here's what I did for one assignment, hw1.  You'll find these files in 
+testing-sample/testing-files.
+
+First, an organizational note: in order that students could see
+testing material after the due date, I placed the makefile for ASSGN in 
+~/testing-files/ASSGN.mk, and placed testing files for ASSGN in directory
+~/testing-files/ASSGN.  There were symbolic links to these from 
+DIR/testing/mk/ASSGN.mk.  I changed the protections after each due date.
+
+In ~/testing-files, I created a common grading makefile, grading.mk,
+to be included by all others.  This allowed me to keep the .mk files
+for each assignment simple.  hw1.mk, for example, looks like this
+
+    ASSIGN = hw1
+
+    all: 1.tests Progs.note-indentation 
+
+    include $(MASTERDIR)/grading/testing/mk/grading.mk
+
+    export CLASSPATH := $(CLASSPATH):$(TEST_SRC)/classes
+
+    Progs.class: Progs.java
+
+    1.tests: 1a.test 1b.test 1c.test 1d.test 1e.test 1f.test 1g.test
+
+    1a.test 1b.test 1c.test 1d.test 1e.test 1f.test 1g.test: Progs.class
+
+For this particular assignment, students were to turn in just a file
+Progs.java containing their solutions.
+
+The grading.mk file does several things:
+
+ * Defines TEST_SRC to be $(MASTERDIR)/testing-files/$(ASSIGN) so that
+   I can use it (as here) to inform testing software where it may find
+   necessary supporting files for this assignment.
+
+ * Gives an implicit rule for compiling .java files in .class files,
+   so that when I make a test dependent on Progs.class, Progs.java
+   gets compiled.
+
+ * Defines an implicit rule for targets of the form X.test, so that 
+   building X.test runs the command $(TEST_SRC)/X.cmd (e.g.,
+   $(MASTERDIR)/testing-files/hw1/1a.cmd), which must be an executable
+   file or shell script.  This implicit rule also sets up a few 
+   environment variables that can be used by X.cmd:
+
+ 	* TEST_SRC: as above
+	* TEST: the name of this test (e.g., 1a)
+
+   If the X.cmd program succeeds (exit code 0), and if another program
+   $(TEST_SRC)/X.chk is defined, the grading.mk's commands run this
+   program, passing it the environment variable
+
+	* OUTPUT: name of the output file produced by X.cmd
+
+   in addition to the two above.  The exit code from X.chk indicates 
+   whether the output checks out (0 means OK).
+
+ * Defines targets OK and NOT-OK to print files SUCCEED_MESSAGE and
+   FAIL_MESSAGE respectively.  If these files are not defined in 
+   the TEST_SRC directory, the software substitutes generic messages.
+
+For example, problem 1a of hw1 required the student to write a
+static Java function Progs.factorSum, such that Progs.factorSum(N)
+gives the sum of all integers in [1..N) that evenly divide N.  I wrote
+a test driver, ProgDriver.java, such that
+
+	java ProgDriver a N0 N1 ...
+
+would print out
+
+	factorSum(N0)
+	      = S0
+	factorSum(N1)
+	      = S1
+
+etc., where the Si are the results returned by Progs.factorSum(Ni).  I
+compiled ProgDriver.java into 
+	$(MASTERDIR)/testing-files/hw1/classes/ProgDriver.class
+The file $(MASTERDIR)/testing-files/hw1/Makefile contains the commands 
+necessary to perform this compilation (it also creates files 
+classes/{Paragraph.class,Sentence.class} which were provided with the 
+homework assignment to be used by the student).
+
+The file 1a.cmd is a shell script containing
+
+    #!/bin/sh
+
+    CLASSPATH=${MASTERDIR}/testing-files/hw1/classes:${CLASSPATH}
+    export CLASSPATH
+
+    ulimit -f 10
+    ulimit -t 10
+    ulimit -d 10000
+
+    java ProgDriver a 0 1 2>&1 </dev/null
+    java ProgDriver a 2 3 4 5 6 7 12 20 28 42 2>&1 </dev/null
+
+When run, this tests the student's Progs.factorSum on 0, 1, 2, 3, ...,
+and puts the result onto stdout (which goes to a certain file: RESULT,
+as it happens).
+
+The file 1a.chk contains the shell script
+
+    #!/bin/sh
+
+    if sed -e 's/^ *//' $OUTPUT | diff -b - $TEST_SRC/$TEST.std >/dev/null; then
+	exit 0;
+    else
+	echo "Your results don't match ours.  We were expecting:"
+	echo "=================================================="
+	cat $TEST_SRC/$TEST.std
+	echo "=================================================="
+	echo "But instead, we saw:"
+	echo "=================================================="
+	cat $OUTPUT
+	echo "=================================================="
+	exit 1
+    fi
+
+which compares the student's output ($OUTPUT) against a file of
+expected results, .../hw1/1a.std, containing
+
+    factorSum(0)
+	    = 0
+    factorSum(1)
+	    = 0
+    factorSum(2)
+	    = 1
+    factorSum(3)
+	    = 1
+    factorSum(4)
+	    = 3
+    factorSum(5)
+	    = 1
+    factorSum(6)
+	    = 6
+    factorSum(7)
+	    = 1
+    factorSum(12)
+	    = 16
+    factorSum(20)
+	    = 22
+    factorSum(28)
+	    = 28
+    factorSum(42)
+	    = 54
+
+The .chk file is written to be useful for any test where checking just 
+requires comparison with a standard file.
+
+
+GRADING IN PARALLEL AND REGRADING
+------- -- -------- --- ---------
+
+Especially with large classes in which a significant fraction of the
+class can be expected to submit at the last minute, you will probably
+want to test as many projects simultaneously as will do any good (say,
+as many projects as there are CPUs on your system).  The run-tests
+program does the locking necessary to avoid interference when several
+instantiations of it run simultaneously.  When machines (or programs)
+crash, however, they may leave things in a locked state, interfering
+with later runs.  First, you will get warnings when lock files are
+left behind; they eventually expire, at which point you can use the -f
+option to run-tests to force the locks. Second, run-tests will skip
+submissions for which there are existing log files
+DIR/logs/ASSGN/ok/SUBM or DIR/logs/ASSGN/failed/SUBM (see above).
+Simply deleting these files will cause run-tests to test the
+corresponding submission again.

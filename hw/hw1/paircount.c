@@ -34,9 +34,7 @@ int pairCountBitWise(unsigned int n) {
 // Use Div by 2 algo to convert to binary.
 int pairCount(unsigned int n) {
   // printf("Int passed through: %u\n", n);
-  int elevCount = 0;
-  int remainprev = 0;
-  int remaincurr = 0;
+  int elevCount, remainprev, remaincurr = 0;
   while (n > 0) {
     remainprev = remaincurr;
     remaincurr = n % 2;
