@@ -1,0 +1,53 @@
+#!/usr/bin/env perl
+# -*- mode: Perl;-*-
+# Version 4.7.9
+# See the file COPYING in the main distribution directory for copyright notice.
+
+# Important Assumptions: This script runs under the run-as-class-master 
+# wrapper, which gives it the effective UID of the class master account,
+# sets PATH to /usr/bin, MASTERDIR and GRADINGDIR to the correct values, 
+# copies HOME and PWD from the user, and clears the rest of the environment, 
+# including environment variables affecting Perl.
+
+# Usage: access-registration [ LINE ...  ]
+#    With no arguments, writes the contents of the registration entry for
+#    USER on the standard output, where USER is the real user id 
+#    of the caller.   Otherwise, writes the arguments in order, one per line,
+#    setting or replacing the registration entry for USER.   Exits normally
+#    on success, or with exit code 1 when reading and the registration 
+#    file does not exist.
+
+use POSIX qw(strftime);
+use Net::Domain qw(hostname hostfqdn);
+unshift (@INC, '/share/b/grading/lib');
+
+@ARGV0 = @ARGV;
+
+require "GradingBase.pl";
+CmndLine ("", 0, 20);
+require "GradingCommon.pl";
+
+GetPermissions ($0, @ARGV0);
+
+$ENV{"PATH"}='/usr/bin';
+
+$me = MyLogin ();
+
+$file = "$REGISTER_DIR/$me";
+
+if (@ARGV) {
+    umask 0027;
+    unlink ($file);
+    open (REGISTER, ">", $file) 
+	or exit 1;
+    print REGISTER join ("\n", @ARGV), "\n";
+    close (REGISTER);
+} else {
+    open (REGISTER, "<", $file) 
+	or exit 1;
+    while (<REGISTER>) {
+	print STDOUT $_;
+    }
+}
+
+exit 0;

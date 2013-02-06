@@ -1,0 +1,349 @@
+#!/usr/bin/env perl
+# -*- mode: Perl;-*-
+# Version 4.7.9
+# See the file COPYING in the main distribution directory for copyright notice.
+
+# Important Assumptions: This script runs under the run-as-class-master 
+# wrapper, which gives it the effective UID of the class master account,
+# sets PATH to /usr/bin, MASTERDIR and GRADINGDIR to the correct values, 
+# copies HOME and PWD from the user, and clears the rest of the environment, 
+# including environment variables affecting Perl.
+
+@ARGV0 = @ARGV;
+
+unshift (@INC, '/share/b/grading/lib');
+require "GradingBase.pl";
+CmndLine ("cFf:P", 0, 1);
+require "GradingCommon.pl";
+
+GetPermissions ($0, @ARGV0);
+
+$ENV{"PATH"}='/usr/bin:/share/b/grading/bin';
+
+$assgn = shift;
+
+if ($#ARGV >= 0 || (! defined ($assgn) && ! defined ($opt_f))
+    || (defined ($opt_c) && ! defined ($opt_f))
+    || (defined ($opt_c) && defined ($opt_F))) {
+    &Usage;
+}
+
+if (! defined ($assgn)) {
+    $assgn = $opt_f;
+    $assgn =~ s,^.*/,,;
+    $assgn =~ s/\..*$//;
+}
+
+if (! AssignmentExists ($assgn)) {
+    Fatal ("Error: assignment $assgn not found.");
+}
+
+if (defined ($opt_f)) {
+    ($<, $>) = ($>, $<);
+    open (GRADES, "<$opt_f") || Fatal ("Could not open $opt_f");
+    @grades = <GRADES>;
+    close (GRADES);
+    ($<, $>) = ($>, $<);
+}    
+
+$me = MyLogin ();
+
+if (! ReaderExists ($me)) {
+    Fatal ("You are not registered as a reader.");
+}
+
+if (! $ASSGN_USE_READERS{$assgn} && ! $READER_IS_INSTRUCTOR{$me}) {
+    Fatal ("You are not supposed to be grading this assignment.");
+}
+
+unless ($opt_c) {
+    if (! -d $ALL_GRADE_DIR || ! -w $ALL_GRADE_DIR) {
+	Fatal ("Roster directory $ALL_GRADE_DIR does not exist or can't be written.");
+    }
+
+    Note ("Entering grades for assignment $assgn" .
+	  (defined ($opt_f) ? " from file $opt_f" : "") . ".");
+}
+
+$max = $ASSGN_ABSMAX{$assgn};
+
+undef %scores;
+Note ("Reading previous scores for $assgn...") if (!$opt_f);
+if (open (SCORES, $ALL_GRADES)) {
+    while (<SCORES>) {
+	if (($tmpReader, $tmpAssgn) = /^==\s*(\S+)\s+(\S+)/) {
+	    $oldReader = $tmpReader; $oldAssgn = $tmpAssgn;
+	    next;
+	}
+	if (/^\s*(\#.*)$/) {
+	    next;
+	}
+	if ($oldAssgn eq $assgn 
+	    && (($login, $oldScore) = /^\s*(\S+)\s+\S+\s+(\S+)/)) {
+	    $scores{$login} = "$oldScore $oldReader";
+	}
+    }
+    close (SCORES);
+}
+
+Note ("Done.") if (!$opt_f);
+
+undef %names;
+if (open (ROSTER, $MAIN_ROSTER)) {
+    while (<ROSTER>) {
+	if (($login, $lastName, $firstName) = split (/ /, $_)) {
+	    $names{$login} = "${firstName}_$lastName";
+	}
+    }
+    close (ROSTER);
+}
+
+if ($ASSGN_PARTNERS{$assgn} and not $opt_P) {
+    $partnerMap = SubmissionMap ($assgn);
+} else {
+    $partnerMap = { };
+}
+
+sub EnterPartners {
+    my ($entries, $login, $score, $comments) = @_;
+
+    my @partnerships = Partnerships ($partnerMap, $login);
+    if ($#partnerships < 0) {
+        if (TeamExists ($login)) {
+	    Note ("No recorded partnerships on submission for $login; " .
+		  "using team membership.");
+	    @partnerships = (TeamMembers ($login));
+	} else {
+	    return 0;
+	}
+    }
+    if ($#partnerships > 0) {
+	Warn ("Conflicting partnerships for $login:\n    "
+	      . join ('\n    ', @partnerships)
+	      . "\nYou must enter grades for all partners explicitly.");
+	return 1;
+    } else {
+	my $errors;
+	$errors = 0;
+	foreach my $partner (split (/\s+/, $partnerships[0])) {
+	    next if $partner eq $login;
+	    if (! StudentExists ($partner)) {
+		Warn ("Partner $partner does not exist. Entry ignored.");
+		$errors += 1;
+		next;
+	    } 
+	    my $line = "$partner - $score [from $login] $comments";
+	    push @$entries, $line;
+	    Note ("Added partner entry: $line");
+	}
+	return $errors;
+    }
+}
+
+$errors = 0; @entries = ();
+if ($opt_f) {
+    foreach $line (@grades) {
+	next if ($line =~ /^\s*(\#.*)?$/);
+	$line =~ s/\s*$//;
+	$dontCheck = ($line =~ s/^\+//);
+	if (($login, $name, $score, $comments) =
+	    ($line =~ /^\s*(\S+)\s+(\S+)\s+(\S+)\s*(.*)$/)) {
+	    $isTeam = TeamExists ($login);
+	    if (! $isTeam && ! StudentExists ($login)) {
+		Warn ("There is no student $login. Entry ignored.");
+		$errors += 1;
+		next;
+	    } 
+	    if (! $dontCheck 
+		&& $ASSGN_ASSIGNED_READERS{$assgn} 
+		&& "${assgn}::$login" !~ /$READER_ASSIGNMENTS{$me}/o) {
+		Warn ("You are not supposed to be grading assignment $assgn "
+		      . "for $login. Entry ignored:\n"
+		      . "\t$line\n" );
+		$errors += 1;
+		next;
+	    } 
+	    if ($score !~ /^(---|-?[0-9]+(\.[0-9]*)?)$/) {
+		Warn ("Score has invalid format.  Entry ignored:\n"
+		      . "\t$line\n");
+		$errors += 1;
+		next;
+	    } 
+	    if ($score > $max) {
+		Warn ("Score $score is out of range.  Entry ignored:\n"
+		      . "\t$line\n");
+		$errors += 1;
+		next;
+	    }
+	    if (! $dontCheck && $ASSGN_SUBMIT{$assgn}) {
+		if (! SubmissionExists ($login, $assgn)) {
+		    Warn ("Score $score given to $login, who has no submission.");
+		    if (! Yorn ("Enter score anyway?")) {
+			Note ("Entry ignored:\n\t$line\n");
+			next;
+		    }
+		}
+	    }
+	    if (! $isTeam) {
+	        push (@entries, $line);
+            }
+	    $errors += EnterPartners (\@entries, $login, $score, $comments);
+	}
+    }
+    if (! $opt_c && $errors > 0) {
+	Warn ("Errors found in file $opt_f.");
+	if (! Yorn ("Continue?")) {
+	    Fatal ("Processing aborted. No grades submitted.");
+	}
+    }
+} else {
+    Note ("Enter grades one at a time.  End with a login of '.'");
+    
+    while (1) {
+	$login = Fetch ("Login: ");
+	$dontCheck = ($login =~ s/^\+//);
+	last if ($login eq ".");
+	$isTeam = TeamExists ($login);
+	if (! $isTeam && ! StudentExists ($login)) {
+	    if (StudentExists ("${CLASSPREFIX}$login")) {
+		$login = "${CLASSPREFIX}$login";
+	    } else {
+		Note ("There is no student $login.");
+		next;
+	    }
+	}
+	if (! $dontCheck 
+	    && $ASSGN_ASSIGNED_READERS{$assgn} 
+	    && "${assgn}::$login" !~ /$READER_ASSIGNMENTS{$me}/o) {
+	    Note ("You are not supposed to be grading assignment $assgn "
+		  . "for $login.");
+	    next;
+	}		
+	if (! $dontCheck && $ASSGN_SUBMIT{$assgn}
+	    && ! SubmissionExists ($login, $assgn)) {
+	    Warn ("Score given to $login, who has no submission.");
+	    if (! Yorn ("Enter score anyway?")) {
+		Note ("Entry for $login ignored");
+		next;
+	    }
+	}
+
+	$name = $names{$login};
+	if ($name) {
+	    $scoreAndComments = Fetch ("Grade and comments for $login ($name): ");
+	} else {
+	    $name = "-";
+	    $scoreAndComments = Fetch ("Grade and comments for $login: ");
+	}
+	($score, $comments) = ($scoreAndComments =~ /(\S+)\s*(.*)/);
+
+	if ($score !~ /^(---|-?[0-9]+(\.[0-9]*)?)$/) {
+	    Note ("Score has invalid format.");
+	    next;
+	} 
+	if ($score > $max) {
+	    Note ("Score $score is out of range.");
+	    next;
+	}
+
+	if (!$isTeam) {
+	    push (@entries, "$login $name $score $comments");
+        }
+
+	EnterPartners (\@entries, $login, $score, $comments);
+    }
+}
+
+# Check for overriding, unless -F present
+
+if ( ! $opt_F) {
+    $i = 0;
+    while ($i <= $#entries) {
+	($login, $name, $score, $comments) = 
+	    $entries[$i] =~ /\s*(\S+)\s+(\S+)\s+(\S+)\s*(.*)$/;
+	if (exists ($scores{$login})) {
+	    ($oldScore, $oldReader) = split (/ /, $scores{$login});
+	    if ($oldScore ne $score) {
+		if ($oldReader eq $me) {
+		    Warn ("Your score of $score for $login would override "
+			  . "your previous score of $oldScore.");
+		} else {
+		    Warn ("Your score of $score for $login would override\n\t"
+			  . "previous score of $oldScore from $oldReader.");
+		}
+		if (!$opt_c && ! Yorn ("Is this OK?")) {
+		    Note ("Your entry for $login is ignored.\n");
+		    splice (@entries, $i, 1);
+		    next;
+		}
+	    }
+	}
+	$i += 1;
+    }
+}
+
+if ($opt_c) {
+    Note ("You have entered " . ($#entries+1) .
+	  " grades for assignment $assgn.");
+    Warn ("Errors found in file $opt_f.") if ($errors > 0);
+    exit ($errors > 0);
+}
+
+if (@entries) {
+    Note ("You have entered " . ($#entries+1) . 
+	  " grades for assignment $assgn.");
+    if (Yorn ("Review them?")) {
+	foreach (@entries) {
+	    print "$_\n";
+	}
+    }
+    if (!Yorn ("Submit grades?")) {
+	Fatal ("Submission aborted.  No grades submitted for assignment $assgn.");
+    }
+} else {
+    Fatal ("No grades were submitted for $assgn.");
+}
+
+Note ("Submitting grades for assignment $assgn...");
+
+
+Protect (sub {
+    Lock ();
+
+    umask (0027);
+    open (NEW_GRADES, ">>$ALL_GRADES") 
+	|| Fatal ("Cannot append grades to $ALL_GRADES: $!");
+
+    print NEW_GRADES "\n== $me $assgn " . scalar (localtime (time)) . "\n";
+
+    foreach (@entries) {
+	print NEW_GRADES "$_\n";
+    }
+    close (NEW_GRADES);
+
+    Unlock();
+});
+
+# Note: PRCS checks accessibility via the real user id.
+umask (0077);
+$< = $>;
+if (System ("cd $ALL_GRADE_DIR; " .
+	    "PRCS_REPOSITORY='$REPOSITORY_DIR'; export PRCS_REPOSITORY; " .
+	    '/usr/sww/bin/prcs checkout --quiet --force ' .
+	    'GradeReports GradeReports.prj && ' .
+	    '/usr/sww/bin/prcs populate --force --quiet . grade-log && ' .
+	    '/usr/sww/bin/prcs checkin --force')) {
+    Note ("Grades submitted and archived.");
+} else {
+    Note ("Grades submitted.");
+    Warn ("Could not archive $ALL_GRADE_DIR/grade-log.");
+}
+
+Note ("Making new grade book....");
+if (System ("make-grade-book")) {
+    Note ("Done.");
+} else {
+    Warn ("Failed to make new grade book.");
+}
+
+exit 0;

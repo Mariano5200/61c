@@ -1,0 +1,36 @@
+From brg@cory.EECS  Tue May  7 16:09:33 2002
+From: "Brian R. Gaeke" <brg@cory.EECS>
+To: "Brian R. Gaeke" <brg@cory.EECS>
+Cc: Kevin Mullally <kevinm@cory.EECS>, brg@pasteur.EECS, inst@cory.EECS
+Subject: Re: 'grading' cronjobs syntax
+
+
+[/share/b/grading/docs] includes mostly our docs, along with edited
+copies of Prof Hilfinger's docs, and stuff from me and from TAs...
+
+
+to wit:
+
+basic.mk              -- Erik Klavon, cs61a TA, submitted these basic 
+basic.ref             -- test scripts as an example of using the automatic
+basic.scm             -- testing facility
+
+grading.checklist     -- instructions mickey & I wrote (sort of like the
+                      -- roadmap we drew on the whiteboard for this year's
+                      -- presentation)
+
+grading.docs.author   -- hilfinger's docs
+
+grading.help          -- our public grading.help file
+
+grading.master        -- instructions for class master 
+grading.reader        -- "            "   readers
+
+grading.overview.2001 -- mickey's 2001 notes from the grading presentation
+
+shortest.reader.instructions -- my "shortest possible instructions" for readers
+
+etc.
+
+
+

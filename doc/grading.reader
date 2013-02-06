@@ -1,0 +1,106 @@
+Register/submit/grading setup:  Reader programs and files
+---------------------------------------------------------
+
+Overview:
+--------
+
+Students submit assignments using the submit program.  This mails 
+assignments to the auto-grader, usually the -ra account for the class 
+(e.g., cs61b-ra). 
+
+Actual grading is the job of readers (a term I extend here to include
+the instructors).  The software allows the class master to assign
+specific logins to specific readers, if desired.  Readers can use the
+'get-submissions' and 'lookat' programs to find submissions assigned
+to them and any logs that resulted from automated testing.  Using the
+'enter-grades' program, they can then send their grades to the class
+master.  
+
+Most of the commands described below will furnish their own brief
+documentation if given the '-h' option.
+
+	     
+Procedures for the readers
+--------------------------
+
+Readers get assigned some particular set of students to grade, which
+may differ from assignment to assignment.  Their job is to do any
+desired review of the materials that students turn in, and then create
+a file of grades for that assignment.  Readers' accounts must be in
+the staff group.
+
+* get-submissions ASSIGN [ PATN  ]
+
+	This creates links to all submissions for the assignment named
+	ASSIGN that match PATNs (by default, all submissions assigned
+	to you) and also to the logs created by the automated grader.
+	All links go in the current directory.  I suggest running this
+	in a subdirectory devoted to the purpose.  Run the 'lookat'
+	command after this to unpack a particular assignment.
+
+* lookat [ -d DIR ] LOGIN[.TIMESTAMP]
+
+	Unpack a submission in the current directory for inspection.
+	Assumes that you have run 'get-submissions', which will have
+	created a bunch of links named LOGIN.TIMESTAMP.  Typically,
+	you'll use 'lookat LOGIN' to unpack the latest submission for
+	that login.  However, you can also use LOGIN.TIMESTAMP to get
+	an earlier one.  Timestamps have the form
+	
+		yyyymmddhhmm
+
+	where the time (hhmm) is in GMT.  Unless you supply a specific
+	DIR, the contents of the submission goes into directory
+	'LOOK', erasing any previous contents.
+
+* make-roster ASSIGN
+
+	Creates a clean grade roster for assignment ASSIGN.  Each line has
+	the form
+
+		LOGIN LASTNAME,FIRSTNAME 
+
+	Add numeric grades to the ends, followed (if desired) by
+	comments:
+
+		cs61b-ac Bunyan,John 1  Rather puritanical code
+
+	If you don't have a score for someone, don't write anything.
+	You can delete lines for which you have no scores, or not, as
+	you see fit.  When done with a grading file, move it to your
+	$RAW_GRADE_SUBDIR (see below).  If the software is checking
+	your grades against the actual submissions, you must put a "+"
+	in front of all logins for people who did not actually submit
+	(typically, the partners of the students who did submit or
+	students who hand in an assignment on paper).
+
+* enter-grades [ -c ] -f FILE  [ ASSIGN ]
+* enter-grades ASSIGN
+
+	Enter grades for ASSIGN either from file FILE (see
+	make-roster), or interactively (if -f not given).  ASSIGN is
+	optional if it can be deduced from FILE.  With -c just checks
+	the format of FILE.
+	
+* list-partners [-h] ASSIGN [ LOGIN ]
+
+        List partnership information for LOGIN on assignment ASSIGN, or for
+        all logins if LOGIN is defaulted.  The program will warn of
+        anomalies, such as partnerships for the same student that conflict.
+
+#* get-partners [ -o FILE ] ****** Deprecated - use liste-partners ****
+#
+#       When grading partners, you may find it convenient to have your
+#       grades copied to all partners automatically.  After doing a
+#       'get-submissions', use this (in the same directory) to search
+#       the submissions for all partnerships.  Edit the resulting FILE
+#       if there are problems (the same person with two different
+#       partners, etc.).  Then add partners to a grade file by using
+#       add-partners.  Of course, you can always do this by hand.
+
+* add-partners PARTNERS GRADES
+
+	Append partner grades to the end of file GRADES.  PARTNERS should
+	be the output of get-partners, above.  GRADES should be in the 
+	format expected by enter-grades.
+

@@ -1,0 +1,102 @@
+'\" t
+.\" Copyright (c) 1998, 2002 P. N. Hilfinger
+.\" All Rights Reserved
+.TH ASSIGN-LETTER-GRADES 1 "11 Mar 2002"
+.SH NAME
+assign-letter-grades \- Assign letter grades from grade book
+.SH SYNOPSIS
+.B assign-letter-grades [
+.B \-o
+.I output-file
+] [
+.I grade-scale-file
+[
+.I gradebook-file
+] ]
+
+.SH DESCRIPTION
+.LP
+The
+.B assign-letter-grades
+command creates a file of student names, logins, registration numbers, 
+numeric grades on the final examination, total numeric grade, and letter
+grade, using a grade book,
+.IR gradebook-file ,
+as produced by
+.BR make-grade-book (1) 
+and a file containing a grading scale,
+.IR grade-scale-file .
+A class average (including only students for whom a final examination
+grade is recorded) is appended to the output.
+Output goes to 
+.IR output-file ,
+or by default to the standard output.  
+The
+.I gradebook-file
+defaults to the standard file produced by 
+.BR make-grade-book .
+The 
+.I grade-scale-file
+defaults to a file named
+.B grade-scale
+in the current directory or in the directory containing
+.IR gradebook-file .
+.LP
+The simplest
+.I grade-scale-file
+consists of a sequence of lines of the form
+
+.RS 5
+grade
+.I "letter-grade grade-points cutoff"
+.RE
+
+where 
+.I letter-grade
+is a valid letter grade;
+.I grade-points
+is the numeric equivalent of that letter grade; 
+and 
+.I cutoff
+is the lowest total score that earns the letter grade.  For example,
+
+.RS 5
+grade B+ 3.3 75
+.RE
+
+You must include these lines in increasing order by cutoff.
+.LP
+The program usually assumes that in 
+.IR gradebook-file ,
+the columns containing the students' grade on the final examination,
+registration number, login name, last name, and first name are
+labeled, respectively, ``final'', ``SID'', ``Login'', ``Last'', and ``First.''
+You may change any of these with the following lines in the
+.IR grade-scale-file :
+
+.nf
+.RS 5
+final \fIfinal-column-head\fP
+regnum \fIregnum-column-head\fP
+login \fIlogin-column-head\fP
+last \fIlast-name-column-head\fP
+first \fIfirst-name-column-head\fP
+.RE
+
+.SH OPTIONS
+.TP 12
+.B \-o
+Output file.
+
+.SH "EXIT STATUS"
+.LP
+Returns an exit code of 0 on normal completion, and non-zero in case of error.
+
+.SH "SEE ALSO"
+.BR make-grade-book (1),
+.BR glookup (1),
+.BR grade (1)
+
+.SH IDENTIFICATION
+Author: Paul N. Hilfinger.  
+Copyright \(co 1998, 2002

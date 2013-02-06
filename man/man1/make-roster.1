@@ -1,0 +1,33 @@
+'\" t
+.\" Copyright (c) 2002 P. N. Hilfinger
+.\" All Rights Reserved
+.TH MAKE-ROSTER 1 "11 March 2002"
+.SH NAME
+make-roster \- Make blank grade roster
+.SH SYNOPSIS
+.B make-roster
+[ 
+.B \-h
+] [
+.B \-o
+.I file
+]
+.I assignment
+
+.SH DESCRIPTION
+.LP
+The
+.B make-roster
+command
+creates a roster of all students assigned to the current login for
+for assignment \fIassignment\fP.  It puts the roster in
+\fIfile\fP (by default, the standard
+output). By default, it produces a roster of all students.  
+
+.SH "EXIT STATUS"
+.LP
+Returns an exit code of 0 on normal completion, and non-zero in case of error.
+
+.SH IDENTIFICATION
+Author: Paul N. Hilfinger.  
+Copyright \(co 2002

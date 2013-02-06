@@ -1,0 +1,48 @@
+#!/usr/bin/env perl
+# -*- mode: Perl;-*-
+# Version 4.7.9
+# See the file COPYING in the main distribution directory for copyright notice.
+
+unshift (@INC, '/share/b/grading/lib');
+require "GradingBase.pl";
+CmndLine ("", 1);
+require "GradingCommon.pl";
+require "TestingCommon.pl";
+
+$assgn = shift;
+
+if (! AssignmentExists ($assgn)) {
+    Fatal ("Assignment $assgn does not exist.");
+}
+
+@subms = ();
+if (@ARGV) {
+    foreach $patn (@ARGV) {
+	if ($patn =~ /\./) {
+	    $subm = "$SUBMISSION_DIR/$assgn/$patn";
+	    if (! -e $subm) {
+		Warn ("Cannot find submission $patn for assignment $assgn.");
+	    } else {
+		push (@subms, $subm);
+	    }
+	} else {
+	    @subms0 = GLOB ("$SUBMISSION_DIR/$assgn/$patn.*");
+	    if (@subms0) {
+		push (@subms, @subms0);
+	    } else {
+		Warn ("No entries for $patn");
+	    }
+	}
+    }
+} else {
+    @subms = GLOB ("$SUBMISSION_DIR/$assgn/*.*");
+}
+
+if (! @subms) {
+    Warn ("No submissions found.");
+    exit 0;
+}
+
+MailResult (@subms);
+
+exit 0;

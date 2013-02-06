@@ -1,0 +1,107 @@
+Register/submit/grade:  Student Procedures
+------------------------------------------
+
+Students use the following programs to register and submit homework.
+
+* register
+
+	This is usually run from one of the initialization files, such
+	as .login.  It asks for various information and records it in
+	a central place for use by the staff.  Only the staff (and
+	you) can read this information.
+
+* re-register
+	
+	The 'register' program does nothing if you are already
+	registered.  Use re-register to correct an error in your
+	registration. 
+
+* check-register
+
+	Prints out your registration information so that you can see
+	if it is correct.
+
+* submit ASSIGN
+
+	Submit the assignment named ASSIGN.  This gathers selected files from
+	your current directory and sends them the automated grader.
+	It will automatically find and submit files that are required
+	for the assignment and prompt you about submitting others in
+	the directory.   If the assignment involves working with a
+	partner, it will ask for the logins of all your partners.  In
+	some cases, it will perform a small test of your program
+	before submitting it.  Look at the messages from submit
+	carefully; if they seem to suggest errors, DO NOT assume that
+	your submission succeeded.
+
+* bug-submit ASSIGN
+
+	Submits a bug report (a request for assistance) for the
+	assignment named ASSIGN.  This is like submit, but just
+	packages up all files in the current directory without asking
+	about them, and performs no checking.  There must be a file
+	named ERROR in the current directory, in which you should have
+	written a brief description of the problem you are having,
+	INCLUDING how to reproduce it.  Please use this command
+	WHENEVER you want to ask a question about something in your
+	program that is not working.  Even people who have been
+	programming for years are TERRIBLE at guessing exactly what
+	part of their program is really malfunctioning, so trying to
+	send just the part of your program that you think is
+	problematic is nearly ALWAYS wrong.  It's also hard to
+	reproduce a problem without all the text.  
+
+* glookup
+
+	Displays up your currently recorded grades.  Each entry
+	indicates your score, the nominal maximum score, and the
+	weight.  Multiplying your score times the weight gives the
+	number of points you get for that assignment.  
+
+
+The grading software will work with student's "named" accounts if they
+set the environment variable MASTERDIR explicitly and if /share/b/bin/
+instructional.cshrc is sourced by their .cshrc file.
+
+If the student is only using their named account for *one* class, they can 
+set these variables and paths in their .cshrc.  Otherwise they have to do it
+each time.
+
+Here's what you tell them to do:
+
+1.  to "register":
+
+	setenv MASTERDIR /home/ff/coursename (setenv MASTERDIR /home/ff/cs188)
+	register
+
+If the register command returns a "not found" then /share/b/grading/bin
+is not in the path.  The student can add it with the command
+
+	set path=(/share/b/grading/bin $path)
+
+or just call the utility explicitly, 
+
+	/share/b/grading/bin/register
+
+2.  to submit:
+
+put the assignment to be submitted in a directory with the assignment name
+(e.g. if the class master calls it hw1, mkdir hw1 and put the files to be
+submitted in hw1; remember that unix is case sensitive and hw1 is *not* HW1).
+
+	setenv MASTERDIR again if it is not set (as above)
+
+submit assign (e.g. submit hw1) from the directory above (not from the 
+assignment directory itself).  as above, if "not found", call it explicitly
+from /share/b/grading/bin.
+
+3.  to lookup grades:
+
+if MASTERDIR is not set, set it. (as above)
+
+	set path=(/share/b/grading/bin $path)
+	alias glookup /home/ff/classname/bin/arch/`uname -m`/glookup
+
+if glookup returns "not found" call it explicitly, just as for register and
+submit.
+

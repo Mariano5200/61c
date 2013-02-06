@@ -1,0 +1,85 @@
+<h1 id="gettingstarted">Getting Started</h1>
+
+<p>This tutorial assumes prior experience with SSH. If you have not previously used SSH, please refer to the Instructional Support Group&#8217;s <a href="http://inst.eecs.berkeley.edu/cgi-bin/pub.cgi?file=ssh.help" title="SSH documentation">ssh</a> documentation.</p>
+
+<h1 id="grading">Grading</h1>
+
+<h2 id="makingadirectory">Making a Directory</h2>
+
+<p>You&#8217;ll want to keep the grading directories separate. Start by making a directory for your current assignment, and <code>cd</code>-ing into it:</p>
+
+<pre><code>cs123-ra% mkdir hw1
+cs123-ra% cd hw1
+</code></pre>
+
+<h2 id="makingaroster">Making a Roster</h2>
+
+<p>Before you start grading you will want to create the file you will be entering grades into. Run:</p>
+
+<pre><code>cs123-ra% make-roster -o hw1roster hw1
+</code></pre>
+
+<p>This will create a file called <code>hw1roster</code> for the assignment <code>hw1</code>. Substitute the assignment and file names as necessary. The contents of the file will be the logins and names of all your assigned students for the given assignment.</p>
+
+<p>hw1roster:</p>
+
+<pre><code>cs123-aa Douglas_Adams 
+cs123-ab Isaac_Asimov
+</code></pre>
+
+<h2 id="retrievingassignments">Retrieving Assignments</h2>
+
+<p>Once you&#8217;ve created your roster, you may begin grading assignments. There are two ways to accomplish this:</p>
+
+<h3 id="usingget-submissions">Using get-submissions</h3>
+
+<pre><code>cs123-ra% get-submissions hw1
+cs123-ra% ls
+cs123-aa.200901140126@  cs123-ab.200901162224@  hw1roster
+</code></pre>
+
+<p>As you can see in the previous command (and output), <code>get-submissions</code> will create links in the current directory to student submissions. To grade each of these submissions, run the command <code>lookat</code>:</p>
+
+<pre><code> cs123-ra% lookat cs123-aa
+</code></pre>
+
+<p>This will look in the current directory and unpack the latest submission for cs123-aa into the directory LOOK.</p>
+
+<h3 id="usingget-subm">Using get-subm</h3>
+
+<pre><code>cs123-ra% mkdir LOOK
+cs123-ra% cd LOOK
+cs123-ra% get-subm hw1 cs123-aa
+</code></pre>
+
+<p>This retrieves the submission for <code>cs123-aa</code> and unpacks it <em>in the current directory</em>.</p>
+
+<h2 id="enteringgrades">Entering Grades</h2>
+
+<p>The grading file you created earlier, in our example <code>hw1roster</code>, should be filled in, with spaces separating four fields, in order: login, name, points, and comments. Spaces do not matter for the comment field. For example:</p>
+
+<pre><code>cs123-aa Douglas_Adams 42 Almost but not entirely unlike good code.
+cs123-ab Isaac_Asimov 4920 Your code reads like a robot wrote it.
+</code></pre>
+
+<p>When you have finalized your grades, save the modified <code>hw1roster</code> file. You may now double-check your scores, or if you are certain of their correctness, run <code>enter-grades</code>:</p>
+
+<pre><code>cs123-ra% enter-grades -f hw1roster hw1
+</code></pre>
+
+<p>This will flag any errors in your roster file, and once you have corrected these, your grades will be updated and will go live. Alternatively, you may manually enter grades by omitting the <code>-f</code> flag:</p>
+
+<pre><code>cs123-ra% enter-grades hw1
+Enter grades one at a time.  End with a login of '.'
+Login:
+</code></pre>
+
+<p>Enter the login, and you will be prompted for the grade and comments.</p>
+
+<p><em>This method has the added advantage of entering partners&#8217; grades, however as you will probably already be keeping track of partners (denoted in the MY.PARTNERS file in project submissions) while filling out the <code>hw1roster</code> file, the first method is preferred for bookkeeping purposes.</em></p>
+
+<h1 id="credits">Credits</h1>
+
+<p>This document written by Andrew Toulouse, with Paul Hilfinger&#8217;s documentation
+used heavily as a reference and source of examples.
+(c) 2009 University of California, Berkeley.</p>

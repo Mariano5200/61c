@@ -1,0 +1,180 @@
+<h1 id="gettingstarted">Getting Started</h1>
+
+<p>This tutorial assumes prior experience with SSH. If you have not previously used SSH, please refer to the Instructional Support Group&#8217;s <a href="http://inst.eecs.berkeley.edu/cgi-bin/pub.cgi?file=ssh.help" title="SSH documentation">ssh</a> documentation.</p>
+
+<h1 id="usernameconventions">Username Conventions</h1>
+
+<p>There exist some conventions for handing out user accounts for classes. Use the following examples as a template when handing out account forms to your staff:</p>
+
+<ul>
+<li>Class account: <code>cs123</code></li>
+<li>Head TA account: <code>cs123-ta</code></li>
+<li>TA accounts: <code>cs123-t[b-z]</code></li>
+<li>Reader accounts: <code>cs123-r[a-z]</code></li>
+</ul>
+
+<h1 id="initializingtheparamsfile">Initializing the params File</h1>
+
+<p>Your class account&#8217;s (i.e. <code>cs123</code>) home directory there is a <code>grading</code> directory. Within this resides a file called <code>params</code> within which you will be adding assignments, allocating readers, and setting variables for your class. The previous semester&#8217;s <code>params</code> file is retained for your reference. This file is the core of the grading system and its associated programs.</p>
+
+<h2 id="creatingtheparamsfile">Creating the params File</h2>
+
+<p>In case the previous semester&#8217;s setup is nonstandard or complex, you may want to create your new <code>params</code> file from scratch. In this case, the command <code>init-grading -p</code> will create a new template for you. Execute this command within your grading directory, like so:</p>
+
+<pre><code>cs123% cd ~/grading
+cs123% init-grading -p
+</code></pre>
+
+<p>Or, for the same effect,</p>
+
+<pre><code>cs123% init-grading -p -o ~/grading/params
+</code></pre>
+
+<h2 id="sampleparamsfile">Sample params File</h2>
+
+<pre><code># Parameters for grading software.
+
+# Course name
+set COURSE ''
+
+# Login name for class master
+set CLASSROOT ''
+
+# Name of group used by staff
+set STAFF_GROUP '-staff'
+
+# Login of account receiving electronic submissions.
+set GRADER '-ra'
+
+# Login of account receiving bug reports, reports on readers, etc.
+set SUPERVISOR ''
+
+# Name of program that grants class-master privileges.
+set MASTER_PROGRAM 'run-as-'
+
+# The Subversion repository's URL.
+set SVN_REPOSITORY_URL 'file:///SVN'
+
+# Perl regexp body identifies pathnames in a Subversion repository 
+# that are parts of a submission.  The target strings are paths as
+# provided by 'svnlook changed'.  The first capturing group in this pattern 
+# should give the base directory name of the submission.
+# [Sample patterns assume repository paths of the form 
+#        &lt;TEAM&gt;/tags/&lt;ASSIGN&gt;(-&lt;SUFFIX&gt;)?  ]
+set SVN_SUBMISSION_PATN '^([^/]+/tags/[^/]+)'
+
+# Perl regexp body whose first capturing group matches the submitting
+# individual or team name in a path that matches SVN_SUBMISSION_PATH.
+set SVN_SUBMITTER_PATN '^(.*?)/'
+
+# Perl regexp body whose first capturing group matches the submitted
+# assignment in a path that matches SVN_SUBMISSION_PATH.
+set SVN_ASSGN_PATN '^.*?/tags/(.*?)(?:[-./]+|$)'
+
+# Put 'reader' commands here. 
+
+# Put 'assign' commands here.
+
+# Put the 'gradescale' command here.
+</code></pre>
+
+<h2 id="variables">Variables</h2>
+
+<p>There are a few important variables, of which several may already be set from the previous semester&#8217;s copy. It is unlikely that you will need to change these.  </p>
+
+<ul>
+<li><code>set COURSE 'COURSENAME'</code>: Sets the name of your class, i.e. <code>cs123</code>.</li>
+<li><code>set CLASSROOT 'USERNAME'</code>: Sets the master account username. In the usual case this is set identically to COURSE, i.e. <code>cs123</code>. </li>
+<li><code>set STAFF_GROUP 'GROUPNAME'</code>: Sets the name of the UNIX group that your staff (readers, TAs, instructor) will be members of. This is typically <code>COURSENAME-staff</code>, i.e. <code>cs123-staff</code>. You can check an account&#8217;s group memberships with the command &#8216;groups&#8217;.</li>
+<li><code>set GRADER 'GRADERACCOUNT'</code>: No longer used. This is typically set to <code>COURSENAME-ra</code>. It used to specify the email address to which submissions were sent.</li>
+<li><code>set SUPERVISOR 'SUPERVISORACCOUNT'</code>: Sets the account that bug reports and reports on readers will be sent to. This is typically set identically to <code>CLASSROOT</code>, i.e. <code>cs123</code>. Reports on readers are sent by the command <code>check-reader-grades</code> to the supervisor and the reader for assignments assigned to the reader(s) past the given reader deadline.</li>
+<li><code>set MASTER_PROGRAM 'PROGRAM'</code>: Refers to the location of a program that gives programs class-master privileges, such as <code>submit</code> or <code>glookup</code>. This defaults to <code>run-as-COURSE</code>, and should not need to be modified.</li>
+<li><code>set SVN_*</code>: Set SVN-specific configuration. Optional, and not currently documented. </li>
+</ul>
+
+<h2 id="addingreaders">Adding Readers</h2>
+
+<p>Within the <code>params</code> file you must specify reader accounts authorized to read
+assignments. Note that TAs are not automatically authorized as readers. The
+format for a reader specification is as follows:</p>
+
+<pre><code>reader LOGIN [ -instructor ] [ -no-remind ] \  
+    [ -grade ASSIGN_PATTERN LOGIN_PATTERN ] ...
+</code></pre>
+
+<ul>
+<li><code>-instructor</code> indicates that this login is an instructor. This should be assigned to the master account as well as TA accounts, but not readers. This is useful for TA-graded assignments.</li>
+<li><code>-no-remind</code> indicates that you do not want this reader to be sent grading reminders as specified by <code>-grade</code>.  </li>
+<li><code>-grade</code> is a pair of regular expressions used to specify the assignment-reader pairs that a reader is to grade. For example, <code>-grade '.\*' 'cs123-a[a-c]'</code> will indicate that the reader is to grade accounts <code>cs123-aa</code>, <code>cs123-ab</code>, and <code>cs123-ac</code>. You may also wish to divide up assignments by reader; in this case you would use <code>'.*'</code> for the login pattern (note that this is a Perl regular expression, not a file extension), and <code>'(hw1|hw3|hw4)'</code> for the pattern to assign a reader homeworks 1, 2, and 4. For a reader account with no responsibilities to enter grades (i.e. an autograder), set the pattern to <code>NONE</code> to indicate this.</li>
+</ul>
+
+<p>Refer to ISG&#8217;s <a href="https://inst.eecs.berkeley.edu/cgi-bin/pub.cgi?file=grading.docs/grading.setup.master" title="Grading master documentation">master setup</a> documentation for more examples.</p>
+
+<h1 id="usingtheparamsfile">Using the params File</h1>
+
+<p>After your initial setup you should need to edit very little other than the assignments part of the <code>params</code> file. After you make modifications you will need to re-run <code>init-grading</code> like so:</p>
+
+<pre><code>cs123% init-grading -i
+</code></pre>
+
+<p>for the changes to propagate. If you know all the assignments and their due dates you will only need to edit params and run <code>init-grading</code> once.</p>
+
+<h2 id="addingassignments">Adding Assignments</h2>
+
+<pre><code>assign NAME \  
+    [ -max MAX ] [ -absolute-max ABSMAX ] [ -weight W ] \  
+    [ -partners ] \  
+    [ -instructors-only ] [ -no-assigned-readers ] \  
+    [ -due DUETIME ] [ -reader-due READERDUE ] \  
+    [ -no-submit ] [ -req PATTERN ] ... \  
+    [ -category CAT ]
+</code></pre>
+
+<ul>
+<li><code>NAME</code>: name of the assignment that students will use to submit and readers will use to retrieve, i.e. hw1, hw2, proj1.</li>
+<li><code>-max</code>: Nominal maximum points for the assignment. &#8220;Full credit&#8221; score.</li>
+<li><code>-absolute-max</code>: Real maximum points for the assignment. &#8220;Full credit with all extra credit&#8221; score.</li>
+<li><code>-weight</code>: Weight factor for assignment, used to calculate grade. Defaults to 1.</li>
+<li><code>-partners</code>: Indicates that the assignment (such as a project) is partnered.</li>
+<li><code>-instructors-only</code>: Indicates that only instructors (as previously specified
+in the <code>params</code> file) are to grade this assignment.</li>
+<li><code>-no-assigned-readers</code>: Exempts the assignment from <code>LOGIN_PATTERN</code>, enabling readers to grade outside their assigned login range for the assignment. Specifically resets <code>LOGIN_PATTERN</code> to <code>'.*'</code>; <code>ASSIGNMENT_PATTERN</code> is not overridden.</li>
+<li><code>-due</code>: Specifies the due date and time for the assignment. Format is <code>mm/dd/yyyy</code> or <code>mm/dd/yyyy:HH:MM</code>; if <code>HH:MM</code> is not specified, it defaults to 23:59. Omitting the due date is not recommended as assignments will be considered due at the UNIX epoch, and thus will all be marked late. </li>
+<li><code>-reader-due</code>: Specifies the date by which readers are to have completed grading for the assignment, after which reminders will start being sent.</li>
+<li><code>-no-submit</code>: Indicates that the assignment does not have electronic submissions, i.e. paper assignments and tests.</li>
+<li><code>-req</code>: Specifies required files. Can be specified multiple times, or may be a Perl regular expression. Student submissions will fail if these files are not present.</li>
+<li><code>-accept</code>: Specifies optional files automatically accepted for submission. Can be specified multiple times, or may be a Perl regular expression.</li>
+<li><code>-rej</code>: Specifies files to be specifically ignored by submit. Can be specified multiple times, or may be a Perl regular expression.</li>
+</ul>
+
+<p>Refer to ISG&#8217;s <a href="https://inst.eecs.berkeley.edu/cgi-bin/pub.cgi?file=grading.docs/grading.setup.master" title="Grading master documentation">master setup</a> documentation for examples.</p>
+
+<h3 id="partneredassignments">Partnered Assignments</h3>
+
+<p>For assignments such as projects that require partners to be specified, you must add &#8216;-partners&#8217; to the assignment entry. Students may then submit the assignment with a <code>MY.PARTNERS</code> file, or may input them into <code>submit</code>, which will generate one for them. Grading partnered assignments are covered in the <a href="http://inst.eecs.berkeley.edu/cgi-bin/pub.cgi?file=grading.help#6" title="Partnered projects">reader guide</a>.</p>
+
+<h2 id="settinggradingscales">Setting Grading Scales</h2>
+
+<p>You may specify a grading scale that will throw out the lowest N assignments of a given category (specified with the assignments), as well as define the grade boundaries. The syntax is as follows, and the example is self-explanatory.</p>
+
+<pre><code>gradescale [ -throw-out-lowest N CATEGORY ] ... \  
+    SCORE LETTERGRADE ...
+</code></pre>
+
+<p>Example:</p>
+
+<pre><code>gradescale -throw-out-lowest 1 HW \  
+    0 F 10 D- 20 D 30 D+ 40 C- 50 C 60 C+ 70 B- 75 B 80 B+ 85 A-  \  
+    90 A 95  A+
+</code></pre>
+
+<!--#TODO (during semester)
+* Testing infrastructure. Not as critical as the rest of the document, but important. Will start once document is otherwise ready to be distributed to TAs (this will come later).
+* SVN stuff. This will require some testing and won't be ready before the semester begins. Nobody but Professor Hilfinger seems to use it, yet, so it's not the highest priority.
+* (Cosmetic) Wiki-style table of contents.-->
+
+<h1 id="credits">Credits</h1>
+
+<p>This document written by Andrew Toulouse, with Paul Hilfinger&#8217;s documentation
+used heavily as a reference and source of examples.
+(c) 2009 University of California, Berkeley.</p>

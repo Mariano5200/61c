@@ -1,0 +1,38 @@
+Grading Checklist:
+documentation is available in /share/b/grading/docs
+---------------------------------------------------
+
+
+Class Master
+------------
+	edit grading/params
+	init-grading -i
+
+at end of semester if desired 
+	assign-letter-grades
+
+class-ra (the "autograder")
+--------------------------
+if tests are run on submissions
+	run-tests
+	mail-results
+
+Readers
+-------
+For each assignment
+
+mkdir ASSIGN; cd ASSIGN (mkdir hw1; cd hw1)
+
+        make-roster ASSIGN (name of submitted assignment) (make-roster hw1)
+        get-submissions ASSIGN (get-submissions hw1)
+
+	Foreach STUDENT (<all my students>) {
+    		mkdir STUDENT
+    		cd STUDENT
+    		get-subm ASSIGN STUDENT
+    		<read it, decide on the grade>
+    		edit ../roster-ASSIGN to add grades for submitters (and partners,
+      	 	    with reference to MY.PARTNERS)
+		cd ..
+	}
+	enter-grades -f ASSIGN 

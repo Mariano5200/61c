@@ -1,0 +1,69 @@
+#!/usr/bin/env perl
+# -*- mode: Perl;-*-
+# Version 4.7.9
+# See the file COPYING in the main distribution directory for copyright notice.
+
+unshift (@INC, '/share/b/grading/lib');
+require "GradingBase.pl";
+CmndLine ("", 1, 2);
+require "GradingCommon.pl";
+
+$assgn = $ARGV[0];
+if (! AssignmentExists ($assgn)) {
+    Fatal ("Error: assignment $assgn not found.");
+}
+
+if ($#ARGV >= 1) {
+    $login = $ARGV[1];
+    if (! StudentExists ($login)) {
+	Fatal ("Student $login not registered.");
+    }
+} else {
+    $login = "";
+}
+
+$partnerMap = SubmissionMap ($assgn);
+$errors = 0;
+
+if ($login) {
+    @partnerships = Partnerships ($partnerMap, $login);
+    if ($#partnerships < 0) {
+	print "No partnerships for $login.\n";
+    } if ($#partnerships > 0) {
+	Warn ("Conflicting partnerships for $login:\n    "
+	      . join ('\n    ', @partnerships));
+	$errors = 1;
+    } else {
+	$partnerlist = ' ' . $partnerships[0] . ' ';
+	$partnerlist =~ s/ $login / /;
+	if ($partnerlist =~ /^\s*$/) {
+	    print "No partnerships for $login.\n";
+	} else {  
+	    print "$login:$partnerlist";
+	}
+    }
+} else {
+    foreach $login (sort (keys %$partnerMap)) {
+	next if $login =~ /\.\d+$/;
+	@partnerships = Partnerships ($partnerMap, $login);
+	if ($#partnerships > 0) {
+	    Warn ("Conflicting partnerships for $login:\n    "
+		  . join ('\n    ', @partnerships));
+	    $errors = 1;
+	} elsif (@partnerships) {
+	    $partnerlist = ' ' . $partnerships[0] . ' ';
+	    $partnerlist =~ s/ $login / /;
+	    if ($partnerlist !~ /^\s*$/) {
+		print "$login:$partnerlist";
+	    }
+	}
+    }
+}
+
+exit $errors;
+
+
+
+
+    
+ 

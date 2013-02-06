@@ -1,0 +1,64 @@
+Grading:  Class Master
+----------------------
+For documentation on setting up grading, see grading.setup.master in this
+directory.  This document explains how to use the grading software.
+
+Most of the commands described below will furnish their own brief
+documentation if given the '-h' option.
+
+Grading Programs
+----------------
+
+* glookup [ LOGIN ]
+
+	Displays current grades and comments (in the grade book created by 
+	make-grade-book) for the student with the given LOGIN.
+
+* get-bug ASSIGNMENT LOGIN[.TIMESTAMP]
+
+	Gets a bug report (submitted via 'bug-submit') for ASSIGNMENT 
+	from LOGIN.  This will be the latest filed bug if TIMESTAMP 
+	is absent, and otherwise the designated submission.  The 
+	command unpacks the submission into the current directory 
+	for inspection.  
+
+* get-subm ASSIGNMENT LOGIN[.TIMESTAMP]
+
+	As for get-bug, but works for an ordinary submission
+	(submitted via 'submit').  See also run-subm and log-subm in 
+	section 3a.
+
+* assign-letter-grades [ -o OUTFILE ] [ -s SORT-COL ] [ -x ] [ COL ... ]
+
+   Assign letter grades according to the current grade book and
+   current grade scale.  Output to file OUTFILE (default standard
+   output).  COL is the name of a column or grade category to print in
+   the report.  The name Total denotes the total numeric score, and
+   Grade indicates the letter grade.  By default, columns SID, Name,
+   Final, Total, and Grade are printed.  Name is the first and last
+   name in the form "LAST, FIRST"; Total is the total (weighted)
+   score; and Grade is the letter grade (as indicated by the
+   gradescale parameters; see below).  The column SID column is
+   obfuscated if -x is specified.  The output is sorted by SORT-COL
+   (which need not be printed).
+
+
+Files
+-----
+If submissions are tested, these files and directories must be set up.
+
+$DIR/testing/mk/ASSIGN.mk
+	     A makefile whose default target compiles and tests the
+	     files in the current directory for assignment ASSIGN.
+	     The additional target OK, if supplied, should print a message 
+	     to send to successful submitters, and NOT-OK should print
+	     a message for everyone else.  
+
+$DIR/pretest/ASSGN
+	     An arbitrary executable script or program that, when run,
+	     tests a copy of a submission of assignment ASSGN in the 
+	     current (temporary) directory and exits with 0 for OK,
+	     and 1 for not OK.  The 'submit' program pretests only
+	     if this file is present.
+
+

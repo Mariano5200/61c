@@ -1,0 +1,60 @@
+'\" t
+.\" Copyright (c) 1998, 2002 P. N. Hilfinger
+.\" All Rights Reserved
+.TH ?? 1 "11 Mar 2002"
+.SH NAME
+get-submissions \- Get links to student submissions and log files of tests
+.SH SYNOPSIS
+.B get-submissions 
+.I assignment
+[
+.IR pattern \|.\|.\|.
+]
+
+.SH DESCRIPTION
+.LP
+The
+.B get-submissions
+command searches the files kept by the automated grader and creates links
+to selected submissions and to log files of any test runs that the automated 
+grader performed.  It creates these links in the current directory.
+.PP
+The 
+.I assignment 
+argument must be a valid assignment name.  If any
+.IR pattern s
+are present, they select which submissions are to be linked to; otherwise, 
+.B get-submissions
+links all logins assigned to be graded by the current user.
+.PP
+The submission files all have the form
+.IR LOGIN.TIMESTAMP ,
+where 
+.I LOGIN 
+is a students' login and 
+.I TIMESTAMP
+gives a submission time (GMT) in the form
+.IR YYYYMMDDHHMM .
+.PP
+The 
+.IR pattern s
+are ordinary shell file patterns (with wildcards `?' and `*', and `[]').
+You must quote the pattern arguments if they contain wildcard characters.
+The program adds a trailing `*', so that to get all submissions from users
+.B cs61b-a* 
+and 
+.B cs61b-b* 
+for assignment
+.BR hw1 ,
+for example, you can enter
+.br
+.RS 5
+get-submissions hw1 'cs61b-[ab]'
+.RE
+
+.SH "SEE ALSO"
+.BR lookat (1)
+
+.SH IDENTIFICATION
+Author: Paul N. Hilfinger.  
+Copyright \(co 1998, 2002
