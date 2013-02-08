@@ -2,14 +2,26 @@ Lab 2 Checkoff
 ==============
 
 Part 1:
+-------
 1.  How do you pass command line arguments to a program when using gdb?
-        A.
+        A. --args
 2.  How do you set a breakpoint which only occurs when a set of conditions is true (e.g. when certain variables are a certain value)?
-        A.
+        A. break if
 3.  How do you execute the next line of C code in the program after a break?
-If the next line is a function call, you'll execute the call in one step. How do you execute the C code, line by line, inside the function call?
-How do you continue running the program after breaking?
-How can you see the value of a variable (or even an expression) in gdb?
-How do you configure gdb so it prints the value of a variable after every step?
-How do you print a list of all variables and their values in the current function?
-How do you exit out of gdb?
+        A. n,s (depending on what you want.)
+4.  If the next line is a function call, you'll execute the call in one step. How do you execute the C code, line by line, inside the function call?
+        A. s
+5.  How do you continue running the program after breaking?
+        A. c
+6.  How can you see the value of a variable (or even an expression) in gdb?
+        A. p <name>
+7.  How do you configure gdb so it prints the value of a variable after every step?
+        A. display <name>
+8.  How do you print a list of all variables and their values in the current function?
+        A.  bt
+9.  How do you exit out of gdb?
+        A. q or Quit, ^D
+
+Part 2:
+-------
+B is null, add a check and return. Proper error handling in C is?

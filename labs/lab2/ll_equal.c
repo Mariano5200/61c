@@ -6,8 +6,12 @@ typedef struct node {
 } node;
 
 /* FIXME: this function is buggy. */
-int ll_equal(const node* a, const node* b) {
+int ll_equal(struct node* a, struct node* b) {
 	while (a != NULL) {
+    if (b == NULL) {
+      fprintf(stderr, "WE'RE HOSED")
+      return a == b;
+    }
 		if (a->val != b->val)
 			return 0;
 		a = a->next;
