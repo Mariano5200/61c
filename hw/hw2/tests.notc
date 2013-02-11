@@ -5,7 +5,7 @@
 #include <stdarg.h>
 #include "matcher.c"
 
-int main(int argc, char **argv) {
+int test(int argc, char **argv) {
     // testing for special chars.
     printf("Special Chars:\n");
     printf("* is special; %d\n", isSpecial('*'));
