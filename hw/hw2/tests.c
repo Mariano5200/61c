@@ -18,21 +18,21 @@ int main(int argc, char **argv) {
     char *ln1 = "ab";
     char *pat1 = "a";
     assert(rgrep_matches(ln1,pat1));
-    printf("%s matches %s; %d\n", ln1, pat1, rgrep_matches(ln1,pat1));
-    printf("%s matches %s; %d\n", pat1, ln1, rgrep_matches(pat1,ln1));
+    printf("%s matched by %s; %d\n", ln1, pat1, rgrep_matches(ln1,pat1));
+    printf("%s matched by %s; %d\n", pat1, ln1, rgrep_matches(pat1,ln1));
     char *pat2 = "b";
-    printf("%s matches %s; %d\n", ln1, pat2, rgrep_matches(ln1,pat2));
-    printf("%s matches %s; %d\n", pat2, ln1, rgrep_matches(pat2,ln1));
-    
+    printf("%s matched by %s; %d\n", ln1, pat2, rgrep_matches(ln1,pat2));
+    printf("%s matched by %s; %d\n", pat2, ln1, rgrep_matches(pat2,ln1));
+
     //special chars.
-    printf("\n\nSpecial Chars:");
+    printf("\n\nSpecial Chars:\n");
     char *pat3 = ".b";
-    printf("%s matches %s; %d\n", ln1, pat3, rgrep_matches(ln1,pat3));
-    printf("%s matches %s; %d\n", pat3, ln1, rgrep_matches(pat3,ln1));
+    printf("%s matched by %s; %d\n", ln1, pat3, rgrep_matches(ln1,pat3));
+    printf("%s matched by %s; %d\n", pat3, ln1, rgrep_matches(pat3,ln1));
     char *pat4 = ".*";
-    printf("%s matches %s; %d\n", ln1, pat4, rgrep_matches(ln1,pat4));
-    printf("%s matches %s; %d\n", pat1, pat4, rgrep_matches(pat1,pat4));
-    printf("%s matches %s; %d\n", pat2, pat4, rgrep_matches(pat2,pat4));
-    printf("%s matches %s; %d\n", pat3, pat4, rgrep_matches(pat3,pat4));
+    printf("%s matched by %s; %d\n", ln1, pat4, rgrep_matches(ln1,pat4));
+    printf("%s matched by %s; %d\n", pat1, pat4, rgrep_matches(pat1,pat4));
+    printf("%s matched by %s; %d\n", pat2, pat4, rgrep_matches(pat2,pat4));
+    printf("%s matched by %s; %d\n", pat3, pat4, rgrep_matches(pat3,pat4));
     return 0;
 }

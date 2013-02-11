@@ -29,22 +29,19 @@ int rgrep_matches(char *line, char *pattern) {
 int matcher(char *ln, char *pat, int lnPos, int patPos, int maxLn, int maxPat) {
 
     // We've exceeded the limit of either the line or the pattern.
-    if (lnPos >= maxLn && patPos < maxPat) { // chars left in pattern.
-        return 0;
+    if (lnPos >= maxLn && patPos < maxPat) { // chars left in pattern. ???
+        return pat[patPos] == '*' ? 1 : 0;
     } else if (patPos >= maxPat && lnPos < maxLn) { // finished the pattern
         return 1;
     } else if (lnPos >= maxLn && patPos >= maxPat) { // finished both
         return 1;
-        // matching cases:
     } else if (pat[patPos] == '*') {
-        printf("EWW. * Char found. \n");
         if (pat[patPos - 1] == ln[lnPos] || pat[patPos - 1] == '.') {
             return matcher(ln, pat, lnPos + 1, patPos, maxLn, maxPat);
         } else {
             return matcher(ln, pat, lnPos + 1, patPos + 1, maxLn, maxPat);
         }
     } else if (pat[patPos] == '\\') {
-        printf("EWW. \\ Char found. Exiting. \n");
         if (pat[patPos + 1] == ln[lnPos]) {
             return matcher(ln, pat, lnPos + 1, patPos + 1, maxLn, maxPat);
         } else {
