@@ -22,14 +22,18 @@ e.  At what address is n stored in memory? Calculate the 13th fib number by modi
     A.  Address: 0x00400008, 13th fib is 233. WTH?!
 f.  line 18 and 20 use syscall instruction. What is it and how do you use it? (Hint: Look for syscalls in Help!))
      A.  Syscall returns what's in $v0 to end a program.
-     
+
 # Part 2
 
 See file.
 
 # Part 3
 
+We tried to check if it was 0 after we copied.
 
 # Part 4
-Command: 
+Command:
 mips-gcc -S -O2 -fno-delayed-branch -I/usr/include lab3_ex4.c -o lab3_ex4.s
+
+Pointers in C at lines 40, 50
+Uses hi and lo "registers" to shift bits.
