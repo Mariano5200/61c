@@ -1,0 +1,35 @@
+# CS61C Lab 3.
+
+1.
+
+a.  What do the .data, .word, .text directives mean (i.e., what do you put in each section)?
+    A.  .data Subsequent items stored in Data segment at next available address
+            Variables
+        .text Subsequent items (instructions) stored in Text segment at next available address
+            The main program
+        .word Store the listed value(s) as 32 bit words on word boundary
+            Stores other variables?
+b.  How do you set a breakpoint in MARS? Set breakpoint on line 15 and show this to your TA when you have answered all of these questions.
+    A.  Execute check box. WTF is w/ line numbers in the middle of the window..
+        # end rage
+        # but not really.
+c.  After your program stops because of a breakpoint, how do you continue to execute your code? How do you step through your code?
+    A.  Click the play icon w/ the one subscript.
+d.  How can you find out the contents of a register? How do you modify the value of a register.
+    A.  Contents: Right hand pane.. It has a "value" field.
+        Edit: Double click and change.
+e.  At what address is n stored in memory? Calculate the 13th fib number by modifying this memory location.
+    A.  Address: 0x00400008, 13th fib is 233. WTH?!
+f.  line 18 and 20 use syscall instruction. What is it and how do you use it? (Hint: Look for syscalls in Help!))
+     A.  Syscall returns what's in $v0 to end a program.
+     
+# Part 2
+
+See file.
+
+# Part 3
+
+
+# Part 4
+Command: 
+mips-gcc -S -O2 -fno-delayed-branch -I/usr/include lab3_ex4.c -o lab3_ex4.s

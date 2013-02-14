@@ -5,15 +5,16 @@ countmsg: .asciiz " values copied. "
 
           .text
 
-main:   la      $a0,source
-        la      $a1,dest
+main:   la      $a0, source
+        la      $a1, dest
+        addi    $v0, $0, 0      # $v0 = $0 + 0
 
-loop:   lw      $v1, 0($a0)     # read next word from source
-        addiu   $v0, $v0, 1     # increment count words copied
-        sw      $v1, 0($a1)     # write to destination
-        addiu   $a0, $a0, 1     # advance pointer to next source
-        addiu   $a1, $a1, 1     # advance pointer to next dest
-        bne     $v1, $zero, loop# loop if word copied not zero
+loop:   lw      $v1, 0($a0)      # read next word from source
+        addiu   $v0, $v0, 1      # increment count words copied
+        sw      $v1, 0($a1)      # write to destination
+        addiu   $a0, $a0, 1      # advance pointer to next source
+        addiu   $a1, $a1, 1      # advance pointer to next dest
+        bne     $v1, $zero, loop # loop if word copied not zero
 
 loopend:
         move    $a0,$v0         # $a0 <- count
