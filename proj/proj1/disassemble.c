@@ -128,7 +128,7 @@ void disassemble(inst_t inst) {
       break;
 
     case 0xf: // opcode == 0xf (lui)
-        printf("lui\t%d\n", inst.itype.imm);
+        printf("lui\t$%d,0x%x\n", inst.itype.rt, inst.itype.imm);
         break;
 
     case 0x20: // opcode == 0x20 (lb)
