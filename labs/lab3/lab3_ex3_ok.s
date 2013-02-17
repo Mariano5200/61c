@@ -10,13 +10,13 @@ main:   la      $a0, source
         addi    $v0, $0, 0      # $v0 = $0 + 0
 
 loop:   lw      $v1, 0($a0)      # read next word from source
-        bne     $v1, $zero, loopend # loop if word copied not zero
+        beq     $v1, $zero, loopend # loop if word copied not zero
         addiu   $v0, $v0, 1      # increment count words copied
         sw      $v1, 0($a1)      # write to destination
-        addiu   $a0, $a0, 1      # advance pointer to next source
-        addiu   $a1, $a1, 1      # advance pointer to next dest
+        addiu   $a0, $a0, 4      # advance pointer to next source
+        addiu   $a1, $a1, 4      # advance pointer to next dest
         b       loop            # branch to loop
-        
+
 loopend:
         move    $a0,$v0         # $a0 <- count
         jal     puti            # print it

@@ -36,4 +36,4 @@ Command:
 mips-gcc -S -O2 -fno-delayed-branch -I/usr/include lab3_ex4.c -o lab3_ex4.s
 
 Pointers in C at lines 40, 50
-Uses hi and lo "registers" to shift bits.
+Uses hi and lo "commands" to shift bits.
