@@ -135,7 +135,7 @@ void execute_one_inst(processor_t* p, int prompt, int print_regs)
     break;
 
   case 0x4: // opcode == 0x4 (BEQ) SIGNEXT.
-    p->pc += (p->R[inst.itype.rt] == p->R[inst.itype.rs]) ? (4 * signExt(inst.itype.imm)) : 4;
+    p->pc += (p->R[inst.itype.rt] == p->R[inst.itype.rs]) ? (signExt(inst.itype.imm) << 2) : 4;
     break;
 
   case 0x5: // opcode == 0x5 (BNE) SIGNEXT
