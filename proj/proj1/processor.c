@@ -4,9 +4,9 @@
 #include "processor.h"
 #include "disassemble.h"
 
-// #define signExt(x) ((int32_t)((int16_t)x))
+#define signExt(x) ((int32_t)((int16_t)x))
 
-#define signExt(x) (x)
+// #define signExt(x) (x)
 
 void execute_one_inst(processor_t* p, int prompt, int print_regs)
 {
@@ -135,7 +135,7 @@ void execute_one_inst(processor_t* p, int prompt, int print_regs)
     p->R[31] = p->pc + 4;
     p->pc = ((p->pc+4) & 0xF0000000) | (inst.jtype.addr << 2);
     break;
-    
+
   /* BEGIN I-TYPE INSTRS */
   case 0x4: // opcode == 0x4 (BEQ) SIGNEXT.
     p->pc += (p->R[inst.itype.rt] == p->R[inst.itype.rs]) ? (signExt(inst.itype.imm) << 2) : 4;
