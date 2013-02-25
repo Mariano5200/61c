@@ -4,7 +4,7 @@
 #include "processor.h"
 #include "disassemble.h"
 
-#define signExt(x) ((int32_t)((int16_t)x))
+#define signExt(x) ((int32_t) ((int16_t) x))
 
 // #define signExt(x) (x)
 
@@ -138,20 +138,20 @@ void execute_one_inst(processor_t* p, int prompt, int print_regs)
 
   /* BEGIN I-TYPE INSTRS */
   case 0x4: // opcode == 0x4 (BEQ) SIGNEXT.
-    p->pc += (p->R[inst.itype.rt] == p->R[inst.itype.rs]) ? (signExt(inst.itype.imm) << 2) : 4;
+    p->pc += (p->R[inst.itype.rt] == p->R[inst.itype.rs]) ? 4 + (signExt(inst.itype.imm) << 2) : 4;
     break;
 
   case 0x5: // opcode == 0x5 (BNE) SIGNEXT
-    p->pc += (p->R[inst.itype.rt] != p->R[inst.itype.rs]) ? (signExt(inst.itype.imm) << 2) : 4;
+    p->pc += (p->R[inst.itype.rt] != p->R[inst.itype.rs]) ? 4 + (signExt(inst.itype.imm) << 2) : 4;
     break;
 
   case 0x9: // opcode == 0x9 (ADDIU)  SIGNEXT
-    p->R[inst.itype.rt] = p->R[inst.itype.rs] + signExt(inst.itype.imm);
+    p->R[inst.itype.rt] = p->R[inst.itype.rs] + (uint32_t) signExt(inst.itype.imm);
     p->pc += 4;
     break;
 
   case 0xa: // opcode == 0xa (SLTI) SIGNED????, SIGNEXT
-    p->R[inst.itype.rt] = ((int32_t)(p->R[inst.itype.rs]) < signExt(inst.itype.imm));
+    p->R[inst.itype.rt] = ((int32_t) p->R[inst.itype.rs]) < signExt(inst.itype.imm);
     p->pc += 4;
     break;
 
@@ -181,27 +181,27 @@ void execute_one_inst(processor_t* p, int prompt, int print_regs)
     break;
 
   case 0x20: // opcode == 0x20 (LB)  SIGNEXT, SIGNEXT ??
-    p->R[inst.itype.rt] = signExt(load_mem((p->R[inst.itype.rs] + signExt(inst.itype.imm)), SIZE_WORD));
+    p->R[inst.itype.rt] = (int32_t) (int8_t) load_mem(((int32_t)p->R[inst.itype.rs] + signExt(inst.itype.imm)), SIZE_WORD);
     p->pc += 4;
     break;
 
   case 0x23: // opcode == 0x23 (LW) SIGNEXT
-    p->R[inst.itype.rt] = load_mem((p->R[inst.itype.rs] + signExt(inst.itype.imm)), SIZE_WORD);
+    p->R[inst.itype.rt] = load_mem(((int32_t)p->R[inst.itype.rs] + signExt(inst.itype.imm)), SIZE_WORD);
     p->pc += 4;
     break;
 
   case 0x24: // opcode == 0x24 (LBU) 0ext, SIGNEXT
-    p->R[inst.itype.rt] = (uint8_t)(load_mem((p->R[inst.itype.rs] + signExt(inst.itype.imm)), SIZE_BYTE));
+    p->R[inst.itype.rt] = (uint8_t)(load_mem(((int32_t)p->R[inst.itype.rs] + signExt(inst.itype.imm)), SIZE_BYTE));
     p->pc += 4;
     break;
 
   case 0x28: // opcode == 0x28 (SB) 0ext
-    store_mem((p->R[inst.itype.rs] + signExt(inst.itype.imm)), SIZE_BYTE, p->R[inst.itype.rt]);
+    store_mem(((int32_t)p->R[inst.itype.rs] + signExt(inst.itype.imm)), SIZE_BYTE, p->R[inst.itype.rt]);
     p->pc += 4;
     break;
 
   case 0x2b: // opcode == 0x2b (SW)  SIGNEXT
-    store_mem((p->R[inst.itype.rs] + signExt(inst.itype.imm)), SIZE_WORD, p->R[inst.itype.rt]);
+    store_mem(((int32_t)p->R[inst.itype.rs] + signExt(inst.itype.imm)), SIZE_WORD, p->R[inst.itype.rt]);
     p->pc += 4;
     break;
 
