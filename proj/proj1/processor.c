@@ -34,17 +34,17 @@ void execute_one_inst(processor_t* p, int prompt, int print_regs)
     switch (inst.rtype.funct)
     {
     case 0x0: // funct == 0x0 (sll)
-      p->R[inst.rtype.rd] = p->R[inst.rtype.rs] << p->R[inst.rtype.rt];
+      p->R[inst.rtype.rd] = p->R[inst.rtype.rt] << p->R[inst.rtype.shamt];
       p->pc += 4;
       break;
 
     case 0x2: // funct == 0x2 (srl)
-      p->R[inst.rtype.rd] = p->R[inst.rtype.rs] >> p->R[inst.rtype.rt];
+      p->R[inst.rtype.rd] = p->R[inst.rtype.rs] >> p->R[inst.rtype.shamt];
       p->pc += 4;
       break;
 
-    case 0x3: // funct == 0x3 (sra) CHECK SIGN?!
-      p->R[inst.rtype.rd] = p->R[inst.rtype.rs] >> p->R[inst.rtype.rt];
+    case 0x3: // funct == 0x3 (sra) RT SIGN?!
+      p->R[inst.rtype.rd] = (int32_t)(p->R[inst.rtype.rs]) >> p->R[inst.rtype.shamt];
       p->pc += 4;
       break;
 
@@ -109,13 +109,13 @@ void execute_one_inst(processor_t* p, int prompt, int print_regs)
       p->pc += 4;
       break;
 
-    case 0x2a: // funct == 0x2a (slt)
-      p->R[inst.rtype.rd] = (p->R[inst.rtype.rs] < p->R[inst.rtype.rt]) ? 1 : 0;
+    case 0x2a: // funct == 0x2a (slt) SIGNED? RS RT
+      p->R[inst.rtype.rd] = ((int32_t)(p->R[inst.rtype.rs]) < (int32_t)(p->R[inst.rtype.rt]));
       p->pc += 4;
       break;
 
-    case 0x2b: // funct == 0x2b (sltu) SIGNEXT?!
-      p->R[inst.rtype.rd] = (p->R[inst.rtype.rs] < p->R[inst.rtype.rt]) ? 1 : 0;
+    case 0x2b: // funct == 0x2b (sltu)
+      p->R[inst.rtype.rd] = (p->R[inst.rtype.rs] < p->R[inst.rtype.rt]);
       p->pc += 4;
       break;
 
@@ -135,13 +135,14 @@ void execute_one_inst(processor_t* p, int prompt, int print_regs)
     p->R[31] = p->pc + 4;
     p->pc = ((p->pc+4) & 0xF0000000) | (inst.jtype.addr << 2);
     break;
-
+    
+  /* BEGIN I-TYPE INSTRS */
   case 0x4: // opcode == 0x4 (BEQ) SIGNEXT.
     p->pc += (p->R[inst.itype.rt] == p->R[inst.itype.rs]) ? (signExt(inst.itype.imm) << 2) : 4;
     break;
 
   case 0x5: // opcode == 0x5 (BNE) SIGNEXT
-    p->pc += (p->R[inst.itype.rt] != p->R[inst.itype.rs]) ? (4 * signExt(inst.itype.imm)) : 4;
+    p->pc += (p->R[inst.itype.rt] != p->R[inst.itype.rs]) ? (signExt(inst.itype.imm) << 2) : 4;
     break;
 
   case 0x9: // opcode == 0x9 (ADDIU)  SIGNEXT
@@ -150,12 +151,12 @@ void execute_one_inst(processor_t* p, int prompt, int print_regs)
     break;
 
   case 0xa: // opcode == 0xa (SLTI) SIGNED????, SIGNEXT
-    p->R[inst.itype.rt] = (p->R[inst.itype.rs] < signExt(inst.itype.imm)) ? 1 : 0;
+    p->R[inst.itype.rt] = ((int32_t)(p->R[inst.itype.rs]) < signExt(inst.itype.imm));
     p->pc += 4;
     break;
 
   case 0xb: // opcode == 0xb (SLTIU) SIGNEXT
-    p->R[inst.itype.rt] = (p->R[inst.itype.rs] < signExt(inst.itype.imm)) ? 1 : 0;
+    p->R[inst.itype.rt] = (p->R[inst.itype.rs] < signExt(inst.itype.imm));
     p->pc += 4;
     break;
 
@@ -174,12 +175,12 @@ void execute_one_inst(processor_t* p, int prompt, int print_regs)
     p->pc += 4;
     break;
 
-  case 0xf: // opcode == 0x5 (LUI) SIGNEXT
+  case 0xf: // opcode == 0xf (LUI) SIGNEXT
     p->R[inst.itype.rt] = inst.itype.imm << 16;
     p->pc += 4;
     break;
 
-  case 0x20: // opcode == 0x9 (LW)  SIGNEXT, SIGNEXT ??
+  case 0x20: // opcode == 0x20 (LB)  SIGNEXT, SIGNEXT ??
     p->R[inst.itype.rt] = signExt(load_mem((p->R[inst.itype.rs] + signExt(inst.itype.imm)), SIZE_WORD));
     p->pc += 4;
     break;
@@ -190,16 +191,16 @@ void execute_one_inst(processor_t* p, int prompt, int print_regs)
     break;
 
   case 0x24: // opcode == 0x24 (LBU) 0ext, SIGNEXT
-    p->R[inst.itype.rt] = load_mem((p->R[inst.itype.rs] + signExt(inst.itype.imm)), SIZE_BYTE);
+    p->R[inst.itype.rt] = (uint8_t)(load_mem((p->R[inst.itype.rs] + signExt(inst.itype.imm)), SIZE_BYTE));
     p->pc += 4;
     break;
 
-  case 0x28: // opcode == 0x28 (ANDI) 0ext
+  case 0x28: // opcode == 0x28 (SB) 0ext
     store_mem((p->R[inst.itype.rs] + signExt(inst.itype.imm)), SIZE_BYTE, p->R[inst.itype.rt]);
     p->pc += 4;
     break;
 
-  case 0x2b: // opcode == 0x2b (SB)  SIGNEXT
+  case 0x2b: // opcode == 0x2b (SW)  SIGNEXT
     store_mem((p->R[inst.itype.rs] + signExt(inst.itype.imm)), SIZE_WORD, p->R[inst.itype.rt]);
     p->pc += 4;
     break;

@@ -41,7 +41,7 @@ typedef union
 
 typedef struct
 {
-  reg_t R[32];  
+  reg_t R[32];
   reg_t RHI;
   reg_t RLO;
   reg_t pc;
