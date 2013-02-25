@@ -5,7 +5,7 @@
 #include "memory.h"
 
 /* Pointer to simulator memory */
-uint8_t *mem;
+uint8_t *mem = NULL;
 
 /* Called by program loader to initialize memory. */
 uint8_t *init_mem() {
@@ -18,7 +18,11 @@ uint8_t *init_mem() {
 int access_ok(uint32_t mipsaddr, mem_unit_t size) {
 
   /* TODO YOUR CODE HERE */
-
+  // null and invalid values checkes
+  // then check for alignment.
+  if (!mipsaddr || !size || mipsaddr < 1 || mipsaddr >= MEM_SIZE || mipsaddr % size != 0) {
+    return 0;
+  }
   return 1;
 }
 
@@ -30,6 +34,11 @@ void store_mem(uint32_t mipsaddr, mem_unit_t size, uint32_t value) {
   }
 
   /* TODO YOUR CODE HERE */
+  int shift;
+  for (shift = 0; shift < size; shift += 1) {
+    *(mem + mipsaddr + shift) = (uint8_t)(value & 0xFF); //shift for the next byte in mem.
+    value = value >> 8; //get the next bytes of value.
+  }
 
 }
 
@@ -42,8 +51,11 @@ uint32_t load_mem(uint32_t mipsaddr, mem_unit_t size) {
 
   /* TODO YOUR CODE HERE */
 
-  // incomplete stub to let mipscode/simple execute
-  // (only handles size == SIZE_WORD correctly)
-  // feel free to delete and implement your own way
-  return *(uint32_t*)(mem + mipsaddr);
+  if (size == SIZE_BYTE) {
+    return *(uint8_t*)(mem + mipsaddr);
+  } else if (size == SIZE_HALF) {
+    return *(uint16_t*)(mem + mipsaddr);
+  } else { // SIZE_WORD
+    return *(uint32_t*)(mem + mipsaddr);
+  }
 }

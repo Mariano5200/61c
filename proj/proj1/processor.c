@@ -4,6 +4,8 @@
 #include "processor.h"
 #include "disassemble.h"
 
+#define signExt(x) ((int32_t)((int16_t)x))
+
 void execute_one_inst(processor_t* p, int prompt, int print_regs)
 {
   inst_t inst;
@@ -29,8 +31,64 @@ void execute_one_inst(processor_t* p, int prompt, int print_regs)
 
     switch (inst.rtype.funct)
     {
+    case 0x0: // funct == 0x0 (sll)
+      p->R[inst.rtype.rd] = p->R[inst.rtype.rs] << p->R[inst.rtype.rt];
+      p->pc += 4;
+      break;
+
+    case 0x2: // funct == 0x2 (srl)
+      p->R[inst.rtype.rd] = p->R[inst.rtype.rs] >> p->R[inst.rtype.rt];
+      p->pc += 4;
+      break;
+
+    case 0x3: // funct == 0x3 (sra) CHECK SIGN?!
+      p->R[inst.rtype.rd] = p->R[inst.rtype.rs] >> p->R[inst.rtype.rt];
+      p->pc += 4;
+      break;
+
+    case 0x8: // funct == 0x8 (jr)
+      p->pc = p->R[inst.rtype.rs];
+      break;
+
+    case 0x9: // funct == 0x9 (jalr)
+      ;
+      int tmp = p->pc + 4;
+      p->pc = p->R[inst.rtype.rs];
+      p->R[inst.rtype.rd] = tmp;
+      break;
+
     case 0xc: // funct == 0xc (SYSCALL)
       handle_syscall(p);
+      p->pc += 4;
+      break;
+
+    case 0x10: // funct == 0x10 (mfhi)
+      p->R[inst.rtype.rd] = p->RHI;
+      p->pc += 4;
+      break;
+
+    case 0x12: // funct == 0x12 (mflo)
+      p->R[inst.rtype.rd] = p->RLO;
+      p->pc += 4;
+      break;
+
+    case 0x18: // funct == 0x18 (mult)
+      perform_mult(p->R[inst.rtype.rs], p->R[inst.rtype.rt], &p->RLO, &p->RHI);
+      p->pc += 4;
+      break;
+
+    case 0x21: // funct == 0x21 (addu)
+      p->R[inst.rtype.rd] = p->R[inst.rtype.rs] + p->R[inst.rtype.rt];
+      p->pc += 4;
+      break;
+
+    case 0x23: // funct == 0x23 (subu)
+      p->R[inst.rtype.rd] = p->R[inst.rtype.rs] - p->R[inst.rtype.rt];
+      p->pc += 4;
+      break;
+
+    case 0x24: // funct == 0x24 (and)
+      p->R[inst.rtype.rd] = p->R[inst.rtype.rs] & p->R[inst.rtype.rt];
       p->pc += 4;
       break;
 
@@ -39,20 +97,109 @@ void execute_one_inst(processor_t* p, int prompt, int print_regs)
       p->pc += 4;
       break;
 
+    case 0x26: // funct == 0x26 (xor)
+      p->R[inst.rtype.rd] = p->R[inst.rtype.rs] ^ p->R[inst.rtype.rt];
+      p->pc += 4;
+      break;
+
+    case 0x27: // funct == 0x27 (nor)
+      p->R[inst.rtype.rd] = ~(p->R[inst.rtype.rs] | p->R[inst.rtype.rt]);
+      p->pc += 4;
+      break;
+
+    case 0x2a: // funct == 0x2a (slt)
+      p->R[inst.rtype.rd] = (p->R[inst.rtype.rs] < p->R[inst.rtype.rt]) ? 1 : 0;
+      p->pc += 4;
+      break;
+
+    case 0x2b: // funct == 0x2b (sltu) SIGNEXT?!
+      p->R[inst.rtype.rd] = (p->R[inst.rtype.rs] < p->R[inst.rtype.rt]) ? 1 : 0;
+      p->pc += 4;
+      break;
+
     default: // undefined funct
       fprintf(stderr, "%s: pc=%08x, illegal instruction=%08x\n", __FUNCTION__, p->pc, inst.bits);
       exit(-1);
       break;
     }
+    break; // END R-TYPE INST.
+
+
+  case 0x2: // opcode == 0x2 (J)
+    p->pc = ((p->pc + 4) & 0xF0000000) | (inst.jtype.addr << 2);
     break;
 
-  case 0xd: // opcode == 0xd (ORI)
+  case 0x3: // opcode == 0x3 (JAL)
+    p->R[31] = p->pc + 4;
+    p->pc = ((p->pc+4) & 0xF0000000) | (inst.jtype.addr << 2);
+    break;
+
+  case 0x4: // opcode == 0x4 (BEQ) SIGNEXT.
+    p->pc += (p->R[inst.itype.rt] == p->R[inst.itype.rs]) ? (4 * signExt(inst.itype.imm)) : 4;
+    break;
+
+  case 0x5: // opcode == 0x5 (BNE) SIGNEXT
+    p->pc += (p->R[inst.itype.rt] != p->R[inst.itype.rs]) ? (4 * signExt(inst.itype.imm)) : 4;
+    break;
+
+  case 0x9: // opcode == 0x9 (ADDIU)  SIGNEXT
+    p->R[inst.itype.rt] = p->R[inst.itype.rs] + signExt(inst.itype.imm);
+    p->pc += 4;
+    break;
+
+  case 0xa: // opcode == 0xa (SLTI) SIGNED????, SIGNEXT
+    p->R[inst.itype.rt] = (p->R[inst.itype.rs] < signExt(inst.itype.imm)) ? 1 : 0;
+    p->pc += 4;
+    break;
+
+  case 0xb: // opcode == 0xb (SLTIU) SIGNEXT
+    p->R[inst.itype.rt] = (p->R[inst.itype.rs] < signExt(inst.itype.imm)) ? 1 : 0;
+    p->pc += 4;
+    break;
+
+  case 0xc: // opcode == 0xc (ANDI) 0ext
+    p->R[inst.itype.rt] = p->R[inst.itype.rs] & inst.itype.imm;
+    p->pc += 4;
+    break;
+
+  case 0xd: // opcode == 0xd (ORI) (done for us) 0ext
     p->R[inst.itype.rt] = p->R[inst.itype.rs] | inst.itype.imm;
     p->pc += 4;
     break;
 
-  case 0x2: // opcode == 0x2 (J)
-    p->pc = ((p->pc+4) & 0xf0000000) | (inst.jtype.addr << 2);
+  case 0xe: // opcode == 0xe (XOR) 0ext
+    p->R[inst.itype.rt] = p->R[inst.itype.rs] ^ inst.itype.imm;
+    p->pc += 4;
+    break;
+
+  case 0xf: // opcode == 0x5 (LUI) SIGNEXT
+    p->R[inst.itype.rt] = inst.itype.imm << 16;
+    p->pc += 4;
+    break;
+
+  case 0x20: // opcode == 0x9 (LW)  SIGNEXT, SIGNEXT ??
+    p->R[inst.itype.rt] = signExt(load_mem((p->R[inst.itype.rs] + signExt(inst.itype.imm)), SIZE_WORD));
+    p->pc += 4;
+    break;
+
+  case 0x23: // opcode == 0x23 (LW) SIGNEXT
+    p->R[inst.itype.rt] = load_mem((p->R[inst.itype.rs] + signExt(inst.itype.imm)), SIZE_WORD);
+    p->pc += 4;
+    break;
+
+  case 0x24: // opcode == 0x24 (LBU) 0ext, SIGNEXT
+    p->R[inst.itype.rt] = load_mem((p->R[inst.itype.rs] + signExt(inst.itype.imm)), SIZE_BYTE);
+    p->pc += 4;
+    break;
+
+  case 0x28: // opcode == 0x28 (ANDI) 0ext
+    store_mem((p->R[inst.itype.rs] + signExt(inst.itype.imm)), SIZE_BYTE, p->R[inst.itype.rt]);
+    p->pc += 4;
+    break;
+
+  case 0x2b: // opcode == 0x2b (SB)  SIGNEXT
+    store_mem((p->R[inst.itype.rs] + signExt(inst.itype.imm)), SIZE_WORD, p->R[inst.itype.rt]);
+    p->pc += 4;
     break;
 
   default: // undefined opcode

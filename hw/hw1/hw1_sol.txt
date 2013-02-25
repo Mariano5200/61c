@@ -1,0 +1,81 @@
+RUBRIC
+Q1 - 4pts
+.125 for each box
+
+Q2 - 9pts
+a) 1.5 pts, -0.25 for each incorrect
+b) 1.5 pts, -0.5 for each incorrect
+c) 2 pts, -1 if didn't use hexadecimal but otherwise correct
+d) 2 pts, -1 if didn't use octal but otherwise correct
+e) 2 pts, -1 if didn't use decimal but otherwise correct
+Of the 6 pts in cde, only -1 if in the form "f & 1" rather than "f = f & 1"
+No points off for missing semicolons.
+
+Q3/Q4 - 12pts
+autograded
+No points off if just formatting error.
+
+
+ANSWERS
+Problem 1
+
+UNSIGNED
+0b11111100: 252
+0b00000011: 3
+0x0D: 13
+0xFD: 253
+27: 0x1B
+-27: n/a
+128: 0x80
+-128: n/a
+
+SIGN&MAG
+0b11111100: -124
+0b00000011: 3
+0x0D: 13
+0xFD: -125
+27: 0x1B
+-27: 0x9B
+128: n/a
+-128: n/a
+
+ONE's
+0b11111100: -3
+0b00000011: 3
+0x0D: 13
+0xFD: -2
+27: 0x1B
+-27: 0xE4
+128: n/a
+-128: n/a
+
+TWO's
+0b11111100: -4
+0b00000011: 3
+0x0D: 13
+0xFD: -3
+27: 0x1B
+-27:0xE5
+128: n/a
+-128: 0x80
+
+
+Problem 2
+
+a. 
+x & 0 = 0
+x & 1 = x
+x | 0 = x
+x | 1 = 1
+x ^ 0 = x
+x ^ 1 = NOT x
+
+b.
+1. turning bits OFF? &
+2. turning bits ON? |
+3. flipping bits? ^
+
+c. f = f | 0x104 
+d. f = f ^ 011
+e. f = f & ~3 OR f = f & -4
+
