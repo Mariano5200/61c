@@ -44,7 +44,7 @@ void execute_one_inst(processor_t* p, int prompt, int print_regs)
       break;
 
     case 0x3: // funct == 0x3 (sra) RT SIGN?!
-      p->R[inst.rtype.rd] = (int32_t)(p->R[inst.rtype.rs]) >> p->R[inst.rtype.shamt];
+      p->R[inst.rtype.rd] = ((int32_t) p->R[inst.rtype.rs]) >> p->R[inst.rtype.shamt];
       p->pc += 4;
       break;
 
@@ -89,7 +89,7 @@ void execute_one_inst(processor_t* p, int prompt, int print_regs)
       p->pc += 4;
       break;
 
-    case 0x24: // funct == 0x24 (and)
+    case 0x24: // funct == 0x24 (AND)
       p->R[inst.rtype.rd] = p->R[inst.rtype.rs] & p->R[inst.rtype.rt];
       p->pc += 4;
       break;
@@ -99,18 +99,18 @@ void execute_one_inst(processor_t* p, int prompt, int print_regs)
       p->pc += 4;
       break;
 
-    case 0x26: // funct == 0x26 (xor)
+    case 0x26: // funct == 0x26 (XOR)
       p->R[inst.rtype.rd] = p->R[inst.rtype.rs] ^ p->R[inst.rtype.rt];
       p->pc += 4;
       break;
 
-    case 0x27: // funct == 0x27 (nor)
+    case 0x27: // funct == 0x27 (NOR)
       p->R[inst.rtype.rd] = ~(p->R[inst.rtype.rs] | p->R[inst.rtype.rt]);
       p->pc += 4;
       break;
 
-    case 0x2a: // funct == 0x2a (slt) SIGNED? RS RT
-      p->R[inst.rtype.rd] = ((int32_t)(p->R[inst.rtype.rs]) < (int32_t)(p->R[inst.rtype.rt]));
+    case 0x2a: // funct == 0x2a (SLT) SIGNED? RS RT
+      p->R[inst.rtype.rd] = ((int32_t)p->R[inst.rtype.rs] < (int32_t)p->R[inst.rtype.rt]);
       p->pc += 4;
       break;
 
@@ -133,7 +133,7 @@ void execute_one_inst(processor_t* p, int prompt, int print_regs)
 
   case 0x3: // opcode == 0x3 (JAL)
     p->R[31] = p->pc + 4;
-    p->pc = ((p->pc+4) & 0xF0000000) | (inst.jtype.addr << 2);
+    p->pc = ((p->pc + 4) & 0xF0000000) | (inst.jtype.addr << 2);
     break;
 
   /* BEGIN I-TYPE INSTRS */
@@ -145,8 +145,8 @@ void execute_one_inst(processor_t* p, int prompt, int print_regs)
     p->pc += (p->R[inst.itype.rt] != p->R[inst.itype.rs]) ? 4 + (signExt(inst.itype.imm) << 2) : 4;
     break;
 
-  case 0x9: // opcode == 0x9 (ADDIU)  SIGNEXT
-    p->R[inst.itype.rt] = p->R[inst.itype.rs] + (uint32_t) signExt(inst.itype.imm);
+  case 0x9: // opcode == 0x9 (ADDIU)  SIGNEXT --Unsiged? (uint32_t)
+    p->R[inst.itype.rt] = p->R[inst.itype.rs] + signExt(inst.itype.imm);
     p->pc += 4;
     break;
 

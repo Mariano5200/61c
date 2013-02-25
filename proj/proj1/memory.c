@@ -34,9 +34,9 @@ void store_mem(uint32_t mipsaddr, mem_unit_t size, uint32_t value) {
   }
 
   /* TODO YOUR CODE HERE */
-  int shift;
-  for (shift = 0; shift < size; shift += 1) {
-    *(mem + mipsaddr + shift) = (uint8_t)(value & 0xFF); //shift for the next byte in mem.
+  int byte;
+  for (byte = 0; byte < size; byte += 1) {
+    *(mem + mipsaddr + byte) = (uint8_t)(value & 0xFF); //shift for the next byte in mem.
     value = value >> 8; //get the next bytes of value.
   }
 
