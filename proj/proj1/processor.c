@@ -27,12 +27,10 @@ void execute_one_inst(processor_t* p, int prompt, int print_regs)
     disassemble(inst);
   }
 
-  switch (inst.rtype.opcode) /* could also use e.g. inst.itype.opcode */
-  {
+  switch (inst.rtype.opcode) { /* could also use e.g. inst.itype.opcode */
+  
   case 0x0: // opcode == 0x0 (SPECIAL)
-
-    switch (inst.rtype.funct)
-    {
+    switch (inst.rtype.funct) {
     case 0x0: // funct == 0x0 (sll)
       p->R[inst.rtype.rd] = p->R[inst.rtype.rt] << inst.rtype.shamt;
       p->pc += 4;
@@ -74,7 +72,8 @@ void execute_one_inst(processor_t* p, int prompt, int print_regs)
       p->pc += 4;
       break;
 
-    case 0x18: // funct == 0x18 (mult)
+    case 0x18: //fall through for multu == mult.
+    case 0x19: // funct == 0x18 (mult)
       perform_mult(p->R[inst.rtype.rs], p->R[inst.rtype.rt], &p->RLO, &p->RHI);
       p->pc += 4;
       break;
@@ -125,7 +124,6 @@ void execute_one_inst(processor_t* p, int prompt, int print_regs)
       break;
     }
     break; // END R-TYPE INST.
-
 
   case 0x2: // opcode == 0x2 (J)
     p->pc = ((p->pc + 4) & 0xF0000000) | (inst.jtype.addr << 2);
