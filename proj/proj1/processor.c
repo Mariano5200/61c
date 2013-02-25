@@ -4,7 +4,9 @@
 #include "processor.h"
 #include "disassemble.h"
 
-#define signExt(x) ((int32_t)((int16_t)x))
+// #define signExt(x) ((int32_t)((int16_t)x))
+
+#define signExt(x) (x)
 
 void execute_one_inst(processor_t* p, int prompt, int print_regs)
 {
