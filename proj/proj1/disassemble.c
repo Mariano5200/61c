@@ -3,6 +3,8 @@
 
 #include "disassemble.h"
 
+#define signExt(x) ((int32_t) ((int16_t) x))
+
 void disassemble(inst_t inst) {
   /* you could use itype or type instead of rtype */
   /* remember that opcode field is at the same place for all types */
@@ -19,7 +21,7 @@ void disassemble(inst_t inst) {
         break;
 
     case 0x3: // funct == 0x3 (sra)
-        printf("sra\t$%d,$%d,%d\n", inst.rtype.rd, inst.rtype.rt, inst.rtype.shamt);
+        printf("sra\t$%d,$%d,%d\n", inst.rtype.rd, (int32_t) inst.rtype.rt, inst.rtype.shamt);
         break;
 
     case 0x8: // funct == 0x8 (jr)
@@ -71,7 +73,7 @@ void disassemble(inst_t inst) {
         break;
 
     case 0x2a: // funct == 0x2a (slt)
-        printf("slt\t$%d,$%d,$%d\n", inst.rtype.rd, inst.rtype.rs, inst.rtype.rt);
+        printf("slt\t$%d,$%d,$%d\n", inst.rtype.rd, (int32_t) inst.rtype.rs, (int32_t) inst.rtype.rt);
         break;
 
     case 0x2b: // funct == 0x2b (sltu)
@@ -96,23 +98,23 @@ void disassemble(inst_t inst) {
 
     // I-TYPE INSTRUCTIONS
     case 0x4: // opcode == 0x4 (beq)
-      printf("beq\t$%d,$%d,%d\n", inst.itype.rs, inst.itype.rt, inst.itype.imm*4);
+      printf("beq\t$%d,$%d,%d\n", inst.itype.rs, inst.itype.rt, signExt(inst.itype.imm)*4);
       break;
 
     case 0x5: // opcode == 0x5 (bne)
-        printf("bne\t$%d,$%d,%d\n", inst.itype.rs, inst.itype.rt, inst.itype.imm*4);
+        printf("bne\t$%d,$%d,%d\n", inst.itype.rs, inst.itype.rt, signExt(inst.itype.imm)*4);
         break;
 
     case 0x9: // opcode == 0x9 (addiu)
-        printf("addiu\t$%d,$%d,%d\n", inst.itype.rt, inst.itype.rs, inst.itype.imm);
+        printf("addiu\t$%d,$%d,%d\n", inst.itype.rt, inst.itype.rs, signExt(inst.itype.imm));
         break;
 
     case 0xa: // opcode == 0xa (slti)
-        printf("slti\t$%d,$%d,%d\n", inst.itype.rt, inst.itype.rs, inst.itype.imm);
+        printf("slti\t$%d,$%d,%d\n", inst.itype.rt, (int32_t) inst.itype.rs, signExt(inst.itype.imm));
         break;
 
     case 0xb: // opcode == 0xb (sltiu)
-        printf("sltiu\t$%d,$%d,%d\n", inst.itype.rt, inst.itype.rs, inst.itype.imm);
+        printf("sltiu\t$%d,$%d,%d\n", inst.itype.rt, inst.itype.rs, signExt(inst.itype.imm));
         break;
 
     case 0xc: // opcode == 0xc (andi)
@@ -132,23 +134,23 @@ void disassemble(inst_t inst) {
         break;
 
     case 0x20: // opcode == 0x20 (lb)
-        printf("lb\t$%d,%d($%d)\n", inst.itype.rt, inst.itype.imm, inst.itype.rs);
+        printf("lb\t$%d,%d($%d)\n", inst.itype.rt, signExt(inst.itype.imm), inst.itype.rs);
         break;
 
     case 0x23: // opcode == 0x23 (lw)
-        printf("lw\t$%d,%d($%d)\n", inst.itype.rt, inst.itype.imm, inst.itype.rs);
+        printf("lw\t$%d,%d($%d)\n", inst.itype.rt, signExt(inst.itype.imm), inst.itype.rs);
         break;
 
     case 0x24: // opcode == 0x24 (lbu)
-        printf("lbu\t$%d,%d($%d)\n", inst.itype.rt, inst.itype.imm, inst.itype.rs);
+        printf("lbu\t$%d,%d($%d)\n", inst.itype.rt, signExt(inst.itype.imm), inst.itype.rs);
         break;
 
     case 0x28: // opcode == 0x28 (sb)
-        printf("sb\t$%d,%d($%d)\n", inst.itype.rt, inst.itype.imm, inst.itype.rs);
+        printf("sb\t$%d,%d($%d)\n", inst.itype.rt, signExt(inst.itype.imm), inst.itype.rs);
         break;
 
     case 0x2b: // opcode == 0x2b (sw)
-        printf("sw\t$%d,%d($%d)\n", inst.itype.rt, inst.itype.imm, inst.itype.rs);
+        printf("sw\t$%d,%d($%d)\n", inst.itype.rt, signExt(inst.itype.imm), inst.itype.rs);
         break;
 
     // END ALL INSTRUCTIOnS

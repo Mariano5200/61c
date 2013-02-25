@@ -34,17 +34,17 @@ void execute_one_inst(processor_t* p, int prompt, int print_regs)
     switch (inst.rtype.funct)
     {
     case 0x0: // funct == 0x0 (sll)
-      p->R[inst.rtype.rd] = p->R[inst.rtype.rt] << p->R[inst.rtype.shamt];
+      p->R[inst.rtype.rd] = p->R[inst.rtype.rt] << inst.rtype.shamt;
       p->pc += 4;
       break;
 
     case 0x2: // funct == 0x2 (srl)
-      p->R[inst.rtype.rd] = p->R[inst.rtype.rs] >> p->R[inst.rtype.shamt];
+      p->R[inst.rtype.rd] = p->R[inst.rtype.rs] >> inst.rtype.shamt;
       p->pc += 4;
       break;
 
     case 0x3: // funct == 0x3 (sra) RT SIGN?!
-      p->R[inst.rtype.rd] = ((int32_t) p->R[inst.rtype.rs]) >> p->R[inst.rtype.shamt];
+      p->R[inst.rtype.rd] = ((int32_t) p->R[inst.rtype.rs]) >> inst.rtype.shamt;
       p->pc += 4;
       break;
 
@@ -145,8 +145,8 @@ void execute_one_inst(processor_t* p, int prompt, int print_regs)
     p->pc += (p->R[inst.itype.rt] != p->R[inst.itype.rs]) ? 4 + (signExt(inst.itype.imm) << 2) : 4;
     break;
 
-  case 0x9: // opcode == 0x9 (ADDIU)  SIGNEXT --Unsiged? (uint32_t)
-    p->R[inst.itype.rt] = p->R[inst.itype.rs] + signExt(inst.itype.imm);
+  case 0x9: // opcode == 0x9 (ADDIU)  SIGNEXT --Unsiged?
+    p->R[inst.itype.rt] = p->R[inst.itype.rs] + (uint32_t) signExt(inst.itype.imm);
     p->pc += 4;
     break;
 
