@@ -181,7 +181,7 @@ void execute_one_inst(processor_t* p, int prompt, int print_regs)
     break;
 
   case 0x20: // opcode == 0x20 (LB)  SIGNEXT, SIGNEXT ??
-    p->R[inst.itype.rt] = (int32_t) (int8_t) load_mem(((int32_t)p->R[inst.itype.rs] + signExt(inst.itype.imm)), SIZE_WORD);
+    p->R[inst.itype.rt] = (int32_t) (int8_t) load_mem(((int32_t)p->R[inst.itype.rs] + signExt(inst.itype.imm)), SIZE_BYTE);
     p->pc += 4;
     break;
 
