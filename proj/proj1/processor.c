@@ -39,12 +39,12 @@ void execute_one_inst(processor_t* p, int prompt, int print_regs)
       break;
 
     case 0x2: // funct == 0x2 (srl)
-      p->R[inst.rtype.rd] = p->R[inst.rtype.rs] >> inst.rtype.shamt;
+      p->R[inst.rtype.rd] = p->R[inst.rtype.rt] >> inst.rtype.shamt;
       p->pc += 4;
       break;
 
     case 0x3: // funct == 0x3 (sra) RT SIGN?!
-      p->R[inst.rtype.rd] = ((int32_t) p->R[inst.rtype.rs]) >> inst.rtype.shamt;
+      p->R[inst.rtype.rd] = ((int32_t) p->R[inst.rtype.rt]) >> inst.rtype.shamt;
       p->pc += 4;
       break;
 
