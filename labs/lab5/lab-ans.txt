@@ -1,0 +1,22 @@
+Lab 5 Answers
+
+Question 1:
+
+A) Why does performance drop for large values of n?
+    You likely have a higher miss rate from the step.
+B) The second run of matrixMultiply runs all 6 different loop orderings. Which ordering(s) perform best for 1000-by-1000 matrices? Which ordering(s) perform the worst? How does the way we stride through the matrices with respect to the innermost loop affect performance?
+    Best: jki, and kji
+        --I is in the inside
+    Worst: i or j on the outside.
+    I is a row so taking advantage of spacial locality
+    
+    
+Question 2:
+A) Note the time required to perform the naive transposition for a matrix of size 2000-by-2000.
+    37.669 milliseconds
+    
+
+B) Modify the function called transpose in transpose.c to implement a single level of cache blocking. That is, loop over all matrix blocks and transpose each into the destination matrix. Make sure to handle special cases of the transposition: What if we tried to transpose the 5-by-5 matrix above with a blocksize of 2?
+    Segfault...
+
+C) Try block sizes of 2-by-2, 100-by-100, 200-by-200, 400-by-400 and 1000-by-1000. Which performs best on the 2000-by-2000 matrix? Which performs worst?

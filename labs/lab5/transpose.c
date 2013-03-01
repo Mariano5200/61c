@@ -6,16 +6,16 @@
 void transpose( int n, int blocksize, int *dst, int *src ) {
     int a,b,i,j;
     /* TODO: implement blocking (two more loops) */
-    for(i = 0; i < n; i++)
-        for(j = 0; j < n; j++)
-          for (a = i; a < blocksize+i; a += 1)
-            for (b = j; b < blocksize+i; b += 1)
+    for(i = 0; i < n; i += blocksize)
+        for(j = 0; j < n; j += blocksize)
+          for (a = i; a < blocksize+i && a < n; a += 1)
+            for (b = j; b < blocksize+j && b < n; b += 1)
             dst[b + a*n] = src[a + b*n];
 }
 
 int main( int argc, char **argv ) {
     int n = 2000,i,j;
-    int blocksize = 400; /* TODO: find a better block size */
+    int blocksize = 600; /* TODO: find a better block size */
 
     /* allocate an n*n block of integers for the matrices */
     int *A = (int*)malloc( n*n*sizeof(int) );
