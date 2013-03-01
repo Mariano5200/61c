@@ -7,7 +7,7 @@ fail2string:    .asciiz " failed!\n"
 
 # _start is the entry point into any program.
 .global _start
-.ent    _start 
+.ent    _start
 _start:
 
 #
@@ -17,12 +17,12 @@ _start:
         # test #1: addiu
         addiu $2, $0, 255
         addiu $3, $0, 0
-        sb    $3, 0($2)    #store 3 from 2. 
+        sb    $3, 0($2)    #store 3 from 2.
         beq   $2, $3, 1f
 
         ori   $30, 1
         j     fail
-1:      
+1:
 
         # test #2: bne
         ori   $2, $0, 1
@@ -32,7 +32,7 @@ _start:
 
 1:      ori   $30, 2
         j     fail
-2:      
+2:
 
         # test #3: sll
         li    $30, 3
