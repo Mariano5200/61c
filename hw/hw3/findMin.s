@@ -12,18 +12,18 @@ L1: 	.word 21 L2
 L0: 	.word 20 L1
 space:
 	.ascii " "
-	
-	.text 
+
+	.text
 	la $a0 L8 # find min from node 8
 	jal findMin
 	move $a0 $v0
 	li $v0 1
 	syscall
-        
+
 	la $a0 space
 	li $v0 4
 	syscall
-        
+
 	la $a0 L0 # find min from node 0
 	jal findMin
 	move $a0 $v0
@@ -31,16 +31,16 @@ space:
 	syscall
 	li $v0 10
 	syscall
-	
+
 # Your code here
-# You must use recursion for full credit 
+# You must use recursion for full credit
 findMin:
     addiu   $sp, $sp -8
-    sw        $t1, 0($s1)        # 
-    sw        $t1, 0($s1)        # 
+    sw        $t1, 0($s1)        #
+    sw        $t1, 0($s1)        #
     beq     $t1, $0, done    # if $t1 == $0 then done
-    
-    
+
+
 	jr $ra
-    
+
 done:
