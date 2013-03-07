@@ -9,11 +9,11 @@ typedef struct node {
   int value;
   struct node *next;
 } node;
-    
+
 void main();
 
 int findMin(node *x) {
-    if(x->next == NULL)
+    if(!x->next)
         return x->value;
     else {
         int min = findMin(x->next);
