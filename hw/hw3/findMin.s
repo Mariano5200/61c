@@ -35,4 +35,12 @@ space:
 # Your code here
 # You must use recursion for full credit 
 findMin:
+    addiu   $sp, $sp -8
+    sw        $t1, 0($s1)        # 
+    sw        $t1, 0($s1)        # 
+    beq     $t1, $0, done    # if $t1 == $0 then done
+    
+    
 	jr $ra
+    
+done:

@@ -11,23 +11,24 @@ listAfterString: .asciiz "List after: "
 main:
   jal create_default_list
   addu $s0 $v0 $0		# $v0 = $s0 is head of node list
-  
+
   #print "list before: "
   la $a0 listBeforeString
   li $v0 4
   syscall
-  
+
   #print the list
   addu $a0 $s0 $0
   jal print_list
 
   # print a newline
   jal print_newline
-  
+
   #issue the map call
   addu $a0 $s0 $0 # load the address of the first node into $a0
   # load the address of the function into $a1 (check out la)
-  #YOUR_INSTRUCTION_HERE
+  #FIXME: YOUR_INSTRUCTION_HERE
+  la  $a1, square        # load square into a1
   jal map
 
   # print "list after: "
@@ -38,7 +39,7 @@ main:
   #print the list
   addu $a0 $s0 $0
   jal print_list
-  
+
   li $v0 10
   syscall
 
@@ -49,23 +50,30 @@ map:
   sw $s0 8($sp)
 
   beq $a0 $0 done  # if we were given a null pointer, we're done.
-  
+
   addu $s0 $a0 $0 # save address of this node in $s0
   addu $s1 $a1 $0 # save address of function in $s1
 
-  #remember that each node is 8 bytes long: 4 for the value followed by 4 for the pointer to next
+  # remember that each node is 8 bytes long: 4 for the value followed by 4 for the pointer to next
   # load the value of the current node into $a0
-  #YOUR_INSTRUCTION_HERE
+  # FIXME: YOUR_INSTRUCTION_HERE
+  lw $a0, 0($s0)        # load only 4 bytes.
   # call the function on that value.
-  #YOUR_INSTRUCTION_HERE
+  # YOUR_INSTRUCTION_HERE
+  jal square #jal vs jalr?
   # store the returned value back into the node
-  #YOUR_INSTRUCTION_HERE
+  # YOUR_INSTRUCTION_HERE
+  sw $v0, 0($s0)
   # load the address of the next node into $a0
-  #YOUR_INSTRUCTION_HERE
+  # YOUR_INSTRUCTION_HERE
+  lw $a0, 4($s0) # load only 4 bytes, 4 after s0.
   # put the address of the function back into $a1 to prepare for the recursion
+  # YOUR_INSTRUCTION_HERE
+  move $a1, $s1 # $a1 = $s1
+  # recurse
   #YOUR_INSTRUCTION_HERE
-  #recurse
-  #YOUR_INSTRUCTION_HERE
+  jal map    # jump to map and save position to $ra
+
 
  done:
   lw $s0 8($sp)
