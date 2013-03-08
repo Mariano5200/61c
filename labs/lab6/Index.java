@@ -70,7 +70,7 @@ public class Index {
             while (matcher.find()) {
                 String w = matcher.group();
                 if (!wordMap.containsKey(w)) {
-                    puts = (String) key + ": " + Integer.toString(counter);
+                    puts = key.toString() + ": " + Integer.toString(counter);
                 } else {
                     puts = wordMap.get(w);
                     puts += (", " + Integer.toString(counter));
@@ -102,11 +102,11 @@ public class Index {
          * @param context ReducerContext object for accessing output,
          *                configuration information, etc.
          */
-        @Override
+        //@Override
         public void reduce(Text key, Iterable<Text> values,
                 Context context) throws IOException, InterruptedException {
             // long sum = 0L;
-            for (String value : values) {
+            for (Text value : values) {
                 context.write(key, value);
             }
 
