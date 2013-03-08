@@ -79,7 +79,7 @@ public class Index {
                 counter += 1;
             }
             for(String w : wordMap.keySet()) {
-                wordText = new Text(w);
+                Text wordText = new Text(w);
                 word.set(wordText);
                 context.write(wordText, new Text(wordMap.get(w)));
             }
