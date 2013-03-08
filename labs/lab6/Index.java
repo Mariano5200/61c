@@ -108,7 +108,7 @@ public class Index {
             for (String w : values.keys()) {
                 context.write(key, values.get(w));
             }
-            
+
         }
     }
 
@@ -143,7 +143,7 @@ public class Index {
          * These must agree with the types used by the Mapper and Reducer. Mismatches
          * will not be caught until runtime.
          */
-        job.setMapOutputKeyClass(Text.class)d;
+        job.setMapOutputKeyClass(Text.class);
         job.setMapOutputValueClass(HashMap.class); // FIXME?
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(HashMap.class); // FIXME??
