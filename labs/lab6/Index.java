@@ -102,13 +102,13 @@ public class Index {
          *                configuration information, etc.
          */
         @Override
-        public void reduce(Text key, Iterable<LongWritable> values,
+        public void reduce(Text key, HashMap<String,String> values,
                 Context context) throws IOException, InterruptedException {
-            long sum = 0L;
-            for (LongWritable value : values) {
-                sum += value.get();
+            // long sum = 0L;
+            for (String w : values.keys()) {
+                context.write(key, values.get(w));
             }
-            context.write(key, new LongWritable(sum));
+            
         }
     }
 
@@ -143,10 +143,10 @@ public class Index {
          * These must agree with the types used by the Mapper and Reducer. Mismatches
          * will not be caught until runtime.
          */
-        job.setMapOutputKeyClass(Text.class);
-        job.setMapOutputValueClass(LongWritable.class);
+        job.setMapOutputKeyClass(Text.class)d;
+        job.setMapOutputValueClass(HashMap.class); // FIXME?
         job.setOutputKeyClass(Text.class);
-        job.setOutputValueClass(LongWritable.class);
+        job.setOutputValueClass(HashMap.class); // FIXME??
 
         /* Set the mapper, combiner, reducer to use. These reference the classes defined above. */
         job.setMapperClass(WordCountMap.class);
