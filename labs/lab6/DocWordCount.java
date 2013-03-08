@@ -66,7 +66,7 @@ public class DocWordCount {
 
             // ***MODIFY BELOW THIS LINE***
             Matcher matcher = WORD_PATTERN.matcher(value.toString());
-            while (matcher.find()) {
+            if (matcher.find()) {
                 word.set(matcher.group());
                 context.write(word, ONE);
             }

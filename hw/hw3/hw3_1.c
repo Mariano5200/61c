@@ -13,7 +13,7 @@ typedef struct node {
 void main();
 
 int findMin(node *x) {
-    if(!x->next)
+    if(x->next == NULL)
         return x->value;
     else {
         int min = findMin(x->next);
