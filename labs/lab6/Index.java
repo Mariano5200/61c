@@ -42,7 +42,7 @@ public class Index {
      * interface (called Writable) and, unlike Java's String and Long, are
      * mutable.
      */
-    public static class WordCountMap extends Mapper<Text, Text, Text, LongWritable> {
+    public static class WordCountMap extends Mapper<Text, Text, Text, Text> {
         /** Regex pattern to find words (alphanumeric + _). */
         final static Pattern WORD_PATTERN = Pattern.compile("\\w+");
 
@@ -94,7 +94,7 @@ public class Index {
      * LongWritable values, computes the sum of those values, and the key-value
      * pair (word, sum).
      */
-    public static class SumReduce extends Reducer<Text, LongWritable, Text, LongWritable> {
+    public static class SumReduce extends Reducer<Text, Text, Text, Text> {
         /** Actual reduce function.
          *
          * @param key Word.
@@ -102,7 +102,7 @@ public class Index {
          * @param context ReducerContext object for accessing output,
          *                configuration information, etc.
          */
-        //@Override
+        @Override
         public void reduce(Text key, Iterable<Text> values,
                 Context context) throws IOException, InterruptedException {
             // long sum = 0L;
