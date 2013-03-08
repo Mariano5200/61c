@@ -79,8 +79,9 @@ public class Index {
                 counter += 1;
             }
             for(String w : wordMap.keySet()) {
-                word.set(w);
-                context.write(w, new Text(wordMap.get(w)));
+                wordText = new Text(w);
+                word.set(wordText);
+                context.write(wordText, new Text(wordMap.get(w)));
             }
         }
     }
