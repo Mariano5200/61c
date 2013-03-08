@@ -18,7 +18,7 @@ import org.apache.hadoop.util.GenericOptionsParser;
 
 /**
  * Word count example for Hadoop Map Reduce.
- * 
+ *
  * Adapted from the {@link http://wiki.apache.org/hadoop/WordCount Hadoop wiki}.
  */
 public class DocWordCount {
@@ -31,7 +31,7 @@ public class DocWordCount {
      * Thus, this mapper takes (Text key, Text value) pairs and outputs
      * (Text key, LongWritable value) pairs. The input keys are assumed
      * to be identifiers for documents, which are ignored, and the values
-     * to be the content of documents. The output keys are ______________ 
+     * to be the content of documents. The output keys are ______________
      * (for you to figure out), and the output values are ______________
      * (also for you to figure out).
      *
@@ -57,7 +57,7 @@ public class DocWordCount {
          *
          * @param key Document identifier (ignored).
          * @param value Text of the current document.
-         * @param context MapperContext object for accessing output, 
+         * @param context MapperContext object for accessing output,
          *                configuration information, etc.
          */
         @Override
@@ -66,9 +66,14 @@ public class DocWordCount {
 
             // ***MODIFY BELOW THIS LINE***
             Matcher matcher = WORD_PATTERN.matcher(value.toString());
-            if (matcher.find()) {
-                word.set(matcher.group());
-                context.write(word, ONE);
+            while (matcher.find()) {
+                HashSet<String> foundWords = new HashSet<String>();
+                String curr = matcher.group();
+                word.set(curr);
+                if (!foundWords.contains(curr)) {
+                    context.write(word, ONE);
+                }
+                foundWords.add(curr);
             }
             // ***MODIFY ABOVE THIS LINE***
 
@@ -77,7 +82,7 @@ public class DocWordCount {
 
     /** Reducer for word count.
      *
-     * Like the Mapper base class, the base class Reducer is parameterized by 
+     * Like the Mapper base class, the base class Reducer is parameterized by
      * <in key type, in value type, out key type, out value type>.
      *
      * For each Text key, which represents a word, this reducer gets a list of
@@ -86,13 +91,13 @@ public class DocWordCount {
      */
     public static class SumReduce extends Reducer<Text, LongWritable, Text, LongWritable> {
         /** Actual reduce function.
-         * 
+         *
          * @param key Word.
          * @param values Values for this word (partial counts).
          * @param context ReducerContext object for accessing output,
          *                configuration information, etc.
          */
-        @Override 
+        @Override
         public void reduce(Text key, Iterable<LongWritable> values,
                 Context context) throws IOException, InterruptedException {
             long sum = 0L;
@@ -125,7 +130,7 @@ public class DocWordCount {
          * job is to be run across a cluster. Unless the location of code
          * is specified in some other way (e.g. the -libjars command line
          * option), all non-Hadoop code required to run this job must be
-         * contained in the JAR containing the specified class (WordCountMap 
+         * contained in the JAR containing the specified class (WordCountMap
          * in this case).
          */
         job.setJarByClass(WordCountMap.class);
@@ -143,7 +148,7 @@ public class DocWordCount {
         job.setMapperClass(WordCountMap.class);
 //        job.setCombinerClass(SumReduce.class);
         job.setReducerClass(SumReduce.class);
-    
+
         /* Set the format to expect input in and write output in. The input files we have
          * provided are in Hadoop's "sequence file" format, which allows for keys and
          * values of arbitrary Hadoop-supported types and supports compression.
