@@ -64,12 +64,13 @@ public class Index {
         public void map(Text key, Text value, Context context)
                 throws IOException, InterruptedException {
             Matcher matcher = WORD_PATTERN.matcher(value.toString());
-            HashMap<String, Strinng> wordMap = new HashMap<String, String>();
+            HashMap<String, String> wordMap = new HashMap<String, String>();
             int counter = 0;
+            String puts;
             while (matcher.find()) {
                 String w = matcher.group();
                 if (!wordMap.containsKey(w)) {
-                    String puts = (String) key + ": " + Integer.toString(counter);
+                    puts = (String) key + ": " + Integer.toString(counter);
                 } else {
                     puts = wordMap.get(w);
                     puts += (", " + Integer.toString(counter));
@@ -79,7 +80,7 @@ public class Index {
             }
             for(String w : wordMap.keySet()) {
                 word.set(w);
-                context.write(w, wordMap.get(w));
+                context.write(w, new Text(wordMap.get(w)));
             }
         }
     }
@@ -97,16 +98,16 @@ public class Index {
         /** Actual reduce function.
          *
          * @param key Word.
-         * @param values Values for this word (partial counts).
+         * @param values Values for this word (strings?).
          * @param context ReducerContext object for accessing output,
          *                configuration information, etc.
          */
         @Override
-        public void reduce(Text key, HashMap<String,String> values,
+        public void reduce(Text key, Iterable<Text> values,
                 Context context) throws IOException, InterruptedException {
             // long sum = 0L;
-            for (String w : values.keys()) {
-                context.write(key, values.get(w));
+            for (String value : values) {
+                context.write(key, value);
             }
 
         }
@@ -144,9 +145,9 @@ public class Index {
          * will not be caught until runtime.
          */
         job.setMapOutputKeyClass(Text.class);
-        job.setMapOutputValueClass(HashMap.class); // FIXME?
+        job.setMapOutputValueClass(Text.class); // FIXME?
         job.setOutputKeyClass(Text.class);
-        job.setOutputValueClass(HashMap.class); // FIXME??
+        job.setOutputValueClass(Text.class); // FIXME??
 
         /* Set the mapper, combiner, reducer to use. These reference the classes defined above. */
         job.setMapperClass(WordCountMap.class);
