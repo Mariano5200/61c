@@ -38,19 +38,21 @@ findMin:
     addiu   $sp, $sp, -8
     sw      $ra, 0($sp)       # store $ra on stack
     sw      $a0, 4($sp)       # store a0 on stack
-    lw      $t1, 0($a0)        # load a0 into t1
+    lw      $t1, 0($a0)       # load a0 into t1
     lw      $t2, 4($a0)       # t2 is x->next
     beq     $t2, $0, done     # if $t2 == $0 then done
     move    $a0, $t2          # x = x->next
     jal     findMin           # recurse
     move    $v0, $t1          # $t1 = $v0
-    bge     $a0, $t1, done  # if $s0 < $t1 then done
-min:                         # return the current min.
-    move     $a0, $t1        # $t0 = $a0
-    j        done            # jump to done
+    lw      $t3, 0($a0)        # 
+    
+    bge     $t3, $t1, done    # if $s0 < $t1 then done
+min:                          # return the current min.
+    move     $a0, $t1         # $t0 = $a0
+    j        done             # jump to done
 done:
-    lw      $ra, 0($sp)      # load ra from stack
-    lw      $a0, 4($sp)        #
+    lw      $ra, 0($sp)       # load ra from stack
+    lw      $a0, 4($sp)       #
     addiu   $sp, $sp, 8
-    lw      $v0 0($a0)         # $v0 = $a0
+    lw      $v0 0($a0)        # $v0 = $a0
     jr $ra
