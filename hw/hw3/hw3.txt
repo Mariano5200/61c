@@ -12,9 +12,13 @@ c. 0x84-87 + N*32. (Where N is an int Not = 0).
 d. 51 (clock cycles`)
 
 4.
-a.
-Explanation:
+a. 100% miss rate.
+Explanation: 1 compulsory miss, then the access maps to 
+the same block each time, there for every other access is a 
+conflict miss.
 
-b.
-Explanation:
+b. 0.0001% 
+Explanation: J = 0, 255, 510. Therefore they map to different lines in the
+cache and the only access that we miss are the first 3 for compulsory misses.
+Thus the next accesses are in the cache and only 1 in 10K is a miss.
 
