@@ -72,8 +72,9 @@ public class DocWordCount {
                 word.set(curr);
                 if (!foundWords.contains(curr)) {
                     context.write(word, ONE);
+                    foundWords.add(curr);
                 }
-                foundWords.add(curr);
+                
             }
             // ***MODIFY ABOVE THIS LINE***
 

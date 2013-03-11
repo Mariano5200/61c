@@ -35,12 +35,26 @@ space:
 # Your code here
 # You must use recursion for full credit
 findMin:
-    addiu   $sp, $sp -8
-    sw        $t1, 0($s1)        #
-    sw        $t1, 0($s1)        #
-    beq     $t1, $0, done    # if $t1 == $0 then done
+    addiu   $sp, $sp, -4
+    sw      $ra, 0($sp)      # store $ra on stack
+    move    $t1, $a0         # a0 = t1
+
+    lw      $t2, 4($a0)     #
 
 
-	jr $ra
+    beq     $t2, $0, done    # if $a0 == $0 then done
+
+    move $a0, $t2      # x = x->next
+    jal findMin              # recurse
+    move $v0, $t1        # $s0 = $v0
+
+    blt      $a0, $t1, done # if $s0 < $t1 then done
+min:    #return the current min.
+    move     $t1, $a0        # $t0 = $a0
+    j        done            # jump to done
 
 done:
+    move    $v0, $a0         # $v0 = $a0
+    lw      $ra, 0($sp)      # load s0 from stack
+    addiu   $sp, $sp, 8
+    jr $ra

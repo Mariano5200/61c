@@ -7,6 +7,7 @@ newlineString: .asciiz "\n"
 listBeforeString: .asciiz "List before: "
 listAfterString: .asciiz "List after: "
 
+
 .text
 main:
   jal create_default_list
