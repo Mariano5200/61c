@@ -1,4 +1,4 @@
-##include <stdlib.h>
+#include <stdlib.h>
 /*
     x is a pointer to a linked list node and is not null.
     Return the min value stored in the linked list.
