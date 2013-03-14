@@ -2,16 +2,16 @@
  *
  * CS61C Spring 2013 Project 2: Small World
  *
- * Partner 1 Name:
- * Partner 1 Login:
+ * Partner 1 Name: Michael Ball
+ * Partner 1 Login: mx
  *
- * Partner 2 Name:
- * Partner 2 Login:
+ * Partner 2 Name: David Lau
+ * Partner 2 Login: XX
  *
- * REMINDERS: 
+ * REMINDERS:
  *
  * 1) YOU MUST COMPLETE THIS PROJECT WITH A PARTNER.
- * 
+ *
  * 2) DO NOT SHARE CODE WITH ANYONE EXCEPT YOUR PARTNER.
  * EVEN FOR DEBUGGING. THIS MEANS YOU.
  *
@@ -21,7 +21,7 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 import java.lang.Math;
-import java.util.*;
+import java.util.*; // This is bad. --PNH.
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
@@ -44,7 +44,7 @@ public class SmallWorld {
     // Maximum depth for any breadth-first search
     public static final int MAX_ITERATIONS = 20;
 
-    // Example writable type
+    // Example writable type FIXME NOT Comparable?
     public static class EValue implements Writable {
 
         public int exampleInt; //example integer field
@@ -64,7 +64,7 @@ public class SmallWorld {
             out.writeInt(exampleInt);
 
             // Example of serializing an array:
-            
+
             // It's a good idea to store the length explicitly
             int length = 0;
 
@@ -92,7 +92,7 @@ public class SmallWorld {
 
             // Example of rebuilding the array from the serialized object
             exampleLongArray = new long[length];
-            
+
             for(int i = 0; i < length; i++){
                 exampleLongArray[i] = in.readLong();
             }
@@ -108,9 +108,9 @@ public class SmallWorld {
     }
 
 
-    /* The first mapper. Part of the graph loading process, currently just an 
+    /* The first mapper. Part of the graph loading process, currently just an
      * identity function. Modify as you wish. */
-    public static class LoaderMap extends Mapper<LongWritable, LongWritable, 
+    public static class LoaderMap extends Mapper<LongWritable, LongWritable,
         LongWritable, LongWritable> {
 
         @Override
@@ -129,23 +129,23 @@ public class SmallWorld {
     /* The first reducer. This is also currently an identity function (although it
      * does break the input Iterable back into individual values). Modify it
      * as you wish. In this reducer, you'll also find an example of loading
-     * and using the denom field.  
+     * and using the denom field.
      */
-    public static class LoaderReduce extends Reducer<LongWritable, LongWritable, 
+    public static class LoaderReduce extends Reducer<LongWritable, LongWritable,
         LongWritable, LongWritable> {
 
         public long denom;
 
-        public void reduce(LongWritable key, Iterable<LongWritable> values, 
+        public void reduce(LongWritable key, Iterable<LongWritable> values,
             Context context) throws IOException, InterruptedException {
-            // We can grab the denom field from context: 
+            // We can grab the denom field from context:
             denom = Long.parseLong(context.getConfiguration().get("denom"));
 
             // You can print it out by uncommenting the following line:
             // System.out.println(denom);
 
             // Example of iterating through an Iterable
-            for (LongWritable value : values){            
+            for (LongWritable value : values){
                 context.write(key, value);
             }
         }
@@ -231,7 +231,7 @@ public class SmallWorld {
             FileOutputFormat.setOutputPath(job, new Path("bfs-"+ (i+1) +"-out"));
 
             job.waitForCompletion(true);
-            i++;
+            i++; //FIXME
         }
 
         // Mapreduce config for histogram computation
