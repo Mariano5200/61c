@@ -3,7 +3,11 @@
 #include <time.h>
 #include <emmintrin.h> /* where intrinsics are defined */
 
-#define CLOCK_RATE_GHZ 2.26e9
+#ifdef __APPLE__
+  #define CLOCK_RATE_GHZ 2.8e9
+#elif
+  #define CLOCK_RATE_GHZ 2.26e9
+#endif
 
 /* Time stamp counter from Lecture 2/17 */
 static __inline__ unsigned long long RDTSC(void) {
@@ -20,6 +24,23 @@ int sum_naive( int n, int *a )
     return sum;
 }
 
+int sum_vectorized( int n, int *a )
+{
+    /* WRITE YOUR VECTORIZED CODE HERE */
+    __m128i sum = _mm_setzero_si128( );
+    int val[4];
+    for ( int i = 0; i < n/4*4; i += 4 ) {
+        __m128i vect = _mm_loadu_si128( (__m128i*) (a+i) );
+        sum = _mm_add_epi32( vect, sum );
+    }
+    _mm_storeu_si128( (__m128i*) val, sum);
+    int res = val[0] + val[1] + val[2] + val[3];
+    for( int i = n/4*4; i < n; i += 1 )
+        res += a[i];
+
+    return res;
+}
+
 int sum_unrolled( int n, int *a )
 {
     int sum = 0;
@@ -34,22 +55,43 @@ int sum_unrolled( int n, int *a )
     }
 
     /* handle the small tail in a usual way */
-    for( int i = n/4*4; i < n; i++ )   
+    for( int i = n/4*4; i < n; i++ )
         sum += a[i];
 
     return sum;
 }
 
-int sum_vectorized( int n, int *a )
-{
-    /* WRITE YOUR VECTORIZED CODE HERE */
-    return 0;
-}
-
 int sum_vectorized_unrolled( int n, int *a )
 {
     /* UNROLL YOUR VECTORIZED CODE HERE*/
-    return 0;
+
+    __m128i sum = _mm_setzero_si128( );
+    int val[4];
+
+    for ( int i = 0; i < n/16*16; i += 16 ) {
+        __m128i vect0 = _mm_loadu_si128( (__m128i*) (a+i) );
+        __m128i vect1 = _mm_loadu_si128( (__m128i*) (a+i+4) );
+        __m128i vect2 = _mm_loadu_si128( (__m128i*) (a+i+8) );
+        __m128i vect3 = _mm_loadu_si128( (__m128i*) (a+i+12) );
+        sum = _mm_add_epi32( vect0, sum );
+        sum = _mm_add_epi32( vect1, sum );
+        sum = _mm_add_epi32( vect2, sum );
+        sum = _mm_add_epi32( vect3, sum );
+    }
+    
+    /** Fringe case w/ vects. (Partial) */
+    for ( int i = n/16*16; i < n/4*4; i += 4 ) {
+        __m128i vect = _mm_loadu_si128( (__m128i*) (a+i) );
+        sum = _mm_add_epi32( vect, sum );
+    }
+    /* Final frinnge case. */
+    _mm_storeu_si128( (__m128i*) val, sum);
+    int res = val[0] + val[1] + val[2] + val[3];
+    for( int i = n/4*4; i < n; i += 1 )
+        res += a[i];
+
+    return res;
+
 }
 
 void benchmark( int n, int *a, int (*computeSum)(int,int*), char *name )
@@ -61,9 +103,9 @@ void benchmark( int n, int *a, int (*computeSum)(int,int*), char *name )
     unsigned long long cycles = RDTSC();
     sum += computeSum( n, a );
     cycles = RDTSC()-cycles;
-    
+
     double microseconds = cycles/CLOCK_RATE_GHZ*1e6;
-    
+
     /* report */
     printf( "%20s: ", name );
     if( sum == 2*sum_naive(n,a) ) printf( "%.2f microseconds\n", microseconds );
@@ -73,12 +115,12 @@ void benchmark( int n, int *a, int (*computeSum)(int,int*), char *name )
 int main( int argc, char **argv )
 {
     const int n = 7777; /* small enough to fit in cache */
-    
+
     /* init the array */
     srand48( time( NULL ) );
     int a[n] __attribute__ ((aligned (16))); /* align the array in memory by 16 bytes */
     for( int i = 0; i < n; i++ ) a[i] = lrand48( );
-    
+
     /* benchmark series of codes */
     benchmark( n, a, sum_naive, "naive" );
     benchmark( n, a, sum_unrolled, "unrolled" );

@@ -29,6 +29,7 @@ main:
 	movq	$0, 72(%rsp)
 	movq	$0, 80(%rsp)
 	movq	$0, 88(%rsp)
+    # First part of loop.
 	movupd	64(%rsp), %xmm3
 	movupd	80(%rsp), %xmm2
 	movupd	(%rsp), %xmm4
@@ -38,7 +39,7 @@ main:
 	mulpd	%xmm4, %xmm5
 	addpd	%xmm3, %xmm5
 	xorpd	%xmm6, %xmm6
-	unpcklpd	%xmm6, %xmm6
+    unpcklpd	%xmm6, %xmm6
 	movapd	%xmm6, %xmm3
 	mulpd	%xmm6, %xmm4
 	addpd	%xmm2, %xmm4
@@ -49,6 +50,7 @@ main:
 	unpcklpd	%xmm6, %xmm6
 	mulpd	%xmm6, %xmm2
 	addpd	%xmm4, %xmm2
+    # Loop end.
 	movupd	%xmm3, 64(%rsp)
 	movupd	%xmm2, 80(%rsp)
 	movsd	80(%rsp), %xmm5
