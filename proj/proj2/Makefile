@@ -43,3 +43,14 @@ runbighadoop:
 	hadoop jar sw.jar SmallWorld ~cs61c/proj2data/cit-HepPh.sequ output-out 10000
 
 .PHONY: clean all
+
+# LOCAL MODIFICATIONS FOR RUNNING FROM MY REPO BELOW:
+# run with make local
+# Extra JARs to have on the classpath when compiling.
+CLASSLOC = ./support/hadoop-core.jar:./support/commons-cli.jar
+# javac command to use
+JAVACLOC = javac -g -deprecation -cp $(CLASSLOC)
+
+local: classes $(SOURCES)
+	$(JAVACLOC) -d classes $(SOURCES)
+	$(JAR) cf $(TARGET) -C classes .
