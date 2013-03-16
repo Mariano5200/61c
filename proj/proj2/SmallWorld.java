@@ -6,7 +6,7 @@
  * Partner 1 Login: mx
  *
  * Partner 2 Name: David Lau
- * Partner 2 Login: XX
+ * Partner 2 Login: hv
  *
  * REMINDERS:
  *
@@ -231,7 +231,7 @@ public class SmallWorld {
             FileOutputFormat.setOutputPath(job, new Path("bfs-"+ (i+1) +"-out"));
 
             job.waitForCompletion(true);
-            i++; //FIXME
+            i++;
         }
 
         // Mapreduce config for histogram computation
