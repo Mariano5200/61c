@@ -8,10 +8,10 @@
  * Partner 2 Name: David Lau
  * Partner 2 Login: -hv
  *
- * REMINDERS:
+ * REMINDERS: 
  *
  * 1) YOU MUST COMPLETE THIS PROJECT WITH A PARTNER.
- *
+ * 
  * 2) DO NOT SHARE CODE WITH ANYONE EXCEPT YOUR PARTNER.
  * EVEN FOR DEBUGGING. THIS MEANS YOU.
  *
@@ -91,9 +91,9 @@ public class SmallWorld {
         return new LongWritable(input.get());
     }
 
-    /* The first mapper. Part of the graph loading process, currently just an
+    /* The first mapper. Part of the graph loading process, currently just an 
      * identity function. Modify as you wish. */
-    public static class LoaderMap extends Mapper<LongWritable, LongWritable,
+    public static class LoaderMap extends Mapper<LongWritable, LongWritable, 
         LongWritable, LongWritable> {
 
         @Override
@@ -101,22 +101,21 @@ public class SmallWorld {
                 throws IOException, InterruptedException {
 
             context.write(key, value); //write source to destination
-            context.write(value, new LongWritable(Long.MIN_VALUE));
-                //write destination to null
+            context.write(value, new LongWritable(Long.MIN_VALUE)); //write destination to null
         }
     }
 
     /* The first reducer. This is also currently an identity function (although it
      * does break the input Iterable back into individual values). Modify it
      * as you wish. In this reducer, you'll also find an example of loading
-     * and using the denom field.
+     * and using the denom field.  
      */
-    public static class LoaderReduce extends Reducer<LongWritable, LongWritable,
+    public static class LoaderReduce extends Reducer<LongWritable, LongWritable, 
         LongWritable, Node> {
 
         public long denom;
 
-        public void reduce(LongWritable key, Iterable<LongWritable> values,
+        public void reduce(LongWritable key, Iterable<LongWritable> values, 
             Context context) throws IOException, InterruptedException {
             denom = Long.parseLong(context.getConfiguration().get("denom"));
             Node node = new Node();
@@ -124,13 +123,13 @@ public class SmallWorld {
             for (LongWritable value: values) { //for every child of the node
                 if (value.get() != Long.MIN_VALUE) { //if that child isn't null
                     node.children.put(new LongWritable(value.get()), new LongWritable(0)); //put that child into the node's children
+                } else {
                 }
             }
 
             Random dice = new Random();
             if (dice.nextInt((int) denom) == 0) {
-                node.shortest.put(key, new LongWritable(0));
-                //Start a zero-length path at this node
+                node.shortest.put(key, new LongWritable(0)); //Start a zero-length path at this node
             }
             context.write(key, node);
         }
@@ -144,7 +143,7 @@ public class SmallWorld {
 
         @Override
         public void map(LongWritable key, Node value, Context context)
-            throws IOException, InterruptedException {
+                throws IOException, InterruptedException {
 
             iter = Integer.parseInt(context.getConfiguration().get("iter"));
             context.write(key, value);
@@ -156,7 +155,7 @@ public class SmallWorld {
             for (Writable index : nodeCopy.shortest.keySet()) {
                 index = (LongWritable) index;
                 if (((LongWritable) nodeCopy.shortest.get(index)).get() == iter) {
-                    for (Writable child : nodeCopy.children.keySet()) {
+                    for (Writable child: nodeCopy.children.keySet()) {
                         child = (LongWritable) child;
                         context.write(new LongWritable(((LongWritable) child).get()), nodeCopy);
                     }
@@ -171,7 +170,7 @@ public class SmallWorld {
         public long denom;
         public int iter;
 
-        public void reduce(LongWritable key, Iterable<Node> values,
+        public void reduce(LongWritable key, Iterable<Node> values, 
             Context context) throws IOException, InterruptedException {
             Node output = new Node();
             output.isSelf = new LongWritable(1);
@@ -185,7 +184,7 @@ public class SmallWorld {
                         output.children.put(tempKey, copyWritable(node.children).get(tempKey));
                     }
                 } else { //otherwise, someone is sending in at least one path
-                    for (Writable index : node.shortest.keySet()) {                                 //for every start node that's gotten here
+                    for (Writable index : node.shortest.keySet()) { //for every start node that's gotten here
                         shortPath = ((LongWritable) node.shortest.get((LongWritable) index)).get(); //get the the path
                         if (shortPath == iter) { //and if it's fresh
                             if (!(output.shortest.containsKey((LongWritable) index) && ((LongWritable) output.shortest.get(index)).get() < shortPath)) { //and if it's not (in the output with a shorter, pre-exiting value)
@@ -211,10 +210,10 @@ public class SmallWorld {
         }
     }
 
-    public static class HistogramReduce extends Reducer<LongWritable, LongWritable,
+    public static class HistogramReduce extends Reducer<LongWritable, LongWritable, 
         LongWritable, LongWritable> {
 
-        public void reduce(LongWritable key, Iterable<LongWritable> values,
+        public void reduce(LongWritable key, Iterable<LongWritable> values, 
             Context context) throws IOException, InterruptedException {
             int total = 0;
             Iterator<LongWritable> iterator = values.iterator();
