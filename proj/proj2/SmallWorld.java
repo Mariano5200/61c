@@ -49,7 +49,8 @@ public class SmallWorld {
     public static class Node implements Writable {
         public MapWritable children = new MapWritable();
         public MapWritable shortest = new MapWritable();
-        public LongWritable isSelf = new LongWritable(1); //1 if self, 0 otherwise
+        public LongWritable isSelf = new LongWritable(1); 
+            //1 if self, 0 otherwise
 
         public void write(DataOutput out) throws IOException {
             children.write(out);
@@ -118,10 +119,11 @@ public class SmallWorld {
 
         public void reduce(LongWritable key, Iterable<LongWritable> values,
             Context context) throws IOException, InterruptedException {
+
             denom = Long.parseLong(context.getConfiguration().get("denom"));
             Node node = new Node();
             node.isSelf = new LongWritable(1);
-            for (LongWritable value: values) { //for every child of the node
+            for (LongWritable value : values) { //for every child of the node
                 if (value.get() != Long.MIN_VALUE) { //if that child isn't null
                     node.children.put(new LongWritable(value.get()), new LongWritable(0)); //put that child into the node's children
                 }
@@ -188,7 +190,8 @@ public class SmallWorld {
                     for (Writable index : node.shortest.keySet()) {                                 //for every start node that's gotten here
                         shortPath = ((LongWritable) node.shortest.get((LongWritable) index)).get(); //get the the path
                         if (shortPath == iter) { //and if it's fresh
-                            if (!(output.shortest.containsKey((LongWritable) index) && ((LongWritable) output.shortest.get(index)).get() < shortPath)) { //and if it's not (in the output with a shorter, pre-exiting value)
+                            if (!(output.shortest.containsKey((LongWritable) index)
+                                && ((LongWritable)  output.shortest.get(index)).get() < shortPath)) { //and if it's not (in the output with a shorter, pre-exiting value)
                                 output.shortest.put(new LongWritable(((LongWritable) index).get()), new LongWritable(shortPath + 1)); //add it and increment the fresh count by 1
                             }
                         }
@@ -211,8 +214,8 @@ public class SmallWorld {
         }
     }
 
-    public static class HistogramReduce extends Reducer<LongWritable, LongWritable,
-        LongWritable, LongWritable> {
+    public static class HistogramReduce extends Reducer<LongWritable,
+        LongWritable, LongWritable, LongWritable> {
 
         public void reduce(LongWritable key, Iterable<LongWritable> values,
             Context context) throws IOException, InterruptedException {

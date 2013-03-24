@@ -54,3 +54,9 @@ JAVACLOC = javac -g -deprecation -cp $(CLASSLOC)
 local: classes $(SOURCES)
 	$(JAVACLOC) -d classes $(SOURCES)
 	$(JAR) cf $(TARGET) -C classes .
+
+runlocal:
+	./hadoop jar sw.jar SmallWorld data/ring4.seq output-out 1
+
+runbiglocal:
+	./hadoop jar sw.jar SmallWorld data/cit-HepPh.sequ output-out 10000
