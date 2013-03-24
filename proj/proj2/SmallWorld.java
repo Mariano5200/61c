@@ -8,10 +8,10 @@
  * Partner 2 Name: David Lau
  * Partner 2 Login: -hv
  *
- * REMINDERS:
+ * REMINDERS: 
  *
  * 1) YOU MUST COMPLETE THIS PROJECT WITH A PARTNER.
- *
+ * 
  * 2) DO NOT SHARE CODE WITH ANYONE EXCEPT YOUR PARTNER.
  * EVEN FOR DEBUGGING. THIS MEANS YOU.
  *
@@ -39,7 +39,7 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 import org.apache.hadoop.mapreduce.lib.output.SequenceFileOutputFormat;
 import org.apache.hadoop.util.GenericOptionsParser;
-
+import org.apache.hadoop.util.ReflectionUtils;
 
 public class SmallWorld {
     // Maximum depth for any breadth-first search
@@ -48,20 +48,59 @@ public class SmallWorld {
     /** Writeable node class */
     public static class Node implements Writable {
         public MapWritable children = new MapWritable();
-        public MapWritable shortest = new MapWritable();
+        public MapWritable hotPaths = new MapWritable();
+        public MapWritable coldPaths = new MapWritable();
+        public static LongWritable trueWritable = new LongWritable(1);
+        public static LongWritable nullWritable = new LongWritable(-1);
         public LongWritable isSelf = new LongWritable(1); //1 if self, 0 otherwise
 
+        public void cool() {
+//            for (Writable hot : hotPaths.keySet()) {
+//                coldPaths.put(hot, nullWritable);
+//                hotPaths.remove(hot);
+//            }
+            Iterator<Writable> iterator = hotPaths.keySet().iterator();
+            LongWritable key;
+            LongWritable value;
+            while (iterator.hasNext()) {
+                key = (LongWritable) iterator.next();
+                value = (LongWritable) hotPaths.get(key);
+                value = new LongWritable(((LongWritable) value).get() + 1);
+                if (!(coldPaths.keySet().contains(key))) {
+                    coldPaths.put(key, value);
+                }
+            }
+            hotPaths.clear();
+        }
         public void write(DataOutput out) throws IOException {
             children.write(out);
-            shortest.write(out);
+            hotPaths.write(out);
+            coldPaths.write(out);
             isSelf.write(out);
         }
 
         // Deserializes object - needed for Writable
         public void readFields(DataInput in) throws IOException {
             children.readFields(in);
-            shortest.readFields(in);
+            hotPaths.readFields(in);
+            coldPaths.readFields(in);
             isSelf.readFields(in);
+        }
+        public String coldPaths() {
+            String result = new String();
+            result += "Cold Paths: ";
+            for (Writable cold : coldPaths.keySet()) {
+                result += cold + ":" + coldPaths.get(cold) + " ";
+            }
+            return result;
+        }
+        public String hotPaths() {
+            String result = new String();
+            result += "Hot Paths: ";
+            for (Writable hot : hotPaths.keySet()) {
+                result += hot + ":" + hotPaths.get(hot) + " ";
+            }
+            return result;
         }
         public String toString() {
             // We highly recommend implementing this for easy testing and
@@ -91,9 +130,9 @@ public class SmallWorld {
         return new LongWritable(input.get());
     }
 
-    /* The first mapper. Part of the graph loading process, currently just an
+    /* The first mapper. Part of the graph loading process, currently just an 
      * identity function. Modify as you wish. */
-    public static class LoaderMap extends Mapper<LongWritable, LongWritable,
+    public static class LoaderMap extends Mapper<LongWritable, LongWritable, 
         LongWritable, LongWritable> {
 
         @Override
@@ -101,36 +140,35 @@ public class SmallWorld {
                 throws IOException, InterruptedException {
 
             context.write(key, value); //write source to destination
-            context.write(value, new LongWritable(Long.MIN_VALUE));
-                //write destination to null
+            context.write(value, new LongWritable(Long.MIN_VALUE)); //write destination to null
         }
     }
 
     /* The first reducer. This is also currently an identity function (although it
      * does break the input Iterable back into individual values). Modify it
      * as you wish. In this reducer, you'll also find an example of loading
-     * and using the denom field.
+     * and using the denom field.  
      */
-    public static class LoaderReduce extends Reducer<LongWritable, LongWritable,
+    public static class LoaderReduce extends Reducer<LongWritable, LongWritable, 
         LongWritable, Node> {
 
         public long denom;
 
-        public void reduce(LongWritable key, Iterable<LongWritable> values,
+        public void reduce(LongWritable key, Iterable<LongWritable> values, 
             Context context) throws IOException, InterruptedException {
+            // We can grab the denom field from context: 
             denom = Long.parseLong(context.getConfiguration().get("denom"));
             Node node = new Node();
-            node.isSelf = new LongWritable(1);
+            node.isSelf = Node.trueWritable;
             for (LongWritable value: values) { //for every child of the node
                 if (value.get() != Long.MIN_VALUE) { //if that child isn't null
-                    node.children.put(new LongWritable(value.get()), new LongWritable(0)); //put that child into the node's children
+                    node.children.put(new LongWritable(value.get()), Node.nullWritable); //put that child into the node's children
                 }
             }
 
             Random dice = new Random();
             if (dice.nextInt((int) denom) == 0) {
-                node.shortest.put(key, new LongWritable(0));
-                //Start a zero-length path at this node
+                node.hotPaths.put(key, new LongWritable(0)); //Start a zero-length path at this node
             }
             context.write(key, node);
         }
@@ -140,28 +178,33 @@ public class SmallWorld {
 
     /** @author Lau */
     public static class SearchMap extends Mapper<LongWritable, Node, LongWritable, Node> {
-        public int iter;
+        public LongWritable child;
 
         @Override
         public void map(LongWritable key, Node value, Context context)
-            throws IOException, InterruptedException {
+                throws IOException, InterruptedException {
 
-            iter = Integer.parseInt(context.getConfiguration().get("iter"));
-            context.write(key, value);
             Node nodeCopy = new Node();
-            nodeCopy.shortest = copyWritable(value.shortest);
-            nodeCopy.isSelf = new LongWritable(0);
+            nodeCopy.hotPaths = copyWritable(value.hotPaths);
             nodeCopy.children = copyWritable(value.children);
-
-            for (Writable index : nodeCopy.shortest.keySet()) {
-                index = (LongWritable) index;
-                if (((LongWritable) nodeCopy.shortest.get(index)).get() == iter) {
-                    for (Writable child : nodeCopy.children.keySet()) {
-                        child = (LongWritable) child;
-                        context.write(new LongWritable(((LongWritable) child).get()), nodeCopy);
-                    }
-                }
+            nodeCopy.isSelf = Node.nullWritable;
+            
+            for (Writable child: nodeCopy.children.keySet()) { //for every child
+                child = new LongWritable(((LongWritable) child).get());
+                //System.out.println(key + " sending hot to " + ((LongWritable) child).get());
+                context.write((LongWritable) child, nodeCopy); //Send a copy of each hot path to each child
             }
+//            System.out.println("Key: " + key);
+//            System.out.println(value.hotPaths());
+//            System.out.println(value.coldPaths());
+            value.cool();
+            //System.out.println("Hot paths: " + value.hotPaths.keySet().size());
+//            System.out.println(value.hotPaths());
+//            System.out.println(value.coldPaths());
+            //System.out.println("Key: " + key);
+            //System.out.println(value.coldPaths());
+            //System.out.println(value.hotPaths());
+            context.write(key, value);
         }
     }
 
@@ -171,30 +214,35 @@ public class SmallWorld {
         public long denom;
         public int iter;
 
-        public void reduce(LongWritable key, Iterable<Node> values,
+        public void reduce(LongWritable key, Iterable<Node> values, 
             Context context) throws IOException, InterruptedException {
             Node output = new Node();
-            output.isSelf = new LongWritable(1);
+            output.isSelf = Node.trueWritable;
+            output.coldPaths = new MapWritable();
             Long shortPath;
             iter = Integer.parseInt(context.getConfiguration().get("iter"));
             Iterator<Writable> iterator;
             for (Node node : values) { //for every node passed in
                 if (node.isSelf.get() == 1) { //if it receives data from itself
-                    for (Writable tempKey : copyWritable(node.children).keySet()) {
-                        tempKey = (LongWritable) tempKey;
-                        output.children.put(tempKey, copyWritable(node.children).get(tempKey));
+                    //output.children = copyWritable(node.children); //copy all children
+                    output.children = copyWritable(node.children); //copy all children
+                    for (Writable cold : node.coldPaths.keySet()) {
+                        output.coldPaths.put((LongWritable) cold, node.coldPaths.get(cold));
                     }
                 } else { //otherwise, someone is sending in at least one path
-                    for (Writable index : node.shortest.keySet()) {                                 //for every start node that's gotten here
-                        shortPath = ((LongWritable) node.shortest.get((LongWritable) index)).get(); //get the the path
-                        if (shortPath == iter) { //and if it's fresh
-                            if (!(output.shortest.containsKey((LongWritable) index) && ((LongWritable) output.shortest.get(index)).get() < shortPath)) { //and if it's not (in the output with a shorter, pre-exiting value)
-                                output.shortest.put(new LongWritable(((LongWritable) index).get()), new LongWritable(shortPath + 1)); //add it and increment the fresh count by 1
-                            }
-                        }
+                for (Writable index : node.hotPaths.keySet()) { //for every start node that's just gotten here
+                    //shortPath = ((LongWritable) node.hotPaths.get((LongWritable) index)).get(); //get the the path length
+//                        if (!(output.coldPaths.keySet().contains((LongWritable) index))) { //and if it's not (in the output with a shorter, pre-exiting value)
+//                            System.out.println("Golden saints; key: " + key + " iter: " + iter + " index: " + index);
+//                            System.out.println(output.coldPaths());
+                    output.hotPaths.put(new LongWritable(((LongWritable) index).get()), new LongWritable(iter + 1)); //add it and increment the fresh count by 1
+//                        } else {
+//                            System.out.println("bloody murder; key: " + key + " iter: " + iter + " index: " + index);
+//                        }
                     }
                 }
             }
+            //System.out.println("Key " + key + ": " + output.hotPaths());
             context.write(key, output);
         }
     }
@@ -205,16 +253,20 @@ public class SmallWorld {
         public void map(LongWritable key, Node value, Context context)
                 throws IOException, InterruptedException {
 
-            for (Writable dist : value.shortest.values()) { //for every distance traveled
-                context.write((LongWritable) dist, new LongWritable(1)); //write in that distance once
+            LongWritable distance;
+            //System.out.println(value.coldPaths());
+            value.cool();
+            for (Writable start : value.coldPaths.keySet()) { //for every start
+                distance = (LongWritable) value.coldPaths.get(start);
+                context.write(copyLong((LongWritable) distance), new LongWritable(1)); //write in that distance once
             }
         }
     }
 
-    public static class HistogramReduce extends Reducer<LongWritable, LongWritable,
+    public static class HistogramReduce extends Reducer<LongWritable, LongWritable, 
         LongWritable, LongWritable> {
 
-        public void reduce(LongWritable key, Iterable<LongWritable> values,
+        public void reduce(LongWritable key, Iterable<LongWritable> values, 
             Context context) throws IOException, InterruptedException {
             int total = 0;
             Iterator<LongWritable> iterator = values.iterator();
@@ -222,7 +274,7 @@ public class SmallWorld {
                 total += 1;
                 iterator.next();
             }
-            context.write(key, new LongWritable(total));
+            context.write(new LongWritable(key.get() - 1), new LongWritable(total));
         }
     }
 
@@ -230,6 +282,7 @@ public class SmallWorld {
         GenericOptionsParser parser = new GenericOptionsParser(rawArgs);
         Configuration conf = parser.getConfiguration();
         String[] args = parser.getRemainingArgs();
+        int reducerCount = 24;
 
         // Pass in denom command line arg:
         conf.set("denom", args[2]);
@@ -241,6 +294,10 @@ public class SmallWorld {
 
         // Setting up mapreduce job to load in graph
         Job job = new Job(conf, "load graph");
+
+        //Lau code starts here
+        job.setNumReduceTasks(reducerCount);
+        //Lau code ends here
 
         job.setJarByClass(SmallWorld.class);
 
@@ -267,6 +324,7 @@ public class SmallWorld {
         while (i < MAX_ITERATIONS) {
         conf.set("iter", (new Integer(i)).toString());
             job = new Job(conf, "bfs" + i);
+            job.setNumReduceTasks(reducerCount);
             job.setJarByClass(SmallWorld.class);
 
             // Feel free to modify these four lines as necessary:
@@ -293,6 +351,7 @@ public class SmallWorld {
 
         // Mapreduce config for histogram computation
         job = new Job(conf, "hist");
+        job.setNumReduceTasks(1);
         job.setJarByClass(SmallWorld.class);
 
         // Feel free to modify these two lines as necessary:
