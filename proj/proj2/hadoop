@@ -1,0 +1,2 @@
+#!/bin/sh
+exec ../../../hadoop-0.20.2+737/bin/hadoop $*

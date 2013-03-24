@@ -1,0 +1,39 @@
+Proj2-2 EC2 QA
+
+Michael Ball, -mx
+David Lau,    -hv
+
+Spec Questions:
+1. Run your code on hollywood.sequ with denom=100000 on clusters of size 6, 9, and 12. Be sure to set the appropriate number of reducers for each cluster size as indicated above. How long does each take? How many searches did each perform? How many reducers did you use for each? (Read the rest of the questions to see what other data you will need.) Also, be sure to properly scale the number of reducers as indicated in the setup section.
+6:
+Length:
+Searches:
+
+9:
+Length:
+Searches:
+
+12:
+Length:
+Searches:
+
+2. For the Hollywood dataset, at what distance are the 50th, 90th, and 95th percentiles? (Choose the output of any one of your three runs to use as source data.)
+Source: 9 clusters.
+50th
+90th
+95th
+
+3. What was the mean processing rate (MB/s) for 6, 9, and 12 instances? You can approximate the data size to be (input size) * (# of searches). Input Size is equal to the value given for S3N_BYTES_READ on the job page for your first Mapper.
+6:
+9:
+12:
+
+4. What was the speedup for 9 and 12 instances relative to 6 instances? What do you conclude about how well Hadoop parallelizes your work? Is this a case of strong scaling or weak scaling? Why or why not?
+
+5. Do some research about the combiner in Hadoop. Can you add a combiner to any of your MapReduces? ("MapReduces" being Loader, BFS, and Histogram.) If so, for each MapReduce phase that you indicated "yes" for, briefly discuss how you could add a combiner and what impact it would have on processing speed, if any. (NOTE: You DO NOT have to actually code anything here. Simply discuss/explain.)
+
+6. What was the price per GB processed for each cluster size? (Recall that an extra-large instance costs $0.68 per hour, rounded up to the nearest hour.)
+
+7. How many dollars in EC2 credits did you use to complete this project? If ec2-usage returns bogus values, please try to approximate (and indicate this).
+Run 1: 2 hrs on 6 nodes. Ring4 and HW test before giving up...
+0.68*6*2 = $8.16
