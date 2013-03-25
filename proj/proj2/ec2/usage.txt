@@ -1,0 +1,11 @@
+~/61c/proj/proj2/ec2 $ ec2-usage
+Usage report for cs61c-mx:
+Running instances:
+104708 hours of  c1.xlarge (demand) @ -bash.680 = 1201.440
+Total cost 1201.440
+Finished instances:
+   24 hours of  c1.xlarge (demand) @ -bash.680 = 6.320
+Total cost 6.320
+
+estimated total spending = 1217.760
+
