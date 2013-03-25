@@ -3,37 +3,163 @@ Proj2-2 EC2 QA
 Michael Ball, -mx
 David Lau,    -hv
 
+All data is contained in output files, and terminal data.txt
+Note that we used the reference solution.
+
 Spec Questions:
-1. Run your code on hollywood.sequ with denom=100000 on clusters of size 6, 9, and 12. Be sure to set the appropriate number of reducers for each cluster size as indicated above. How long does each take? How many searches did each perform? How many reducers did you use for each? (Read the rest of the questions to see what other data you will need.) Also, be sure to properly scale the number of reducers as indicated in the setup section.
-6:
-Length:
-Searches:
+1. Run your code on hollywood.sequ with denom=100000 on clusters of size 6, 9,
+ and 12. Be sure to set the appropriate number of reducers for each cluster
+ size as indicated above. How long does each take? How many searches did each
+ perform? How many reducers did you use for each? (Read the rest of the
+ questions to see what other data you will need.) Also, be sure to properly
+ scale the number of reducers as indicated in the setup section.
 
-9:
-Length:
-Searches:
+ Note: Time listed here is actual processing time, not counting firing-up,
+ grabbing data, etc.
 
-12:
-Length:
-Searches:
+     6 nodes:
+        Length: 58 mins
+        Searches: 12
+        Reducers: 24
 
-2. For the Hollywood dataset, at what distance are the 50th, 90th, and 95th percentiles? (Choose the output of any one of your three runs to use as source data.)
-Source: 9 clusters.
-50th
-90th
-95th
+     9 nodes:
+        Length: 47 mins
+        Searches: 9
+        Reducers: 36
 
-3. What was the mean processing rate (MB/s) for 6, 9, and 12 instances? You can approximate the data size to be (input size) * (# of searches). Input Size is equal to the value given for S3N_BYTES_READ on the job page for your first Mapper.
-6:
-9:
-12:
+    12 nodes:
+        Length: 42 mins
+        Searches: 10
+        Reducers: 48
 
-4. What was the speedup for 9 and 12 instances relative to 6 instances? What do you conclude about how well Hadoop parallelizes your work? Is this a case of strong scaling or weak scaling? Why or why not?
+================================================================================
+2. For the Hollywood dataset, at what distance are the 50th, 90th, and 95th
+ percentiles? (Choose the output of any one of your three runs to use as source
+ data.)
+    Source: 9 clusters.
+        50th: 4
+        90th: 5
+        95th: 5
+    See the output file for cluster 9 for the work.
 
-5. Do some research about the combiner in Hadoop. Can you add a combiner to any of your MapReduces? ("MapReduces" being Loader, BFS, and Histogram.) If so, for each MapReduce phase that you indicated "yes" for, briefly discuss how you could add a combiner and what impact it would have on processing speed, if any. (NOTE: You DO NOT have to actually code anything here. Simply discuss/explain.)
+================================================================================
+3. What was the mean processing rate (MB/s) for 6, 9, and 12 instances? You can
+ approximate the data size to be (input size) * (# of searches). Input Size is
+ equal to the value given for S3N_BYTES_READ on the job page for your first
+ Mapper.
 
-6. What was the price per GB processed for each cluster size? (Recall that an extra-large instance costs $0.68 per hour, rounded up to the nearest hour.)
+     NOTE: Per class convention 1 MB is 10**6 not 2**20.
+     (A second is still a second and there are 60 of them in one minute.)
 
-7. How many dollars in EC2 credits did you use to complete this project? If ec2-usage returns bogus values, please try to approximate (and indicate this).
-Run 1: 2 hrs on 6 nodes. Ring4 and HW test before giving up...
-0.68*6*2 = $8.16
+     6 nodes:
+         Data Size  := 2788391790 B * 12 = 33460701480 B
+         Data Size   = 33460.70148 MB
+         Time: 58*60 = 3480 s
+         Rate: 9.615 MB/s
+     9 nodes:
+         Data Size := 2788396030 B *  9 = 25095564270 B
+         Data Size   = 25095.56427 MB
+         Time: 47*60 = 2820 s
+         Rate: 8.899 MB/s
+
+    12 nodes:
+         Data Size := 2788396837 B * 10 = 27883968370 B
+         Data Size   = 27883.96837 MB
+         Time: 42*60 = 2520 s
+         Rate: 11.065 MB/s
+
+
+================================================================================
+4. What was the speedup for 9 and 12 instances relative to 6 instances? What do
+ you conclude about how well Hadoop parallelizes your work? Is this a case of
+ strong scaling or weak scaling? Why or why not?
+     6 nodes:
+         Rate: 9.615 MB/s
+     9 nodes:
+         Rate:      8.899 MB/s
+         Speedup := 8.899/9.615 = 0.9255330213208527
+         Speedup: 7.5% loss in speed
+    12 nodes:
+         Rate: 11.065 MB/s
+         Speedup := 11.065/9.615 = 1.1508060322412896
+         Speedup: 15.1% increase in speed
+    Conclusion:
+        Hadoop does an OK job of parallelizing the work overall, but a lot is
+        dependent on the data size for efficient results. This seems to be more
+        of a case of strong scaling. For each of our runs, our data size wasn't
+        too far off. From 6 -> 12 nodes our speedup was good and we actually
+        processed less data overall. From 6 -> 9 nodes, we didn't have as high
+        a mean processing rate, however our data size actually shrunk a fair
+        bit, 25%, which isn't really covered by a case of strong and weak
+        scaling since we didn't scale things proportionally. However, it does
+        still suggest that for Hadoop (EC2, even?) you really do need a large
+        data set to take advantage of many processors.
+
+
+================================================================================
+5. Do some research about the combiner in Hadoop. Can you add a combiner to any
+ of your MapReduces? ("MapReduces" being Loader, BFS, and Histogram.) If so,
+ for each MapReduce phase that you indicated "yes" for, briefly discuss how
+ you could add a combiner and what impact it would have on processing speed,
+ if any. (NOTE: You DO NOT have to actually code anything here. Simply
+ discuss/explain.)
+
+    NOTE: This is based more on our (not-efficient-enough) solution, rather
+         than the the staff reference which we used to do the EC2 work.
+    In essence, a combiner is very similar to a reduce operation, somewhat like
+    a reduce pre-processor. It's main function should be to collect data
+    together to speed of time moving data around helping minimize I/O ops
+    between mappers and reducers.
+    Loader:
+        Yes, we could start combining vertices and their mappings before we
+        get to the reduce. We could easily combine mappings like <1,2> and
+        <1,3> into <1,{2,3}> and we could also end up filtering out null values
+        from the loader map once we have another known mapping for that vertex.
+        However, the might not work with a LoaderMap if it doesn't output a KVP
+        with a list value. Instead, we could modify map so that KVPs are
+        <Vertex, {1-item-lists}> so the operation would work more smoothly.
+    Search:
+        No, there isn't an easy way to add a combiner in our algorithm.
+    Histogram:
+        Yes, this is a very simple combiner. All we need to do it keep
+        combining some distances and the number of nodes together, very similar
+        to how the reduce operation works for the histogram.
+
+
+================================================================================
+6. What was the price per GB processed for each cluster size? (Recall that an
+extra-large instance costs $0.68 per hour, rounded up to the nearest hour.)
+
+    All 3 clusters round up to 1 hr of processing time.
+    Here, I'm using data size including the number of searches.
+    NOTE: 1 GB = 10**9.
+     6 nodes:
+         Data Size := 33460.70148 MB   = 33.46070148 GB
+         Cost      := 6 * $0.68        = $4.08
+         Cost/GB   := 4.08/33.46070148 = $0.12/GB
+     9 nodes:
+         Data Size := 25095.56427 MB   = 25.09556427 GB
+         Cost      := 9 * $0.68        = $6.12
+         Cost/GB   := 6.12/25.09556427 = $0.24/GB
+    12 nodes:
+        Data Size := 27883.96837 MB   = 27.88396837 GB
+        Cost      := 12 * $0.68        = $8.16
+        Cost/GB   := 8.16/27.88396837 = $0.29/GB
+
+================================================================================
+7. How many dollars in EC2 credits did you use to complete this project? If
+ec2-usage returns bogus values, please try to approximate (and indicate this).
+
+    EC2-Usage does return bad values, see usage.txt for our output.
+    Sunday we did 3 easy runs using the reference solution:
+    6  cluster: 1.5 hrs run. => 2 hrs *  6 nodes * $.68 = $ 8.16
+    9  cluster: 1.1 hrs run. => 2 hrs *  9 nodes * $.68 = $12.24 (still 2 hrs?)
+    12 cluster: 1.0 hrs run. => 1 hr  * 12 nodes * $.68 = $ 8.16
+    ------------------------------------------------------------
+                Totals:                 42 nodes * $.68 = $28.56
+
+    However, before giving into the reference solution:
+    Run 1: 2 hrs * 6 nodes. Ring4 & HW test before giving up...$.68*6*2 = $8.16
+    Run 2: 4 hrs * 6 nodes. Hollywood test before auto-terminate
+        $.68*4*6 = $16.32
+    Therefore: Total cost per project: $44.88
