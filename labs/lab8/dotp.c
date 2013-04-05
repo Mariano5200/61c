@@ -12,27 +12,41 @@ double* gen_array(int n) {
 	return array;
 }
 
+double dotpFAST(double* x, double* y) {
+	double global_sum = 0.0;
+	#pragma omp parallel
+	{
+        #pragma omp for reduction(+: global_sum)
+        for(int i=0; i<ARRAY_SIZE; i++)
+            global_sum += x[i] * y[i];
+    }
+	return global_sum;
+}
+
+
 double dotp(double* x, double* y) {
 	double global_sum = 0.0;
 	#pragma omp parallel
 	{
-		#pragma omp for
-		for(int i=0; i<ARRAY_SIZE; i++)
-			#pragma omp critical
-				global_sum += x[i] * y[i];
-	}
+       double temp = 0.0;
+       #pragma omp for
+       for(int i=0; i<ARRAY_SIZE; i++)
+            temp += x[i] * y[i];
+        #pragma omp critical
+        global_sum += temp;
+    }
 	return global_sum;
 }
 
 double oracle(double* x, double* y) {
   double sum = 0.0;
-  for (int i = 0; i < ARRAY_SIZE; i++) 
+  for (int i = 0; i < ARRAY_SIZE; i++)
     sum += x[i] * y[i];
   return sum;
 }
 
 int main() {
-	// Generate input vectors
+  // Generate input vectors
   double *x = gen_array(ARRAY_SIZE);
   double *y = gen_array(ARRAY_SIZE);
   double result, answer;
