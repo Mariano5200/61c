@@ -10,10 +10,17 @@
 void v_add(double* x, double* y, double* z) {
 	#pragma omp parallel
 	{
-		for(int i=0; i<ARRAY_SIZE; i++)
+        int threads = omp_get_num_threads();
+        int thID = omp_get_thread_num();
+        int size = ARRAY_SIZE / threads;
+        for(int i = thID * size; i < size + thID * size && i < ARRAY_SIZE; i += 1)
+		//  for(int i = thID i<ARRAY_SIZE; i += threads)
+        // #pragma omp for
+        // for(int i=0; i<ARRAY_SIZE; i++)
 			z[i] = x[i] + y[i];
 	}
 }
+
 
 
 double* gen_array(int n) {
@@ -32,7 +39,7 @@ int verify(double* x, double* y) {
 		z_oracle[i] = x[i] + y[i];
 	for(int i=0; i<ARRAY_SIZE; i++)
 		if(z_oracle[i] != z_v_add[i])
-			return 0;	
+			return 0;
 	return 1;
 }
 
@@ -48,12 +55,12 @@ int main() {
 		printf("v_add does not match oracle\n");
 		return 0;
 	}
-		
+
 	// Test framework that sweeps the number of threads and times each ru
 	double start_time, run_time;
-	int num_threads = omp_get_max_threads();	
+	int num_threads = omp_get_max_threads();
 	for(int i=1; i<=num_threads; i++) {
-		omp_set_num_threads(i);		
+		omp_set_num_threads(i);
 		start_time = omp_get_wtime();
 		for(int j=0; j<REPEAT; j++)
 			v_add(x,y,z);
