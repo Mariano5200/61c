@@ -1,53 +1,96 @@
+Michael Ball
+CS61C-MX
+HW4 Text Answers
+Spring 2013
+Dan Garcia
+
 Q1
-a) 
-b) 
-c) 
-d)
-
-
+a) Twice
+b) Once
+c) 10ns, 130ns, 250ns; 1st, 3rd, 5th rising edges + 10ns
+d) 130ns, 250ns; 3rd, 5th rising edges + 10ns
 
 Q2
-a)
-b)
+a) Clock cycle: 20ns = 1e9/50e6 (ns/50Mhz)
+    4 + 4 + 2 + 1 (Clk-to-q)  = 11ns.
+    Yes, the adder works. as max delay < clock time
+b) Add a register between the two adders. However, we should wire Xi + Yi, to
+the first adder which is saved into the new reg. Then to have the second adder
+add the output of Reg1 and Reg2.
 
-
+            Xi              Yi
+             |               |
+       -----------\/--------------
+       \           +            /
+        \______________________/
+                    |
+                    |
+                    |
+                ----D----
+       CLK------|>       |
+       |        |  Reg   |
+       |        |        |
+       |        -----Q----
+       |             |               ____________________
+       |             |              |                   |
+       |             |              |                   |
+       |        -----------\/-------------              |
+       |        \           +            /              |
+       |         \______________________/               |
+       |                     |                          |
+       |                     | Si                       |
+       |                     |                          |
+       |                 ----D-----                     |
+       ------------------|>       |                     |
+                         |  Reg   |                     |
+                         |        |                     |
+                         ---Q------                     |
+                            |                           |
+                            |   Si-1                    |
+                            |___________________________|
 
 Q3
-CurState	| Input	| NextState	| Output
-		| 	| 		| 
-		| 	| 		| 
-		| 	| 		| 
-		| 	| 		| 
-		| 	| 		| 
-		| 	| 		| 
-		| 	| 		|  
-//add more rows if necessary
+CurState    | Input | NextState     | Output
+------      |  1    |  Seen10       |   0
+------      |  0    |  Seen01       |   0
+Seen10      |  0    |  Seen01       |   0
+Seen10      |  1    |  SeenLoopRet1 |   1
+Seen01      |  0    |  SeenLoopRet1 |   1
+Seen01      |  1    |  Seen10       |   0
+SeenLoopRet1|  0    |  SeenLoopRet1 |   1
+SeenLoopRet1|  1    |  SeenLoopRet1 |   1
 
 
 Q4
-a) 
-Out =
-
-Next1 =
-
-Next0 =
+a)  (Last equation is final result)
+    out   = s0*s1*inp
+    next1 = ~(s1*s0)*inp
+          = (~s1+~s0)*inp
+    next0 = (s1*s0*inp) + ~s1*s0*inp
+          = inp
 
 b) hw4fsm.circ
 
-c)
-
-
+c)  !state
 
 Q5
-a)
+a) Nothing needs to be added.
 
 b)
-Instruction | RegDst | ALUSrc | MemToReg | RegWrite | MemRead | MemWrite | Branch | //add more columns if necessary
-R-format    | 1	     | 0      | 0	 | 1	    | 0	      | 0	 | 0	  |
-lw	    | 0	     | 1      | 1	 | 1	    | 1	      | 0	 | 0	  |
-sw	    | X	     | 1      | X	 | 0	    | 0	      | 1	 | 0	  |
-beq	    | X	     | 0      | X	 | 0	    | 0	      | 0	 | 1	  |
-j	    | 	     | 	      | 	 | 	    | 	      | 	 | 	  |
-sll	    | 	     |        |		 | 	    | 	      | 	 | 	  |
+// Why is this >80 chars by default?! >:(
+Instr | RegDst   | ALUSrc | MemToReg | RegWrite | MemRead | MemWrite | Branch |
+addu  | 1	     | 0      | 0	     | 1	    | 0	      | 0	     | 0	  |
+lw    | 0	     | 1      | 1	     | 1	    | 1	      | 0	     | 0	  |
+sw    | X	     | 1      | X	     | 0	    | 0	      | 1	     | 0	  |
+beq   | X	     | 0      | X	     | 0	    | 0	      | 0	     | 1	  |
+j     | 1	     | 0      | X	     | X	    | X	      | X	     | 1	  |
+sll   | 1	     | 1      |	X	     | 1	    | X	      | X	     | 0	  |
 
-c)
+c) Modifcation 1: ALUSrc --> MemToReg
+   No, this modification will not work. MemToReg is always going to be needed to
+     control how something is going to be read from memory. It is also connected
+     to a different mux which could cause problems.
+
+  Modification 2:
+  No, this will also not work. MemRead doesn't actually have its own signal and
+   something is always going to be read from memory; MemToReg controls that.
