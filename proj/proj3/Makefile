@@ -9,9 +9,10 @@ GOTOLIB = $(GOTO)/libgoto2_nehalemp-r1.13.a
 endif
 
 # running on 200 SD machines
+# Goto modified for my mac/project.
 ifeq ($(UNAME),Darwin)
 CC = gcc -std=gnu99 -fopenmp -O3
-GOTO = $(HOME)/bin/GotoBLAS2
+GOTO = ./GotoBLAS2
 GOTOLIB = $(GOTO)/libgoto2_nehalemp-r1.13.a
 endif
 
