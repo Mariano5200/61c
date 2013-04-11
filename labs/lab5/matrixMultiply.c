@@ -4,8 +4,8 @@
 #include <time.h>
 
 
-/* To save you time, we are including all 6 variants of the loop ordering 
-   as separate functions and then calling them using function pointers. 
+/* To save you time, we are including all 6 variants of the loop ordering
+   as separate functions and then calling them using function pointers.
    The reason for having separate functions that are nearly identical is
    to avoid counting any extraneous processing towards the computation
    time. This includes I/O accesses (printf) and conditionals (if/switch).
@@ -98,7 +98,7 @@ int main( int argc, char **argv ) {
 
 	    /* convert time to Gflop/s */
 	    double seconds = (end.tv_sec - start.tv_sec) + 1.0e-6 * (end.tv_usec - start.tv_usec);
-	    double Gflops = 2e-9*nmax*nmax*nmax/seconds;    
+	    double Gflops = 2e-9*nmax*nmax*nmax/seconds;
 	    printf( "%s:\tn = %d, %.3f Gflop/s\n", names[i], nmax, Gflops );
         }
     } else {
@@ -112,12 +112,12 @@ int main( int argc, char **argv ) {
 
 	    /* multiply matrices and measure the time */
 	    gettimeofday( &start, NULL );
-	    multMat1( n, A, B, C );
+	    multMat3( n, A, B, C );
 	    gettimeofday( &end, NULL );
 
 	    /* convert time to Gflop/s */
 	    double seconds = (end.tv_sec - start.tv_sec) + 1.0e-6 * (end.tv_usec - start.tv_usec);
-	    double Gflops = 2e-9*n*n*n/seconds;    
+	    double Gflops = 2e-9*n*n*n/seconds;
 	    printf( "n = %d, %.3f Gflop/s\n", n, Gflops );
         }
     }

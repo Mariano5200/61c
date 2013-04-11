@@ -21,7 +21,7 @@ void sgemm_reference( int m, int n, float *A, float *C )
   for( int i = 0; i < n; i++ )
     for( int k = 0; k < m; k++ ) 
       for( int j = 0; j < n; j++ ) 
-	C[i+j*n] += A[i+k*(n)] * A[j*(n+1)+k*(n)];
+    C[i+j*n] += A[i+k*(n)] * A[j*(n+1)+k*(n)];
 }
 
 /* The benchmarking program */
@@ -30,9 +30,9 @@ int main( int argc, char **argv )
 {
   srand(time(NULL));
 
-  	for( int n = 32; n < 100; n = n+1+n/3 )
-//	for( int n = 40; n <  41; n = n+1+n/3 )
-	{
+      for( int n = 32; n < 100; n = n+1+n/3 )
+//    for( int n = 40; n <  41; n = n+1+n/3 )
+    {
   /* Try different m */
   for( int m = 32; m <  100; m = m+1+m/3 )
 //for( int m = 48; m <  49; m = m+1+m/3 )
@@ -55,7 +55,7 @@ int main( int argc, char **argv )
       struct timeval start, end;
       gettimeofday( &start, NULL );
       for( int i = 0; i < n_iterations; i++ )
-	sgemm( m,n,m, A, C );
+    sgemm( m,n,m, A, C );
       gettimeofday( &end, NULL );
       seconds = (end.tv_sec - start.tv_sec) + 1.0e-6 * (end.tv_usec - start.tv_usec);
       
@@ -66,7 +66,7 @@ int main( int argc, char **argv )
     printf( "%d by %d matrix with strip size %d \t %g Gflop/s\n", n, n,m, Gflop_s );
     
     /* Ensure that error does not exceed the theoretical error bound */
-		
+        
     /* Set initial C to 0 and do matrix multiply of A*B */
     memset( C, 0, sizeof( float ) * n * n );
     sgemm( m,n,m, A, C );
@@ -81,9 +81,9 @@ int main( int argc, char **argv )
     /* After this test if any element in C is still positive something went wrong in square_sgemm */
     for( int i = 0; i < n * n; i++ )
       if( C[i] > 0.0001 ) {
-  	printf( "FAILURE: error in matrix multiply exceeds an acceptable margin\n" );
-  	printf( "Off by: %f, from the reference: %f, at n = %d, m = %d\n",C[i], C_ref[i], n, m ); 
-  	return -1;
+      printf( "FAILURE: error in matrix multiply exceeds an acceptable margin\n" );
+      printf( "Off by: %f, from the reference: %f, at n = %d, m = %d\n",C[i], C_ref[i], n, m ); 
+      return -1;
       }
 
     /* release memory */
@@ -91,6 +91,6 @@ int main( int argc, char **argv )
     free( C );
     free( A );
   }
-	}  
+    }  
   return 0;
 }

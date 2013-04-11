@@ -18,7 +18,7 @@ endif
 
 INCLUDES = -I$(GOTO)
 OMP = -fopenmp
-LIBS = -lpthread  
+LIBS = -lpthread
 # a pretty good flag selection for this machine...
 CFLAGS = -msse4 -fopenmp -O3 -pipe -fno-omit-frame-pointer
 
@@ -40,3 +40,8 @@ bench-openmp: benchmark.o sgemm-openmp.o
 
 clean:
 	rm -f *~ bench-naive bench-small bench-openmp *.o
+
+# Because I'm lazy....
+bn: bench-naive
+bs: bench-small
+bo: bench-openmp

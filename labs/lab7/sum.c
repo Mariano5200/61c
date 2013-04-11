@@ -6,7 +6,7 @@
 #ifdef __APPLE__
   #define CLOCK_RATE_GHZ 2.8e9
 #elif
-  #define CLOCK_RATE_GHZ 2.26e9
+  #define CLOCK_RATE_GHZ 2.4e9
 #endif
 
 /* Time stamp counter from Lecture 2/17 */
