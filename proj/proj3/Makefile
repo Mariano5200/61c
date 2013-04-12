@@ -39,7 +39,7 @@ bench-openmp: benchmark.o sgemm-openmp.o
 	$(CC) -c $(CFLAGS) $(INCLUDES) $<
 
 clean:
-	rm -f *~ bench-naive bench-small bench-openmp avg avg40 *.o
+	rm -f *~ bench-naive bench-small bench-openmp *.o
 
 # Because I'm lazy....
 bn: bench-naive
@@ -48,20 +48,3 @@ bs: bench-small
 	./bench-small
 bo: bench-openmp
 	./bench-openmp
-avg:  benchmark_avg.o sgemm-small.o
-	$(CC) -o avg $(LIBS) benchmark_avg.o sgemm-small.o $(GOTOLIB)
-	touch tmp
-	for i in {1..20}; do ./bench-small >> tmp; done
-	echo "Average Gflops: "
-	$((paste -sd+ tmp | bc / 20))
-	rm tmp
-
-avg40:  benchmark_avg_40.o sgemm-small.o
-	$(CC) -o avg40 $(LIBS) benchmark_avg_40.c sgemm-small.c $(GOTOLIB)
-	touch tmp
-	for i in {1..20}; do ./avg40 >> tmp; done
-	echo "Average Gflops 40x40: "
-	paste -sd+ tmp | bc
-	rm tmp
-
-avgall: avg avg40

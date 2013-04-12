@@ -1,4 +1,5 @@
-// #include <nmmintrin.h>
+#include <nmmintrin.h>
+
 void sgemm( int m, int n, int d, float *A, float *C )
 {
     #pragma vectorize unroll optimize("", on)

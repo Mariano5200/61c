@@ -30,12 +30,12 @@ int main( int argc, char **argv ) {
     srand(time(NULL));
     int iter = 0;
     float tot_gflops = 0.0;
-    //for( int n = 32; n < 100; n = n+1+n/3 ) {
-    for( int n = 40; n <  41; n = n+1+n/3 ) {
+    for( int n = 32; n < 100; n = n+1+n/3 ) {
+    //for( int n = 40; n <  41; n = n+1+n/3 ) {
 
         /* Try different m */
-        //for( int m = 32; m <  100; m = m+1+m/3 ) {
-        for( int m = 48; m <  49; m = m+1+m/3 ) {
+        for( int m = 32; m <  100; m = m+1+m/3 ) {
+        //for( int m = 48; m <  49; m = m+1+m/3 ) {
             /* Allocate and fill 2 random matrices A, C */
             float *A = (float*) malloc( (n+m) * n * sizeof(float) );
             float *C = (float*) malloc( n * n * sizeof(float) );
@@ -62,7 +62,7 @@ int main( int argc, char **argv ) {
          tot_gflops += Gflop_s;
          iter += 1;
 
-        //printf( "%d by %d matrix with strip size %d \t %g Gflop/s\n", n, n,m, Gflop_s );
+         printf( "%d by %d matrix with strip size %d \t %g Gflop/s\n", n, n,m, Gflop_s );
 
         /* Ensure that error does not exceed the theoretical error bound */
 
@@ -92,6 +92,6 @@ int main( int argc, char **argv ) {
           }
     }
 
-    printf("%f\n", tot_gflops/iter);
+    printf("Average: %f\n", tot_gflops/iter);
     return 0;
 }
