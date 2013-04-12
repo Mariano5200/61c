@@ -43,5 +43,8 @@ clean:
 
 # Because I'm lazy....
 bn: bench-naive
+	./bench-naive
 bs: bench-small
+	./bench-small
 bo: bench-openmp
+	./bench-openmp
