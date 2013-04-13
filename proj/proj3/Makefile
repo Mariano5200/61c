@@ -48,3 +48,8 @@ bs: bench-small
 	./bench-small
 bo: bench-openmp
 	./bench-openmp
+avg: bench-small
+	echo "Single Run:"
+	./bench-small
+	echo "Averaged Run:"
+	./average.sh $(runs)

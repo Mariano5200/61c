@@ -62,7 +62,9 @@ int main( int argc, char **argv ) {
          tot_gflops += Gflop_s;
          iter += 1;
 
-         printf( "%d by %d matrix with strip size %d \t %g Gflop/s\n", n, n,m, Gflop_s );
+         //Comment out for avg script.
+         //printf( "%d by %d matrix with strip size %d \t %g Gflop/s\n", n, n,m, Gflop_s );
+        //printf( "%g\n", Gflop_s );
 
         /* Ensure that error does not exceed the theoretical error bound */
 
@@ -92,6 +94,8 @@ int main( int argc, char **argv ) {
           }
     }
 
-    printf("Average: %f\n", tot_gflops/iter);
+    //Comment out extra info for avg script.
+    //printf("Average: %g Gflops\n", tot_gflops/iter);
+    printf("%g\n", tot_gflops/iter);
     return 0;
 }
