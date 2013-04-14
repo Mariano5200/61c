@@ -6,7 +6,7 @@ void sgemm( int m, int n, int d, float *A, float *C )
     for( int k = 0; k < m; k++ )
       for( int j = 0; j < n; j++ )
       C[i+j*n] += A[i+k*(n)] * A[j*(n+1)+k*(n)];*/
-    if (n == 40) {
+    if (n%20 == 0) {
         int jn, kn, i, j, k, upb;
         upb = (n/20)*20;
         __m128 c1,c2,c3,c4,c5,temp1,temp2,temp3,temp4,temp5,a11,a12,a13,a14,a15,a2;
