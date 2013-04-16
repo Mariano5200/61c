@@ -1,7 +1,10 @@
 #include <nmmintrin.h>
+#include <omp.h>
 
 void sgemm( int m, int n, int d, float *A, float *C )
 {
+    #pragma omp parallel
+    {
     #pragma vectorize unroll optimize("", on)
     for( int j = 0; j < n; j++ ) {
         #pragma vectorize unroll optimize("", on)
@@ -29,4 +32,5 @@ void sgemm( int m, int n, int d, float *A, float *C )
             }
       }
     }
+}
 }
