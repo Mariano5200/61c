@@ -1,5 +1,6 @@
 HOME = /home/ff/cs61c
 UNAME = $(shell uname)
+HOST = $(shell hostname -s | cut -c1-8)
 
 # running on hive machines
 ifeq ($(UNAME),Linux)
@@ -8,13 +9,20 @@ GOTO = $(HOME)/bin/GotoBLAS2_Linux
 GOTOLIB = $(GOTO)/libgoto2_nehalemp-r1.13.a
 endif
 
+
+# My dir for local builds
+ifeq ($(HOST), Mountain, mountain)
+GOTO = ./GotoBLAS2
+else
+GOTO = $(HOME)/bin/GotoBLAS2_Linux
+endif
+
 # running on 200 SD machines
-# Goto modified for my mac/project.
 ifeq ($(UNAME),Darwin)
 CC = gcc -std=gnu99 -fopenmp -O3
-GOTO = ./GotoBLAS2
 GOTOLIB = $(GOTO)/libgoto2_nehalemp-r1.13.a
 endif
+
 
 INCLUDES = -I$(GOTO)
 OMP = -fopenmp
@@ -41,7 +49,7 @@ bench-openmp: benchmark.o sgemm-openmp.o
 	$(CC) -c $(CFLAGS) $(INCLUDES) $<
 
 clean:
-	rm -f *~ bench-naive bench-small bench-openmp *.o
+	rm -f *~ bench-naive bench-small bench-openmp *.o tmp
 
 # Because I'm lazy....
 bn: bench-naive

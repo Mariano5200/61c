@@ -14,9 +14,10 @@ void sgemm( int m, int n, int d, float *A, float *C )
             int i;
             int ntmp = n/8*8;
             #pragma vectorize optimize("", on)
+			#pragma omp for private(i)
             for(i = 0; i < ntmp; i += 8 ) {
-                int *ikn = A+i+k*(n);
-                int *ijn = C+i+j*n;
+                float *ikn = A+i+k*(n);
+                float *ijn = C+i+j*n;
                 __m128 a2 = _mm_loadu_ps(ikn);
                 __m128 a3 = _mm_loadu_ps(ikn+4);
                 __m128 mulres = _mm_mul_ps(a1, a2);
@@ -27,7 +28,8 @@ void sgemm( int m, int n, int d, float *A, float *C )
                 _mm_storeu_ps(ijn, sum);
                 _mm_storeu_ps(ijn+4, sum3);
             }
-            for (; i < n; i++) {
+			// #pragma omp for
+            for (i = i; i < n; i++) {
                 C[i+j*n] += A[i+k*n] * A[j*(n+1)+k*n];
             }
       }

@@ -4,7 +4,6 @@
 void sgemm( int m, int n, int d, float *A, float *C )
 {
 
-    //Transpose A into C.
     /*for( int i = 0; i < n; i++ )
     for( int k = 0; k < m; k++ )
       for( int j = 0; j < n; j++ )
@@ -18,7 +17,7 @@ void sgemm( int m, int n, int d, float *A, float *C )
         float *t;
         float *r;
         float *p;
-#pragma omp parallel for
+		#pragma omp parallel for private(j)
         for(j = 0; j < n; j++ ) {
             jn = j*n;
             // #pragma omp parallel for
@@ -64,7 +63,7 @@ void sgemm( int m, int n, int d, float *A, float *C )
         float *t;
         float *r;
         float *p;
-#pragma omp parallel for
+#pragma omp parallel for private(j)
         for(j = 0; j < n; j++ ) {
             jn = j*n;
             // #pragma omp parallel for
@@ -99,7 +98,7 @@ void sgemm( int m, int n, int d, float *A, float *C )
         float *r;
         float *p;
         upb = (n/8)*8;
-#pragma omp parallel for
+#pragma omp parallel for private(j)
         for(j = 0; j < n; j++ ) {
             jn = j*n;
             // #pragma omp parallel for
@@ -146,7 +145,7 @@ void sgemm( int m, int n, int d, float *A, float *C )
         float *t;
         float *r;
         float *p;
-#pragma omp parallel for
+#pragma omp parallel for private(j)
         for(j = 0; j < n; j++ ) {
             jn = j*n;
             // #pragma omp parallel for
@@ -186,7 +185,7 @@ void sgemm( int m, int n, int d, float *A, float *C )
         float *t;
         float *r;
         float *p;
-#pragma omp parallel for
+#pragma omp parallel for private(j)
         for(j = 0; j < n; j++ ) {
             jn = j*n;
             //#pragma omp parallel for
