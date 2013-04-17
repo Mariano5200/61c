@@ -28,7 +28,7 @@ void sgemm( int m, int n, int d, float *A, float *C )
                 c3 = _mm_loadu_ps(p+8);
                 c4 = _mm_loadu_ps(p+12);
                 c5 = _mm_loadu_ps(p+16);
-                #pragma omp for private(k)
+                #pragma omp for 
                 for(k = 0; k < m; k++ ) {
                     kn=k*n;
                     t = A+(i+kn);
@@ -71,7 +71,7 @@ void sgemm( int m, int n, int d, float *A, float *C )
                 p = C+i+jn;
                 c1 = _mm_loadu_ps(p);
                 c2 = _mm_loadu_ps(p+4);
-                #pragma omp for private(k)
+                #pragma omp for 
                 for(k = 0; k < m; k++ ) {
                     kn=k*n;
                     t = A+(i+kn);
@@ -106,7 +106,7 @@ void sgemm( int m, int n, int d, float *A, float *C )
                 p = C+i+jn;
                 c1 = _mm_loadu_ps(p);
                 c2 = _mm_loadu_ps(p+4);
-                #pragma omp for private(k)
+                #pragma omp for 
                 for(k = 0; k < m; k++ ) {
                     kn=k*n;
                     t = A+(i+kn);
@@ -125,7 +125,7 @@ void sgemm( int m, int n, int d, float *A, float *C )
             }
             p = C+i+jn;
             c1 = _mm_loadu_ps(p);
-            #pragma omp for private(k)
+            #pragma omp for 
             for(k = 0; k < m; k++ ) {
             kn=k*n;
             t = A+(i+kn);
@@ -153,7 +153,7 @@ void sgemm( int m, int n, int d, float *A, float *C )
                 p = C+i+jn;
                 c1 = _mm_loadu_ps(p);
                 c2 = _mm_loadu_ps(p+4);
-                #pragma omp for private(k)
+                #pragma omp for 
                 for(k = 0; k < m; k++ ) {
                     kn=k*n;
                     t = A+(i+kn);
@@ -172,14 +172,14 @@ void sgemm( int m, int n, int d, float *A, float *C )
             }
             // #pragma omp for private(i)
             for (i = i; i < n; i ++) {
-                #pragma omp for private(k)
+                #pragma omp for 
                 for(k = 0; k < m; k++ ) {
                     C[i+j*n] += A[i+k*(n)] * A[j*(n+1)+k*(n)];
                 }
             }
         }
     }
-    
+
     }
 
 }
