@@ -10,7 +10,6 @@ if (len(sys.argv) >= 2):
 else:
     runs = 5
     file = ""
-total = 0
 
 
 def avg(l):
@@ -23,7 +22,7 @@ if __name__ == '__main__':
         if bs not in [100, 150,300]:
             for n in range(400,1501, 50):
                 for m in range(32, 100, 2):
-                    run = 0
+                    total, run = 0
                     while (run < runs):
                         proc = subprocess.Popen([file,
                          str(n), str(m), str(bs)], stdout=subprocess.PIPE)
