@@ -5,8 +5,8 @@ import subprocess
 import re
 
 if (len(sys.argv) >= 2):
-, runs = int(sys.argv[1])
-, file = str(sys.argv[2])
+    runs = int(sys.argv[1])
+    file = str(sys.argv[2])
 else:
     runs = 5
     file = ""
