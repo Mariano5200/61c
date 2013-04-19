@@ -13,17 +13,17 @@ endif
 ifeq ($(UNAME),Darwin)
 CC = gcc -std=gnu99 -fopenmp -O3
 # GOTO = $(HOME)/bin/GotoBLAS2
-GOTO = ./GotoBLAS2
+GOTO = ../GotoBLAS2
 GOTOLIB = $(GOTO)/libgoto2_nehalemp-r1.13.a
 endif
 
 # My dir for local builds
 ifeq ($(HOST),mountain)
-GOTO = ./GotoBLAS2
+GOTO = ../GotoBLAS2
 GOTOLIB = $(GOTO)/libgoto2_nehalemp-r1.13.a
 endif
 ifeq ($(HOST),Mountain)
-GOTO = ./GotoBLAS2
+GOTO = ../GotoBLAS2
 GOTOLIB = $(GOTO)/libgoto2_nehalemp-r1.13.a
 endif
 
@@ -62,14 +62,10 @@ bs: bench-small
 	./bench-small
 bo: bench-openmp
 	./bench-openmp
-avg: bench-small
-	echo "Single Run:"
-	./bench-small
-	echo "Averaged Run:"
-	./avg.py $(runs) ./bench-small
+avg: test
 
 test: bench-openmp
 	echo "Single Run:"
 	./bench-openmp
-	echo "Averaged Run:"
+	echo "Averaged Runs:"
 	./avg.py $(runs) ./bench-openmp

@@ -49,7 +49,7 @@ void sgemm( int m, int n, int d, float *A, float *C, int bs )
 			  _mm_storeu_ps(r+8, c3);
 			  _mm_storeu_ps(r+12, c4);
 			  _mm_storeu_ps(r+16, c5);
-	      
+
 			  a2 = _mm_loadu_ps(t+20);
 			  a21 = _mm_loadu_ps(t+24);
 			  a22 = _mm_loadu_ps(t+28);
@@ -80,7 +80,7 @@ void sgemm( int m, int n, int d, float *A, float *C, int bs )
 		      for (; c < min(i+blocksize, n); c++) {
 			  C[c+a*n] += A[c+b*n] * A[a*(n+1)+b*n];
 		      }
-			    
+
 		  }
 	      }
 	  }

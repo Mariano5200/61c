@@ -11,7 +11,7 @@
 
 /* Your function must have the following signature: */
 
-void sgemm( int m, int n, int d, float *A, float *C );
+void sgemm( int m, int n, int d, float *A, float *C, int bs );
 
 
 /* The reference code */
@@ -36,14 +36,14 @@ int main( int argc, char **argv )
   int mStart = 32;
   int mEnd = 100;
   int loopEnd = 1;
-  int blocksize = 400;
+  int bs = 400;
   if (argc == 4) {
     nStart = atoi(argv[1]);
     nEnd = nStart+1;
     mStart = atoi(argv[2]);
     mEnd = mStart+1;
     loopEnd = 10;
-    blocksize = atoi(argv[3]);
+    bs = atoi(argv[3]);
   }
 
  for( int loop = 0; loop < loopEnd; loop++ )
@@ -68,7 +68,7 @@ int main( int argc, char **argv )
       sgemm_reference( m,n,A,C_ref );
       /* Set initial C to 0 and do matrix multiply of A*B */
       memset( C, 0, sizeof( float ) * n * n );
-      sgemm( m,n,m, A, C );
+      sgemm( m,n,m, A, C, bs );
 
       /* Subtract the maximum allowed roundoff from each element of C */
       for( int i = 0; i < n*n; i++ ) C[i] -= C_ref[i] ;
@@ -86,13 +86,13 @@ int main( int argc, char **argv )
       for( int n_iterations = 1; seconds < 0.1; n_iterations *= 2 )
       {
         /* warm-up */
-        sgemm( m, n,m, A, C );
+        sgemm( m, n,m, A, C, bs );
 
         /* measure time */
         struct timeval start, end;
         gettimeofday( &start, NULL );
         for( int i = 0; i < n_iterations; i++ )
-          sgemm( m,n,m, A, C );
+          sgemm( m,n,m, A, C, bs );
         gettimeofday( &end, NULL );
         seconds = (end.tv_sec - start.tv_sec) + 1.0e-6 * (end.tv_usec - start.tv_usec);
 
