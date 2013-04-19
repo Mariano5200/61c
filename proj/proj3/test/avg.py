@@ -20,7 +20,8 @@ all_runs = {}
 pat = re.compile("[0-9]*\.?[0-9]*")
 if __name__ == '__main__':
     for bs in range(100,1600, 50):
-        for n in range(400,1501, 50):
+        if bs not in [100, 150,300]:
+            for n in range(400,1501, 50):
             for m in range(32, 100, 2):
                 run = 0
                 while (run < runs):
