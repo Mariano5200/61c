@@ -2,9 +2,9 @@
 #include <omp.h>
 
 #define min(X,Y) (X < Y ? X : Y)
-#define blocksize 200
+// #define blocksize 200
 
-void sgemm( int m, int n, int d, float *A, float *C )
+void sgemm( int m, int n, int d, float *A, float *C, int bs )
 {
     //__m128 x;
   int upb = (n/40)*40;
@@ -13,6 +13,7 @@ void sgemm( int m, int n, int d, float *A, float *C )
   //  int blocksize = 400;
   float *t;
   float *r;
+  int blocksize = bs;
   __m128 a1, a2, a21, a22, a23, a24, c1, c2, c3, c4, c5;
   //#pragma omp parallel for private(a1, a2, a21, a22, a23, a24,c1,c2,c3,c4,c5,t,r)
   for(int j = 0; j < n; j+=blocksize ) {

@@ -1,0 +1,13 @@
+Lab 10 Questions:
+
+A1:
+See circuit.
+2's comp: Neg. Odd numbers.
+
+B:
+adder 50ns + 50ns mult + 50ns clk-to-q
+= 105ns
+>>> 1/(105e-9)
+9523809.523809524
+>>> 1/(105e-9)/1e6
+9.523809523809524 Mhz
