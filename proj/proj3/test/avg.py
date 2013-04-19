@@ -23,7 +23,7 @@ n_sizes = [400,533,711,948,1264,512,768,1024,1000,800,
 n_sizes.sort()
 m_sizes = [32,100,64,48,97,37,43,53,61,78,83,50] #bounded 32,100
 m_sizes.sort()
-bs_sizes = [400,800,1600,512,1024,750,1000,1200,500,700,
+bs_sizes = [37,400,800,1600,512,1024,750,1000,1200,500,700,
 1200,1400]
 bs_sizes.sort()
 
@@ -40,11 +40,17 @@ if __name__ == '__main__':
                     str(n), str(m), str(bs)], stdout=subprocess.PIPE)
                     result = proc.communicate()[0].decode("utf-8")
                     curr = pat.match(result).group()
+                    try:
+                        curr = float(curr)
+                    except ValueError:
+                        print("ERROR:\t Run {0}: N: {1}, M: {2}, BS: {3}".format(run, n, m, bs))
+                        break
                     print("Run {0}: N: {1}, M: {2}, BS: {3}\t{4} Gflops".format(run, n, m, bs, curr))
-                    total += float(curr)
+                    total += curr
                     run += 1
                 total /= runs
-                print("Averaged: \t\t\t\t" + str(total) + " Gflops\n")
+                if totoal > 0:
+                    print("Averaged: \t\t\t" + str(total) + " Gflops\n")
                 if bs not in all_runs:
                     all_runs[bs] = [total]
                 else:
