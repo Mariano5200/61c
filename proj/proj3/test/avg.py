@@ -27,7 +27,6 @@ if __name__ == '__main__':
                         proc = subprocess.Popen([file,
                          str(n), str(m), str(bs)], stdout=subprocess.PIPE)
                         result = proc.communicate()[0].decode("utf-8")
-                        print(result)
                         curr = pat.match(result).group()
                         print("Run {0}: N: {1}, M: {2}, BS: {3}\t{4} Gflops".format(run, n, m, bs, curr))
                         total += float(curr)
