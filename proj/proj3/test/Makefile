@@ -1,6 +1,7 @@
 HOME = /home/ff/cs61c
 UNAME = $(shell uname)
 HOST = $(shell hostname | cut -c1-8)
+DATE = $(shell date "+%Y-%m-%d-%H:%M:%S")
 
 # running on hive machines
 ifeq ($(UNAME),Linux)
@@ -66,6 +67,6 @@ avg: test
 
 test: bench-openmp
 	echo "Single Run:"
-	./bench-openmp
+	./bench-openmp > single_run_$(DATE).txt
 	echo "Averaged Runs:"
-	./avg.py $(runs) ./bench-openmp
+	./avg.py 2 ./bench-openmp > avg_chace_$(DATE).txt
