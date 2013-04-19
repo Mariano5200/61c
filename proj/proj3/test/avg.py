@@ -49,7 +49,7 @@ if __name__ == '__main__':
                     total += curr
                     run += 1
                 total /= runs
-                if totoal > 0:
+                if total > 0:
                     print("Averaged: \t\t\t" + str(total) + " Gflops\n")
                 if bs not in all_runs:
                     all_runs[bs] = [total]
