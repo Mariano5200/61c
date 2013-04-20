@@ -26,7 +26,8 @@ m_sizes.sort()
 bs_sizes = [400,800,1600,512,1024,750,1000,1200,500,700,
 1200,1400]
 bs_sizes.sort()
-
+for bs in bs_sizes:
+    all_runs[bs] = []
 
 
 if __name__ == '__main__':
@@ -51,10 +52,9 @@ if __name__ == '__main__':
                 total /= runs
                 if total > 0:
                     print("Averaged: \t\t\t" + str(total) + " Gflops\n")
-                if bs not in all_runs:
-                    all_runs[bs] = [total]
-                else:
-                    all_runs[bs] += [total]
-    for key, value in all_runs:
-        mean = avg(value)
-        print("Blocksize: ", key, "\t", mean, "Gflops")
+                all_runs[bs] += [total]
+    print(all_runs)
+    print()
+    for item in all_runs:
+        mean = avg(all_runs[iten])
+        print("Blocksize: ", str(item), "\t", mean, "Gflops")
