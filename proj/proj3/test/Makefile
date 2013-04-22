@@ -66,7 +66,5 @@ bo: bench-openmp
 avg: test
 
 test: bench-openmp
-	echo "Single Run:"
-	./bench-openmp > single_run_$(DATE).txt
 	echo "Averaged Runs:"
 	./avg.py 2 ./bench-openmp > avg_cache_$(DATE).txt

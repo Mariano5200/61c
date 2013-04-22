@@ -29,7 +29,8 @@ bs_sizes.sort()
 for bs in bs_sizes:
     all_runs[bs] = []
 
-
+bad_shit = False
+bs2 = 0
 if __name__ == '__main__':
     for bs in bs_sizes:
         if not (bad_shit and bs2 == bs):
