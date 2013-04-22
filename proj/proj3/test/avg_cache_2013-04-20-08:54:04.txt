@@ -1,0 +1,1834 @@
+Run 0: N: 400, M: 32, BS: 400	51.7391 Gflops
+Run 1: N: 400, M: 32, BS: 400	51.1027 Gflops
+Averaged: 			51.4209 Gflops
+
+Run 0: N: 400, M: 37, BS: 400	51.3844 Gflops
+Run 1: N: 400, M: 37, BS: 400	51.8543 Gflops
+Averaged: 			51.61935 Gflops
+
+Run 0: N: 400, M: 43, BS: 400	51.8024 Gflops
+Run 1: N: 400, M: 43, BS: 400	51.165 Gflops
+Averaged: 			51.4837 Gflops
+
+Run 0: N: 400, M: 48, BS: 400	51.9759 Gflops
+Run 1: N: 400, M: 48, BS: 400	51.6703 Gflops
+Averaged: 			51.8231 Gflops
+
+Run 0: N: 400, M: 50, BS: 400	51.8012 Gflops
+Run 1: N: 400, M: 50, BS: 400	51.9866 Gflops
+Averaged: 			51.8939 Gflops
+
+Run 0: N: 400, M: 61, BS: 400	51.407 Gflops
+Run 1: N: 400, M: 61, BS: 400	51.8427 Gflops
+Averaged: 			51.624849999999995 Gflops
+
+Run 0: N: 400, M: 64, BS: 400	51.9802 Gflops
+Run 1: N: 400, M: 64, BS: 400	51.7253 Gflops
+Averaged: 			51.85275 Gflops
+
+Run 0: N: 400, M: 78, BS: 400	51.713 Gflops
+Run 1: N: 400, M: 78, BS: 400	51.5357 Gflops
+Averaged: 			51.62435 Gflops
+
+Run 0: N: 400, M: 83, BS: 400	52.0549 Gflops
+Run 1: N: 400, M: 83, BS: 400	51.7573 Gflops
+Averaged: 			51.9061 Gflops
+
+Run 0: N: 400, M: 97, BS: 400	51.6943 Gflops
+Run 1: N: 400, M: 97, BS: 400	51.6758 Gflops
+Averaged: 			51.685050000000004 Gflops
+
+Run 0: N: 400, M: 100, BS: 400	51.8022 Gflops
+Run 1: N: 400, M: 100, BS: 400	50.8953 Gflops
+Averaged: 			51.348749999999995 Gflops
+
+Run 0: N: 439, M: 32, BS: 400	32.303 Gflops
+Run 1: N: 439, M: 32, BS: 400	33.0342 Gflops
+Averaged: 			32.6686 Gflops
+
+Run 0: N: 439, M: 37, BS: 400	33.5133 Gflops
+Run 1: N: 439, M: 37, BS: 400	33.4777 Gflops
+Averaged: 			33.4955 Gflops
+
+Run 0: N: 439, M: 43, BS: 400	33.544 Gflops
+Run 1: N: 439, M: 43, BS: 400	33.5719 Gflops
+Averaged: 			33.55795 Gflops
+
+Run 0: N: 439, M: 48, BS: 400	33.6087 Gflops
+Run 1: N: 439, M: 48, BS: 400	33.563 Gflops
+Averaged: 			33.58585 Gflops
+
+Run 0: N: 439, M: 50, BS: 400	33.4556 Gflops
+Run 1: N: 439, M: 50, BS: 400	33.327 Gflops
+Averaged: 			33.3913 Gflops
+
+Run 0: N: 439, M: 61, BS: 400	33.7658 Gflops
+Run 1: N: 439, M: 61, BS: 400	33.53 Gflops
+Averaged: 			33.6479 Gflops
+
+Run 0: N: 439, M: 64, BS: 400	33.7831 Gflops
+Run 1: N: 439, M: 64, BS: 400	33.4016 Gflops
+Averaged: 			33.592349999999996 Gflops
+
+Run 0: N: 439, M: 78, BS: 400	33.6495 Gflops
+Run 1: N: 439, M: 78, BS: 400	33.5989 Gflops
+Averaged: 			33.6242 Gflops
+
+Run 0: N: 439, M: 83, BS: 400	33.5967 Gflops
+Run 1: N: 439, M: 83, BS: 400	33.5216 Gflops
+Averaged: 			33.55915 Gflops
+
+Run 0: N: 439, M: 97, BS: 400	33.4579 Gflops
+Run 1: N: 439, M: 97, BS: 400	34.0727 Gflops
+Averaged: 			33.765299999999996 Gflops
+
+Run 0: N: 439, M: 100, BS: 400	33.6644 Gflops
+Run 1: N: 439, M: 100, BS: 400	33.7677 Gflops
+Averaged: 			33.716049999999996 Gflops
+
+Run 0: N: 499, M: 32, BS: 400	37.0926 Gflops
+Run 1: N: 499, M: 32, BS: 400	37.802 Gflops
+Averaged: 			37.4473 Gflops
+
+Run 0: N: 499, M: 37, BS: 400	37.7134 Gflops
+Run 1: N: 499, M: 37, BS: 400	37.9907 Gflops
+Averaged: 			37.85205 Gflops
+
+Run 0: N: 499, M: 43, BS: 400	38.0191 Gflops
+Run 1: N: 499, M: 43, BS: 400	37.5477 Gflops
+Averaged: 			37.7834 Gflops
+
+Run 0: N: 499, M: 48, BS: 400	37.495 Gflops
+Run 1: N: 499, M: 48, BS: 400	37.5571 Gflops
+Averaged: 			37.52605 Gflops
+
+Run 0: N: 499, M: 50, BS: 400	37.2743 Gflops
+Run 1: N: 499, M: 50, BS: 400	37.5824 Gflops
+Averaged: 			37.428349999999995 Gflops
+
+Run 0: N: 499, M: 61, BS: 400	37.097 Gflops
+Run 1: N: 499, M: 61, BS: 400	37.073 Gflops
+Averaged: 			37.085 Gflops
+
+Run 0: N: 499, M: 64, BS: 400	37.0209 Gflops
+Run 1: N: 499, M: 64, BS: 400	37.2801 Gflops
+Averaged: 			37.150499999999994 Gflops
+
+Run 0: N: 499, M: 78, BS: 400	37.1942 Gflops
+Run 1: N: 499, M: 78, BS: 400	36.8104 Gflops
+Averaged: 			37.002300000000005 Gflops
+
+Run 0: N: 499, M: 83, BS: 400	37.2246 Gflops
+Run 1: N: 499, M: 83, BS: 400	37.2713 Gflops
+Averaged: 			37.24795 Gflops
+
+Run 0: N: 499, M: 97, BS: 400	36.8398 Gflops
+Run 1: N: 499, M: 97, BS: 400	36.7784 Gflops
+Averaged: 			36.8091 Gflops
+
+Run 0: N: 499, M: 100, BS: 400	36.96 Gflops
+Run 1: N: 499, M: 100, BS: 400	36.5158 Gflops
+Averaged: 			36.737899999999996 Gflops
+
+Run 0: N: 512, M: 32, BS: 400	42.2521 Gflops
+Run 1: N: 512, M: 32, BS: 400	41.9234 Gflops
+Averaged: 			42.08775 Gflops
+
+Run 0: N: 512, M: 37, BS: 400	41.1789 Gflops
+Run 1: N: 512, M: 37, BS: 400	42.1817 Gflops
+Averaged: 			41.6803 Gflops
+
+Run 0: N: 512, M: 43, BS: 400	42.0068 Gflops
+Run 1: N: 512, M: 43, BS: 400	41.8542 Gflops
+Averaged: 			41.930499999999995 Gflops
+
+Run 0: N: 512, M: 48, BS: 400	42.2137 Gflops
+Run 1: N: 512, M: 48, BS: 400	42.6483 Gflops
+Averaged: 			42.431 Gflops
+
+Run 0: N: 512, M: 50, BS: 400	42.1546 Gflops
+Run 1: N: 512, M: 50, BS: 400	42.3656 Gflops
+Averaged: 			42.2601 Gflops
+
+Run 0: N: 512, M: 61, BS: 400	42.0687 Gflops
+Run 1: N: 512, M: 61, BS: 400	41.7425 Gflops
+Averaged: 			41.9056 Gflops
+
+Run 0: N: 512, M: 64, BS: 400	41.7024 Gflops
+Run 1: N: 512, M: 64, BS: 400	41.9857 Gflops
+Averaged: 			41.844049999999996 Gflops
+
+Run 0: N: 512, M: 78, BS: 400	41.8733 Gflops
+Run 1: N: 512, M: 78, BS: 400	41.7274 Gflops
+Averaged: 			41.80035 Gflops
+
+Run 0: N: 512, M: 83, BS: 400	41.7904 Gflops
+Run 1: N: 512, M: 83, BS: 400	41.1957 Gflops
+Averaged: 			41.49305 Gflops
+
+Run 0: N: 512, M: 97, BS: 400	41.45 Gflops
+Run 1: N: 512, M: 97, BS: 400	41.2352 Gflops
+Averaged: 			41.342600000000004 Gflops
+
+Run 0: N: 512, M: 100, BS: 400	41.2224 Gflops
+Run 1: N: 512, M: 100, BS: 400	40.8665 Gflops
+Averaged: 			41.04445 Gflops
+
+Run 0: N: 533, M: 32, BS: 400	38.6812 Gflops
+Run 1: N: 533, M: 32, BS: 400	38.9616 Gflops
+Averaged: 			38.8214 Gflops
+
+Run 0: N: 533, M: 37, BS: 400	39.5214 Gflops
+Run 1: N: 533, M: 37, BS: 400	39.2828 Gflops
+Averaged: 			39.402100000000004 Gflops
+
+Run 0: N: 533, M: 43, BS: 400	39.0584 Gflops
+Run 1: N: 533, M: 43, BS: 400	39.1325 Gflops
+Averaged: 			39.09545 Gflops
+
+Run 0: N: 533, M: 48, BS: 400	39.2019 Gflops
+Run 1: N: 533, M: 48, BS: 400	38.9204 Gflops
+Averaged: 			39.06115 Gflops
+
+Run 0: N: 533, M: 50, BS: 400	38.9021 Gflops
+Run 1: N: 533, M: 50, BS: 400	39.1337 Gflops
+Averaged: 			39.0179 Gflops
+
+Run 0: N: 533, M: 61, BS: 400	37.8976 Gflops
+Run 1: N: 533, M: 61, BS: 400	38.9179 Gflops
+Averaged: 			38.40775 Gflops
+
+Run 0: N: 533, M: 64, BS: 400	38.8099 Gflops
+Run 1: N: 533, M: 64, BS: 400	38.9545 Gflops
+Averaged: 			38.8822 Gflops
+
+Run 0: N: 533, M: 78, BS: 400	38.9196 Gflops
+Run 1: N: 533, M: 78, BS: 400	38.3959 Gflops
+Averaged: 			38.65775 Gflops
+
+Run 0: N: 533, M: 83, BS: 400	38.7654 Gflops
+Run 1: N: 533, M: 83, BS: 400	38.369 Gflops
+Averaged: 			38.5672 Gflops
+
+Run 0: N: 533, M: 97, BS: 400	38.6569 Gflops
+Run 1: N: 533, M: 97, BS: 400	39.0167 Gflops
+Averaged: 			38.8368 Gflops
+
+Run 0: N: 533, M: 100, BS: 400	38.6884 Gflops
+Run 1: N: 533, M: 100, BS: 400	38.5818 Gflops
+Averaged: 			38.6351 Gflops
+
+Run 0: N: 571, M: 32, BS: 400	40.3454 Gflops
+Run 1: N: 571, M: 32, BS: 400	40.2986 Gflops
+Averaged: 			40.322 Gflops
+
+Run 0: N: 571, M: 37, BS: 400	40.1453 Gflops
+Run 1: N: 571, M: 37, BS: 400	40.2634 Gflops
+Averaged: 			40.20435 Gflops
+
+Run 0: N: 571, M: 43, BS: 400	39.7345 Gflops
+Run 1: N: 571, M: 43, BS: 400	39.9468 Gflops
+Averaged: 			39.84065 Gflops
+
+Run 0: N: 571, M: 48, BS: 400	39.8563 Gflops
+Run 1: N: 571, M: 48, BS: 400	39.5014 Gflops
+Averaged: 			39.67885 Gflops
+
+Run 0: N: 571, M: 50, BS: 400	40.3122 Gflops
+Run 1: N: 571, M: 50, BS: 400	39.8423 Gflops
+Averaged: 			40.07725 Gflops
+
+Run 0: N: 571, M: 61, BS: 400	40.3335 Gflops
+Run 1: N: 571, M: 61, BS: 400	40.3357 Gflops
+Averaged: 			40.3346 Gflops
+
+Run 0: N: 571, M: 64, BS: 400	40.064 Gflops
+Run 1: N: 571, M: 64, BS: 400	40.3561 Gflops
+Averaged: 			40.210049999999995 Gflops
+
+Run 0: N: 571, M: 78, BS: 400	40.2452 Gflops
+Run 1: N: 571, M: 78, BS: 400	40.1264 Gflops
+Averaged: 			40.1858 Gflops
+
+Run 0: N: 571, M: 83, BS: 400	40.3586 Gflops
+Run 1: N: 571, M: 83, BS: 400	40.3361 Gflops
+Averaged: 			40.347350000000006 Gflops
+
+Run 0: N: 571, M: 97, BS: 400	40.1791 Gflops
+Run 1: N: 571, M: 97, BS: 400	40.1871 Gflops
+Averaged: 			40.183099999999996 Gflops
+
+Run 0: N: 571, M: 100, BS: 400	39.5974 Gflops
+Run 1: N: 571, M: 100, BS: 400	40.0619 Gflops
+Averaged: 			39.82965 Gflops
+
+Run 0: N: 600, M: 32, BS: 400	48.1823 Gflops
+Run 1: N: 600, M: 32, BS: 400	48.3676 Gflops
+Averaged: 			48.274950000000004 Gflops
+
+Run 0: N: 600, M: 37, BS: 400	48.5875 Gflops
+Run 1: N: 600, M: 37, BS: 400	48.2827 Gflops
+Averaged: 			48.4351 Gflops
+
+Run 0: N: 600, M: 43, BS: 400	48.3768 Gflops
+Run 1: N: 600, M: 43, BS: 400	48.4563 Gflops
+Averaged: 			48.41655 Gflops
+
+Run 0: N: 600, M: 48, BS: 400	48.3748 Gflops
+Run 1: N: 600, M: 48, BS: 400	48.6686 Gflops
+Averaged: 			48.521699999999996 Gflops
+
+Run 0: N: 600, M: 50, BS: 400	48.7289 Gflops
+Run 1: N: 600, M: 50, BS: 400	48.7521 Gflops
+Averaged: 			48.7405 Gflops
+
+Run 0: N: 600, M: 61, BS: 400	48.499 Gflops
+Run 1: N: 600, M: 61, BS: 400	48.9066 Gflops
+Averaged: 			48.702799999999996 Gflops
+
+Run 0: N: 600, M: 64, BS: 400	48.5468 Gflops
+Run 1: N: 600, M: 64, BS: 400	48.5612 Gflops
+Averaged: 			48.554 Gflops
+
+Run 0: N: 600, M: 78, BS: 400	48.7715 Gflops
+Run 1: N: 600, M: 78, BS: 400	48.6737 Gflops
+Averaged: 			48.7226 Gflops
+
+Run 0: N: 600, M: 83, BS: 400	48.6218 Gflops
+Run 1: N: 600, M: 83, BS: 400	48.6837 Gflops
+Averaged: 			48.65275 Gflops
+
+Run 0: N: 600, M: 97, BS: 400	48.448 Gflops
+Run 1: N: 600, M: 97, BS: 400	48.2188 Gflops
+Averaged: 			48.3334 Gflops
+
+Run 0: N: 600, M: 100, BS: 400	48.6931 Gflops
+Run 1: N: 600, M: 100, BS: 400	48.3734 Gflops
+Averaged: 			48.533249999999995 Gflops
+
+Run 0: N: 711, M: 32, BS: 400	39.2973 Gflops
+Run 1: N: 711, M: 32, BS: 400	38.8687 Gflops
+Averaged: 			39.083 Gflops
+
+Run 0: N: 711, M: 37, BS: 400	39.212 Gflops
+Run 1: N: 711, M: 37, BS: 400	39.3128 Gflops
+Averaged: 			39.2624 Gflops
+
+Run 0: N: 711, M: 43, BS: 400	39.3395 Gflops
+Run 1: N: 711, M: 43, BS: 400	39.3816 Gflops
+Averaged: 			39.36055 Gflops
+
+Run 0: N: 711, M: 48, BS: 400	39.0699 Gflops
+Run 1: N: 711, M: 48, BS: 400	39.3416 Gflops
+Averaged: 			39.205749999999995 Gflops
+
+Run 0: N: 711, M: 50, BS: 400	37.8125 Gflops
+Run 1: N: 711, M: 50, BS: 400	39.2347 Gflops
+Averaged: 			38.5236 Gflops
+
+Run 0: N: 711, M: 61, BS: 400	39.5118 Gflops
+Run 1: N: 711, M: 61, BS: 400	39.0969 Gflops
+Averaged: 			39.30435 Gflops
+
+Run 0: N: 711, M: 64, BS: 400	39.1151 Gflops
+Run 1: N: 711, M: 64, BS: 400	39.1487 Gflops
+Averaged: 			39.1319 Gflops
+
+Run 0: N: 711, M: 78, BS: 400	39.0974 Gflops
+Run 1: N: 711, M: 78, BS: 400	39.0747 Gflops
+Averaged: 			39.08605 Gflops
+
+Run 0: N: 711, M: 83, BS: 400	39.2319 Gflops
+Run 1: N: 711, M: 83, BS: 400	39.0434 Gflops
+Averaged: 			39.13765 Gflops
+
+Run 0: N: 711, M: 97, BS: 400	38.7544 Gflops
+Run 1: N: 711, M: 97, BS: 400	38.8043 Gflops
+Averaged: 			38.779349999999994 Gflops
+
+Run 0: N: 711, M: 100, BS: 400	38.4589 Gflops
+Run 1: N: 711, M: 100, BS: 400	38.826 Gflops
+Averaged: 			38.64245 Gflops
+
+Run 0: N: 768, M: 32, BS: 400	49.2585 Gflops
+Run 1: N: 768, M: 32, BS: 400	47.8111 Gflops
+Averaged: 			48.534800000000004 Gflops
+
+Run 0: N: 768, M: 37, BS: 400	49.5614 Gflops
+Run 1: N: 768, M: 37, BS: 400	49.2465 Gflops
+Averaged: 			49.403949999999995 Gflops
+
+Run 0: N: 768, M: 43, BS: 400	49.5685 Gflops
+Run 1: N: 768, M: 43, BS: 400	49.6299 Gflops
+Averaged: 			49.599199999999996 Gflops
+
+Run 0: N: 768, M: 48, BS: 400	49.4988 Gflops
+Run 1: N: 768, M: 48, BS: 400	49.2696 Gflops
+Averaged: 			49.3842 Gflops
+
+Run 0: N: 768, M: 50, BS: 400	49.6527 Gflops
+Run 1: N: 768, M: 50, BS: 400	49.5218 Gflops
+Averaged: 			49.58725 Gflops
+
+Run 0: N: 768, M: 61, BS: 400	48.9636 Gflops
+Run 1: N: 768, M: 61, BS: 400	49.2577 Gflops
+Averaged: 			49.11065 Gflops
+
+Run 0: N: 768, M: 64, BS: 400	48.7821 Gflops
+Run 1: N: 768, M: 64, BS: 400	49.2319 Gflops
+Averaged: 			49.007000000000005 Gflops
+
+Run 0: N: 768, M: 78, BS: 400	48.7956 Gflops
+Run 1: N: 768, M: 78, BS: 400	48.4181 Gflops
+Averaged: 			48.60685 Gflops
+
+Run 0: N: 768, M: 83, BS: 400	48.9092 Gflops
+Run 1: N: 768, M: 83, BS: 400	48.4164 Gflops
+Averaged: 			48.662800000000004 Gflops
+
+Run 0: N: 768, M: 97, BS: 400	48.3278 Gflops
+Run 1: N: 768, M: 97, BS: 400	47.886 Gflops
+Averaged: 			48.1069 Gflops
+
+Run 0: N: 768, M: 100, BS: 400	47.8923 Gflops
+Run 1: N: 768, M: 100, BS: 400	47.7285 Gflops
+Averaged: 			47.8104 Gflops
+
+Run 0: N: 800, M: 32, BS: 400	50.5114 Gflops
+Run 1: N: 800, M: 32, BS: 400	50.3648 Gflops
+Averaged: 			50.438100000000006 Gflops
+
+Run 0: N: 800, M: 37, BS: 400	50.4295 Gflops
+Run 1: N: 800, M: 37, BS: 400	50.7296 Gflops
+Averaged: 			50.57955 Gflops
+
+Run 0: N: 800, M: 43, BS: 400	50.4932 Gflops
+Run 1: N: 800, M: 43, BS: 400	50.6949 Gflops
+Averaged: 			50.594049999999996 Gflops
+
+Run 0: N: 800, M: 48, BS: 400	50.7549 Gflops
+Run 1: N: 800, M: 48, BS: 400	50.8419 Gflops
+Averaged: 			50.7984 Gflops
+
+Run 0: N: 800, M: 50, BS: 400	50.616 Gflops
+Run 1: N: 800, M: 50, BS: 400	50.494 Gflops
+Averaged: 			50.555 Gflops
+
+Run 0: N: 800, M: 61, BS: 400	51.0371 Gflops
+Run 1: N: 800, M: 61, BS: 400	51.0137 Gflops
+Averaged: 			51.025400000000005 Gflops
+
+Run 0: N: 800, M: 64, BS: 400	50.0103 Gflops
+Run 1: N: 800, M: 64, BS: 400	50.5119 Gflops
+Averaged: 			50.2611 Gflops
+
+Run 0: N: 800, M: 78, BS: 400	49.7033 Gflops
+Run 1: N: 800, M: 78, BS: 400	50.4816 Gflops
+Averaged: 			50.09245 Gflops
+
+Run 0: N: 800, M: 83, BS: 400	50.1328 Gflops
+Run 1: N: 800, M: 83, BS: 400	50.6545 Gflops
+Averaged: 			50.39365 Gflops
+
+Run 0: N: 800, M: 97, BS: 400	49.3963 Gflops
+Run 1: N: 800, M: 97, BS: 400	49.7694 Gflops
+Averaged: 			49.58284999999999 Gflops
+
+Run 0: N: 800, M: 100, BS: 400	49.4853 Gflops
+Run 1: N: 800, M: 100, BS: 400	49.7169 Gflops
+Averaged: 			49.6011 Gflops
+
+Run 0: N: 829, M: 32, BS: 400	38.2608 Gflops
+Run 1: N: 829, M: 32, BS: 400	38.5336 Gflops
+Averaged: 			38.3972 Gflops
+
+Run 0: N: 829, M: 37, BS: 400	20.6289 Gflops
+Run 1: N: 829, M: 37, BS: 400	38.3838 Gflops
+Averaged: 			29.50635 Gflops
+
+Run 0: N: 829, M: 43, BS: 400	38.417 Gflops
+Run 1: N: 829, M: 43, BS: 400	38.3148 Gflops
+Averaged: 			38.365899999999996 Gflops
+
+Run 0: N: 829, M: 48, BS: 400	38.84 Gflops
+Run 1: N: 829, M: 48, BS: 400	38.6204 Gflops
+Averaged: 			38.730199999999996 Gflops
+
+Run 0: N: 829, M: 50, BS: 400	38.6916 Gflops
+Run 1: N: 829, M: 50, BS: 400	38.891 Gflops
+Averaged: 			38.7913 Gflops
+
+Run 0: N: 829, M: 61, BS: 400	38.9723 Gflops
+Run 1: N: 829, M: 61, BS: 400	38.8633 Gflops
+Averaged: 			38.9178 Gflops
+
+Run 0: N: 829, M: 64, BS: 400	38.5664 Gflops
+Run 1: N: 829, M: 64, BS: 400	38.7589 Gflops
+Averaged: 			38.66265 Gflops
+
+Run 0: N: 829, M: 78, BS: 400	38.6964 Gflops
+Run 1: N: 829, M: 78, BS: 400	38.7263 Gflops
+Averaged: 			38.711349999999996 Gflops
+
+Run 0: N: 829, M: 83, BS: 400	38.5565 Gflops
+Run 1: N: 829, M: 83, BS: 400	38.4432 Gflops
+Averaged: 			38.499849999999995 Gflops
+
+Run 0: N: 829, M: 97, BS: 400	38.5227 Gflops
+Run 1: N: 829, M: 97, BS: 400	38.42 Gflops
+Averaged: 			38.47135 Gflops
+
+Run 0: N: 829, M: 100, BS: 400	38.385 Gflops
+Run 1: N: 829, M: 100, BS: 400	38.4965 Gflops
+Averaged: 			38.440749999999994 Gflops
+
+Run 0: N: 859, M: 32, BS: 400	39.6531 Gflops
+Run 1: N: 859, M: 32, BS: 400	39.5897 Gflops
+Averaged: 			39.6214 Gflops
+
+Run 0: N: 859, M: 37, BS: 400	39.9667 Gflops
+Run 1: N: 859, M: 37, BS: 400	39.8543 Gflops
+Averaged: 			39.9105 Gflops
+
+Run 0: N: 859, M: 43, BS: 400	39.5345 Gflops
+Run 1: N: 859, M: 43, BS: 400	40.0645 Gflops
+Averaged: 			39.7995 Gflops
+
+Run 0: N: 859, M: 48, BS: 400	39.9864 Gflops
+Run 1: N: 859, M: 48, BS: 400	40.1475 Gflops
+Averaged: 			40.066950000000006 Gflops
+
+Run 0: N: 859, M: 50, BS: 400	40.0719 Gflops
+Run 1: N: 859, M: 50, BS: 400	39.9141 Gflops
+Averaged: 			39.992999999999995 Gflops
+
+Run 0: N: 859, M: 61, BS: 400	40.2005 Gflops
+Run 1: N: 859, M: 61, BS: 400	40.0574 Gflops
+Averaged: 			40.12895 Gflops
+
+Run 0: N: 859, M: 64, BS: 400	39.6339 Gflops
+Run 1: N: 859, M: 64, BS: 400	39.9202 Gflops
+Averaged: 			39.77705 Gflops
+
+Run 0: N: 859, M: 78, BS: 400	39.8242 Gflops
+Run 1: N: 859, M: 78, BS: 400	39.8937 Gflops
+Averaged: 			39.85895 Gflops
+
+Run 0: N: 859, M: 83, BS: 400	39.6376 Gflops
+Run 1: N: 859, M: 83, BS: 400	39.592 Gflops
+Averaged: 			39.6148 Gflops
+
+Run 0: N: 859, M: 97, BS: 400	39.4438 Gflops
+Run 1: N: 859, M: 97, BS: 400	39.5846 Gflops
+Averaged: 			39.5142 Gflops
+
+Run 0: N: 859, M: 100, BS: 400	39.2206 Gflops
+Run 1: N: 859, M: 100, BS: 400	39.514 Gflops
+Averaged: 			39.3673 Gflops
+
+Run 0: N: 907, M: 32, BS: 400	39.2621 Gflops
+Run 1: N: 907, M: 32, BS: 400	39.5682 Gflops
+Averaged: 			39.41515 Gflops
+
+Run 0: N: 907, M: 37, BS: 400	39.5435 Gflops
+Run 1: N: 907, M: 37, BS: 400	39.5708 Gflops
+Averaged: 			39.55715 Gflops
+
+Run 0: N: 907, M: 43, BS: 400	39.6339 Gflops
+Run 1: N: 907, M: 43, BS: 400	39.7631 Gflops
+Averaged: 			39.698499999999996 Gflops
+
+Run 0: N: 907, M: 48, BS: 400	39.606 Gflops
+Run 1: N: 907, M: 48, BS: 400	39.4188 Gflops
+Averaged: 			39.5124 Gflops
+
+Run 0: N: 907, M: 50, BS: 400	39.5172 Gflops
+Run 1: N: 907, M: 50, BS: 400	39.6571 Gflops
+Averaged: 			39.58715 Gflops
+
+Run 0: N: 907, M: 61, BS: 400	39.6982 Gflops
+Run 1: N: 907, M: 61, BS: 400	39.6303 Gflops
+Averaged: 			39.664249999999996 Gflops
+
+Run 0: N: 907, M: 64, BS: 400	39.4836 Gflops
+Run 1: N: 907, M: 64, BS: 400	39.5977 Gflops
+Averaged: 			39.54065 Gflops
+
+Run 0: N: 907, M: 78, BS: 400	39.681 Gflops
+Run 1: N: 907, M: 78, BS: 400	39.6419 Gflops
+Averaged: 			39.66145 Gflops
+
+Run 0: N: 907, M: 83, BS: 400	38.7654 Gflops
+Run 1: N: 907, M: 83, BS: 400	39.3622 Gflops
+Averaged: 			39.0638 Gflops
+
+Run 0: N: 907, M: 97, BS: 400	39.2904 Gflops
+Run 1: N: 907, M: 97, BS: 400	38.8235 Gflops
+Averaged: 			39.05695 Gflops
+
+Run 0: N: 907, M: 100, BS: 400	39.1272 Gflops
+Run 1: N: 907, M: 100, BS: 400	39.1039 Gflops
+Averaged: 			39.11555 Gflops
+
+Run 0: N: 948, M: 32, BS: 400	45.4307 Gflops
+Run 1: N: 948, M: 32, BS: 400	45.3518 Gflops
+Averaged: 			45.39125 Gflops
+
+Run 0: N: 948, M: 37, BS: 400	45.7014 Gflops
+Run 1: N: 948, M: 37, BS: 400	45.7038 Gflops
+Averaged: 			45.702600000000004 Gflops
+
+Run 0: N: 948, M: 43, BS: 400	45.363 Gflops
+Run 1: N: 948, M: 43, BS: 400	45.7553 Gflops
+Averaged: 			45.55915 Gflops
+
+Run 0: N: 948, M: 48, BS: 400	45.6417 Gflops
+Run 1: N: 948, M: 48, BS: 400	45.7809 Gflops
+Averaged: 			45.7113 Gflops
+
+Run 0: N: 948, M: 50, BS: 400	45.8501 Gflops
+Run 1: N: 948, M: 50, BS: 400	45.9346 Gflops
+Averaged: 			45.89235 Gflops
+
+Run 0: N: 948, M: 61, BS: 400	45.9763 Gflops
+Run 1: N: 948, M: 61, BS: 400	45.9573 Gflops
+Averaged: 			45.9668 Gflops
+
+Run 0: N: 948, M: 64, BS: 400	45.7154 Gflops
+Run 1: N: 948, M: 64, BS: 400	45.3057 Gflops
+Averaged: 			45.51055 Gflops
+
+Run 0: N: 948, M: 78, BS: 400	45.4597 Gflops
+Run 1: N: 948, M: 78, BS: 400	45.7868 Gflops
+Averaged: 			45.62325 Gflops
+
+Run 0: N: 948, M: 83, BS: 400	45.1332 Gflops
+Run 1: N: 948, M: 83, BS: 400	45.6685 Gflops
+Averaged: 			45.400850000000005 Gflops
+
+Run 0: N: 948, M: 97, BS: 400	45.0273 Gflops
+Run 1: N: 948, M: 97, BS: 400	44.6372 Gflops
+Averaged: 			44.83225 Gflops
+
+Run 0: N: 948, M: 100, BS: 400	45.0369 Gflops
+Run 1: N: 948, M: 100, BS: 400	44.4941 Gflops
+Averaged: 			44.7655 Gflops
+
+Run 0: N: 1000, M: 32, BS: 400	48.6643 Gflops
+Run 1: N: 1000, M: 32, BS: 400	48.2419 Gflops
+Averaged: 			48.4531 Gflops
+
+Run 0: N: 1000, M: 37, BS: 400	48.7895 Gflops
+Run 1: N: 1000, M: 37, BS: 400	48.3507 Gflops
+Averaged: 			48.5701 Gflops
+
+Run 0: N: 1000, M: 43, BS: 400	48.6387 Gflops
+Run 1: N: 1000, M: 43, BS: 400	48.8363 Gflops
+Averaged: 			48.7375 Gflops
+
+Run 0: N: 1000, M: 48, BS: 400	48.8359 Gflops
+Run 1: N: 1000, M: 48, BS: 400	48.9671 Gflops
+Averaged: 			48.9015 Gflops
+
+Run 0: N: 1000, M: 50, BS: 400	48.7604 Gflops
+Run 1: N: 1000, M: 50, BS: 400	48.9667 Gflops
+Averaged: 			48.863550000000004 Gflops
+
+Run 0: N: 1000, M: 61, BS: 400	48.9668 Gflops
+Run 1: N: 1000, M: 61, BS: 400	48.7078 Gflops
+Averaged: 			48.8373 Gflops
+
+Run 0: N: 1000, M: 64, BS: 400	48.578 Gflops
+Run 1: N: 1000, M: 64, BS: 400	49.1602 Gflops
+Averaged: 			48.8691 Gflops
+
+Run 0: N: 1000, M: 78, BS: 400	48.3735 Gflops
+Run 1: N: 1000, M: 78, BS: 400	48.5306 Gflops
+Averaged: 			48.45205 Gflops
+
+Run 0: N: 1000, M: 83, BS: 400	48.8842 Gflops
+Run 1: N: 1000, M: 83, BS: 400	48.5096 Gflops
+Averaged: 			48.6969 Gflops
+
+Run 0: N: 1000, M: 97, BS: 400	47.939 Gflops
+Run 1: N: 1000, M: 97, BS: 400	47.46 Gflops
+Averaged: 			47.6995 Gflops
+
+Run 0: N: 1000, M: 100, BS: 400	48.0293 Gflops
+Run 1: N: 1000, M: 100, BS: 400	48.0455 Gflops
+Averaged: 			48.0374 Gflops
+
+Run 0: N: 1024, M: 32, BS: 400	45.582 Gflops
+Run 1: N: 1024, M: 32, BS: 400	45.8032 Gflops
+Averaged: 			45.6926 Gflops
+
+Run 0: N: 1024, M: 37, BS: 400	45.9284 Gflops
+Run 1: N: 1024, M: 37, BS: 400	45.7866 Gflops
+Averaged: 			45.8575 Gflops
+
+Run 0: N: 1024, M: 43, BS: 400	46.0446 Gflops
+Run 1: N: 1024, M: 43, BS: 400	46.1875 Gflops
+Averaged: 			46.11605 Gflops
+
+Run 0: N: 1024, M: 48, BS: 400	45.6915 Gflops
+Run 1: N: 1024, M: 48, BS: 400	46.0363 Gflops
+Averaged: 			45.8639 Gflops
+
+Run 0: N: 1024, M: 50, BS: 400	46.0132 Gflops
+Run 1: N: 1024, M: 50, BS: 400	45.5127 Gflops
+Averaged: 			45.762950000000004 Gflops
+
+Run 0: N: 1024, M: 61, BS: 400	45.3418 Gflops
+Run 1: N: 1024, M: 61, BS: 400	45.2771 Gflops
+Averaged: 			45.30945 Gflops
+
+Run 0: N: 1024, M: 64, BS: 400	45.3788 Gflops
+Run 1: N: 1024, M: 64, BS: 400	45.5687 Gflops
+Averaged: 			45.473749999999995 Gflops
+
+Run 0: N: 1024, M: 78, BS: 400	45.083 Gflops
+Run 1: N: 1024, M: 78, BS: 400	45.102 Gflops
+Averaged: 			45.0925 Gflops
+
+Run 0: N: 1024, M: 83, BS: 400	45.077 Gflops
+Run 1: N: 1024, M: 83, BS: 400	44.9465 Gflops
+Averaged: 			45.01175 Gflops
+
+Run 0: N: 1024, M: 97, BS: 400	44.8014 Gflops
+Run 1: N: 1024, M: 97, BS: 400	41.0936 Gflops
+Averaged: 			42.947500000000005 Gflops
+
+Run 0: N: 1024, M: 100, BS: 400	44.7038 Gflops
+Run 1: N: 1024, M: 100, BS: 400	44.9906 Gflops
+Averaged: 			44.8472 Gflops
+
+Run 0: N: 1111, M: 32, BS: 400	40.1485 Gflops
+Run 1: N: 1111, M: 32, BS: 400	40.0467 Gflops
+Averaged: 			40.0976 Gflops
+
+Run 0: N: 1111, M: 37, BS: 400	40.0476 Gflops
+Run 1: N: 1111, M: 37, BS: 400	39.9695 Gflops
+Averaged: 			40.00855 Gflops
+
+Run 0: N: 1111, M: 43, BS: 400	40.3494 Gflops
+Run 1: N: 1111, M: 43, BS: 400	40.4156 Gflops
+Averaged: 			40.3825 Gflops
+
+Run 0: N: 1111, M: 48, BS: 400	40.3234 Gflops
+Run 1: N: 1111, M: 48, BS: 400	40.3039 Gflops
+Averaged: 			40.313649999999996 Gflops
+
+Run 0: N: 1111, M: 50, BS: 400	39.156 Gflops
+Run 1: N: 1111, M: 50, BS: 400	40.4151 Gflops
+Averaged: 			39.78555 Gflops
+
+Run 0: N: 1111, M: 61, BS: 400	40.2515 Gflops
+Run 1: N: 1111, M: 61, BS: 400	40.4566 Gflops
+Averaged: 			40.35405 Gflops
+
+Run 0: N: 1111, M: 64, BS: 400	40.3562 Gflops
+Run 1: N: 1111, M: 64, BS: 400	40.4388 Gflops
+Averaged: 			40.3975 Gflops
+
+Run 0: N: 1111, M: 78, BS: 400	40.3968 Gflops
+Run 1: N: 1111, M: 78, BS: 400	39.9669 Gflops
+Averaged: 			40.18185 Gflops
+
+Run 0: N: 1111, M: 83, BS: 400	40.185 Gflops
+Run 1: N: 1111, M: 83, BS: 400	39.9522 Gflops
+Averaged: 			40.0686 Gflops
+
+Run 0: N: 1111, M: 97, BS: 400	39.7182 Gflops
+Run 1: N: 1111, M: 97, BS: 400	40.0141 Gflops
+Averaged: 			39.866150000000005 Gflops
+
+Run 0: N: 1111, M: 100, BS: 400	39.6734 Gflops
+Run 1: N: 1111, M: 100, BS: 400	39.4263 Gflops
+Averaged: 			39.54985 Gflops
+
+Run 0: N: 1213, M: 32, BS: 400	40.8224 Gflops
+Run 1: N: 1213, M: 32, BS: 400	40.4397 Gflops
+Averaged: 			40.63105 Gflops
+
+Run 0: N: 1213, M: 37, BS: 400	40.7221 Gflops
+Run 1: N: 1213, M: 37, BS: 400	40.6976 Gflops
+Averaged: 			40.70985 Gflops
+
+Run 0: N: 1213, M: 43, BS: 400	41.0664 Gflops
+Run 1: N: 1213, M: 43, BS: 400	40.4767 Gflops
+Averaged: 			40.771550000000005 Gflops
+
+Run 0: N: 1213, M: 48, BS: 400	41.0287 Gflops
+Run 1: N: 1213, M: 48, BS: 400	41.0962 Gflops
+Averaged: 			41.06245 Gflops
+
+Run 0: N: 1213, M: 50, BS: 400	41.0789 Gflops
+Run 1: N: 1213, M: 50, BS: 400	41.047 Gflops
+Averaged: 			41.06295 Gflops
+
+Run 0: N: 1213, M: 61, BS: 400	40.8679 Gflops
+Run 1: N: 1213, M: 61, BS: 400	41.2689 Gflops
+Averaged: 			41.0684 Gflops
+
+Run 0: N: 1213, M: 64, BS: 400	41.1833 Gflops
+Run 1: N: 1213, M: 64, BS: 400	41.2329 Gflops
+Averaged: 			41.2081 Gflops
+
+Run 0: N: 1213, M: 78, BS: 400	41.1086 Gflops
+Run 1: N: 1213, M: 78, BS: 400	40.2609 Gflops
+Averaged: 			40.68475 Gflops
+
+Run 0: N: 1213, M: 83, BS: 400	40.9633 Gflops
+Run 1: N: 1213, M: 83, BS: 400	40.6518 Gflops
+Averaged: 			40.80755 Gflops
+
+Run 0: N: 1213, M: 97, BS: 400	40.4643 Gflops
+Run 1: N: 1213, M: 97, BS: 400	40.2036 Gflops
+Averaged: 			40.33395 Gflops
+
+Run 0: N: 1213, M: 100, BS: 400	40.4278 Gflops
+Run 1: N: 1213, M: 100, BS: 400	40.3377 Gflops
+Averaged: 			40.38275 Gflops
+
+Run 0: N: 1264, M: 32, BS: 400	46.6617 Gflops
+Run 1: N: 1264, M: 32, BS: 400	46.7203 Gflops
+Averaged: 			46.691 Gflops
+
+Run 0: N: 1264, M: 37, BS: 400	46.8645 Gflops
+Run 1: N: 1264, M: 37, BS: 400	46.9418 Gflops
+Averaged: 			46.90315 Gflops
+
+Run 0: N: 1264, M: 43, BS: 400	47.1094 Gflops
+Run 1: N: 1264, M: 43, BS: 400	47.1839 Gflops
+Averaged: 			47.14665 Gflops
+
+Run 0: N: 1264, M: 48, BS: 400	47.2808 Gflops
+Run 1: N: 1264, M: 48, BS: 400	47.1889 Gflops
+Averaged: 			47.234849999999994 Gflops
+
+Run 0: N: 1264, M: 50, BS: 400	47.1562 Gflops
+Run 1: N: 1264, M: 50, BS: 400	47.1214 Gflops
+Averaged: 			47.1388 Gflops
+
+Run 0: N: 1264, M: 61, BS: 400	46.6983 Gflops
+Run 1: N: 1264, M: 61, BS: 400	47.3101 Gflops
+Averaged: 			47.0042 Gflops
+
+Run 0: N: 1264, M: 64, BS: 400	47.1366 Gflops
+Run 1: N: 1264, M: 64, BS: 400	47.382 Gflops
+Averaged: 			47.259299999999996 Gflops
+
+Run 0: N: 1264, M: 78, BS: 400	46.7788 Gflops
+Run 1: N: 1264, M: 78, BS: 400	46.443 Gflops
+Averaged: 			46.6109 Gflops
+
+Run 0: N: 1264, M: 83, BS: 400	46.4828 Gflops
+Run 1: N: 1264, M: 83, BS: 400	46.3386 Gflops
+Averaged: 			46.4107 Gflops
+
+Run 0: N: 1264, M: 97, BS: 400	46.0268 Gflops
+Run 1: N: 1264, M: 97, BS: 400	45.9462 Gflops
+Averaged: 			45.9865 Gflops
+
+Run 0: N: 1264, M: 100, BS: 400	45.6277 Gflops
+Run 1: N: 1264, M: 100, BS: 400	45.8898 Gflops
+Averaged: 			45.75875 Gflops
+
+Run 0: N: 1333, M: 32, BS: 400	41.4145 Gflops
+Run 1: N: 1333, M: 32, BS: 400	41.3578 Gflops
+Averaged: 			41.38615 Gflops
+
+Run 0: N: 1333, M: 37, BS: 400	41.5482 Gflops
+Run 1: N: 1333, M: 37, BS: 400	41.4129 Gflops
+Averaged: 			41.48055 Gflops
+
+Run 0: N: 1333, M: 43, BS: 400	41.1796 Gflops
+Run 1: N: 1333, M: 43, BS: 400	41.3989 Gflops
+Averaged: 			41.289249999999996 Gflops
+
+Run 0: N: 1333, M: 48, BS: 400	41.4677 Gflops
+Run 1: N: 1333, M: 48, BS: 400	41.4466 Gflops
+Averaged: 			41.45715 Gflops
+
+Run 0: N: 1333, M: 50, BS: 400	41.5419 Gflops
+Run 1: N: 1333, M: 50, BS: 400	41.2223 Gflops
+Averaged: 			41.382099999999994 Gflops
+
+Run 0: N: 1333, M: 61, BS: 400	41.4512 Gflops
+Run 1: N: 1333, M: 61, BS: 400	41.0057 Gflops
+Averaged: 			41.228449999999995 Gflops
+
+Run 0: N: 1333, M: 64, BS: 400	41.4376 Gflops
+Run 1: N: 1333, M: 64, BS: 400	40.9974 Gflops
+Averaged: 			41.2175 Gflops
+
+Run 0: N: 1333, M: 78, BS: 400	41.2968 Gflops
+Run 1: N: 1333, M: 78, BS: 400	40.9657 Gflops
+Averaged: 			41.131249999999994 Gflops
+
+Run 0: N: 1333, M: 83, BS: 400	40.9281 Gflops
+Run 1: N: 1333, M: 83, BS: 400	41.0213 Gflops
+Averaged: 			40.9747 Gflops
+
+Run 0: N: 1333, M: 97, BS: 400	40.8118 Gflops
+Run 1: N: 1333, M: 97, BS: 400	40.7214 Gflops
+Averaged: 			40.7666 Gflops
+
+Run 0: N: 1333, M: 100, BS: 400	40.6975 Gflops
+Run 1: N: 1333, M: 100, BS: 400	40.4502 Gflops
+Averaged: 			40.57385 Gflops
+
+Run 0: N: 400, M: 32, BS: 500	50.697 Gflops
+Run 1: N: 400, M: 32, BS: 500	51.4467 Gflops
+Averaged: 			51.07185 Gflops
+
+Run 0: N: 400, M: 37, BS: 500	51.7136 Gflops
+Run 1: N: 400, M: 37, BS: 500	51.0852 Gflops
+Averaged: 			51.3994 Gflops
+
+Run 0: N: 400, M: 43, BS: 500	51.8871 Gflops
+Run 1: N: 400, M: 43, BS: 500	51.63 Gflops
+Averaged: 			51.75855 Gflops
+
+Run 0: N: 400, M: 48, BS: 500	50.9169 Gflops
+Run 1: N: 400, M: 48, BS: 500	51.6004 Gflops
+Averaged: 			51.25865 Gflops
+
+Run 0: N: 400, M: 50, BS: 500	51.6201 Gflops
+Run 1: N: 400, M: 50, BS: 500	51.9817 Gflops
+Averaged: 			51.8009 Gflops
+
+Run 0: N: 400, M: 61, BS: 500	52.0197 Gflops
+Run 1: N: 400, M: 61, BS: 500	52.1084 Gflops
+Averaged: 			52.06405 Gflops
+
+Run 0: N: 400, M: 64, BS: 500	51.7785 Gflops
+Run 1: N: 400, M: 64, BS: 500	52.0225 Gflops
+Averaged: 			51.9005 Gflops
+
+Run 0: N: 400, M: 78, BS: 500	51.8422 Gflops
+Run 1: N: 400, M: 78, BS: 500	51.8616 Gflops
+Averaged: 			51.8519 Gflops
+
+Run 0: N: 400, M: 83, BS: 500	52.086 Gflops
+Run 1: N: 400, M: 83, BS: 500	51.8841 Gflops
+Averaged: 			51.98505 Gflops
+
+Run 0: N: 400, M: 97, BS: 500	51.5317 Gflops
+Run 1: N: 400, M: 97, BS: 500	51.398 Gflops
+Averaged: 			51.46485 Gflops
+
+Run 0: N: 400, M: 100, BS: 500	51.6493 Gflops
+Run 1: N: 400, M: 100, BS: 500	51.9375 Gflops
+Averaged: 			51.7934 Gflops
+
+Run 0: N: 439, M: 32, BS: 500	36.9948 Gflops
+Run 1: N: 439, M: 32, BS: 500	36.9476 Gflops
+Averaged: 			36.971199999999996 Gflops
+
+Run 0: N: 439, M: 37, BS: 500	36.3509 Gflops
+Run 1: N: 439, M: 37, BS: 500	36.4177 Gflops
+Averaged: 			36.3843 Gflops
+
+Run 0: N: 439, M: 43, BS: 500	36.9132 Gflops
+Run 1: N: 439, M: 43, BS: 500	36.867 Gflops
+Averaged: 			36.890100000000004 Gflops
+
+Run 0: N: 439, M: 48, BS: 500	36.1691 Gflops
+Run 1: N: 439, M: 48, BS: 500	37.0293 Gflops
+Averaged: 			36.599199999999996 Gflops
+
+Run 0: N: 439, M: 50, BS: 500	36.9923 Gflops
+Run 1: N: 439, M: 50, BS: 500	36.7668 Gflops
+Averaged: 			36.87955 Gflops
+
+Run 0: N: 439, M: 61, BS: 500	36.7455 Gflops
+Run 1: N: 439, M: 61, BS: 500	36.7356 Gflops
+Averaged: 			36.74055 Gflops
+
+Run 0: N: 439, M: 64, BS: 500	36.3533 Gflops
+Run 1: N: 439, M: 64, BS: 500	36.2856 Gflops
+Averaged: 			36.31945 Gflops
+
+Run 0: N: 439, M: 78, BS: 500	36.9502 Gflops
+Run 1: N: 439, M: 78, BS: 500	36.6298 Gflops
+Averaged: 			36.790000000000006 Gflops
+
+Run 0: N: 439, M: 83, BS: 500	36.8091 Gflops
+Run 1: N: 439, M: 83, BS: 500	36.4195 Gflops
+Averaged: 			36.6143 Gflops
+
+Run 0: N: 439, M: 97, BS: 500	36.3149 Gflops
+Run 1: N: 439, M: 97, BS: 500	36.446 Gflops
+Averaged: 			36.380449999999996 Gflops
+
+Run 0: N: 439, M: 100, BS: 500	36.3338 Gflops
+Run 1: N: 439, M: 100, BS: 500	36.834 Gflops
+Averaged: 			36.5839 Gflops
+
+Run 0: N: 499, M: 32, BS: 500	40.3349 Gflops
+Run 1: N: 499, M: 32, BS: 500	40.3441 Gflops
+Averaged: 			40.3395 Gflops
+
+Run 0: N: 499, M: 37, BS: 500	40.4548 Gflops
+Run 1: N: 499, M: 37, BS: 500	40.4774 Gflops
+Averaged: 			40.4661 Gflops
+
+Run 0: N: 499, M: 43, BS: 500	40.193 Gflops
+Run 1: N: 499, M: 43, BS: 500	40.362 Gflops
+Averaged: 			40.2775 Gflops
+
+Run 0: N: 499, M: 48, BS: 500	40.3658 Gflops
+Run 1: N: 499, M: 48, BS: 500	39.7498 Gflops
+Averaged: 			40.0578 Gflops
+
+Run 0: N: 499, M: 50, BS: 500	39.8016 Gflops
+Run 1: N: 499, M: 50, BS: 500	40.2675 Gflops
+Averaged: 			40.034549999999996 Gflops
+
+Run 0: N: 499, M: 61, BS: 500	40.1734 Gflops
+Run 1: N: 499, M: 61, BS: 500	39.7676 Gflops
+Averaged: 			39.9705 Gflops
+
+Run 0: N: 499, M: 64, BS: 500	40.1958 Gflops
+Run 1: N: 499, M: 64, BS: 500	40.0148 Gflops
+Averaged: 			40.1053 Gflops
+
+Run 0: N: 499, M: 78, BS: 500	39.718 Gflops
+Run 1: N: 499, M: 78, BS: 500	39.9163 Gflops
+Averaged: 			39.81715 Gflops
+
+Run 0: N: 499, M: 83, BS: 500	40.0352 Gflops
+Run 1: N: 499, M: 83, BS: 500	39.9635 Gflops
+Averaged: 			39.99935000000001 Gflops
+
+Run 0: N: 499, M: 97, BS: 500	39.2242 Gflops
+Run 1: N: 499, M: 97, BS: 500	39.7418 Gflops
+Averaged: 			39.483000000000004 Gflops
+
+Run 0: N: 499, M: 100, BS: 500	39.9505 Gflops
+Run 1: N: 499, M: 100, BS: 500	40.2838 Gflops
+Averaged: 			40.117149999999995 Gflops
+
+Run 0: N: 512, M: 32, BS: 500	41.1116 Gflops
+Run 1: N: 512, M: 32, BS: 500	40.8473 Gflops
+Averaged: 			40.97945 Gflops
+
+Run 0: N: 512, M: 37, BS: 500	40.531 Gflops
+Run 1: N: 512, M: 37, BS: 500	41.4214 Gflops
+Averaged: 			40.9762 Gflops
+
+Run 0: N: 512, M: 43, BS: 500	41.716 Gflops
+Run 1: N: 512, M: 43, BS: 500	41.5176 Gflops
+Averaged: 			41.6168 Gflops
+
+Run 0: N: 512, M: 48, BS: 500	41.4834 Gflops
+Run 1: N: 512, M: 48, BS: 500	41.6114 Gflops
+Averaged: 			41.5474 Gflops
+
+Run 0: N: 512, M: 50, BS: 500	41.0369 Gflops
+Run 1: N: 512, M: 50, BS: 500	41.3981 Gflops
+Averaged: 			41.2175 Gflops
+
+Run 0: N: 512, M: 61, BS: 500	41.4016 Gflops
+Run 1: N: 512, M: 61, BS: 500	40.5861 Gflops
+Averaged: 			40.99385 Gflops
+
+Run 0: N: 512, M: 64, BS: 500	40.5266 Gflops
+Run 1: N: 512, M: 64, BS: 500	40.6736 Gflops
+Averaged: 			40.6001 Gflops
+
+Run 0: N: 512, M: 78, BS: 500	41.1203 Gflops
+Run 1: N: 512, M: 78, BS: 500	40.6932 Gflops
+Averaged: 			40.90675 Gflops
+
+Run 0: N: 512, M: 83, BS: 500	40.6068 Gflops
+Run 1: N: 512, M: 83, BS: 500	40.6584 Gflops
+Averaged: 			40.6326 Gflops
+
+Run 0: N: 512, M: 97, BS: 500	40.9221 Gflops
+Run 1: N: 512, M: 97, BS: 500	40.1587 Gflops
+Averaged: 			40.540400000000005 Gflops
+
+Run 0: N: 512, M: 100, BS: 500	40.3733 Gflops
+Run 1: N: 512, M: 100, BS: 500	41.109 Gflops
+Averaged: 			40.741150000000005 Gflops
+
+ERROR:	 Run 0: N: 533, M: 32, BS: 500
+ERROR:	 Run 0: N: 533, M: 37, BS: 500
+ERROR:	 Run 0: N: 533, M: 43, BS: 500
+ERROR:	 Run 0: N: 533, M: 48, BS: 500
+ERROR:	 Run 0: N: 533, M: 50, BS: 500
+ERROR:	 Run 0: N: 533, M: 61, BS: 500
+ERROR:	 Run 0: N: 533, M: 64, BS: 500
+ERROR:	 Run 0: N: 533, M: 78, BS: 500
+ERROR:	 Run 0: N: 533, M: 83, BS: 500
+ERROR:	 Run 0: N: 533, M: 97, BS: 500
+ERROR:	 Run 0: N: 533, M: 100, BS: 500
+ERROR:	 Run 0: N: 571, M: 32, BS: 500
+ERROR:	 Run 0: N: 571, M: 37, BS: 500
+ERROR:	 Run 0: N: 571, M: 43, BS: 500
+ERROR:	 Run 0: N: 571, M: 48, BS: 500
+ERROR:	 Run 0: N: 571, M: 50, BS: 500
+ERROR:	 Run 0: N: 571, M: 61, BS: 500
+ERROR:	 Run 0: N: 571, M: 64, BS: 500
+ERROR:	 Run 0: N: 571, M: 78, BS: 500
+ERROR:	 Run 0: N: 571, M: 83, BS: 500
+ERROR:	 Run 0: N: 571, M: 97, BS: 500
+ERROR:	 Run 0: N: 571, M: 100, BS: 500
+ERROR:	 Run 0: N: 600, M: 32, BS: 500
+ERROR:	 Run 0: N: 600, M: 37, BS: 500
+ERROR:	 Run 0: N: 600, M: 43, BS: 500
+ERROR:	 Run 0: N: 600, M: 48, BS: 500
+ERROR:	 Run 0: N: 600, M: 50, BS: 500
+ERROR:	 Run 0: N: 600, M: 61, BS: 500
+ERROR:	 Run 0: N: 600, M: 64, BS: 500
+ERROR:	 Run 0: N: 600, M: 78, BS: 500
+ERROR:	 Run 0: N: 600, M: 83, BS: 500
+ERROR:	 Run 0: N: 600, M: 97, BS: 500
+ERROR:	 Run 0: N: 600, M: 100, BS: 500
+ERROR:	 Run 0: N: 711, M: 32, BS: 500
+ERROR:	 Run 0: N: 711, M: 37, BS: 500
+ERROR:	 Run 0: N: 711, M: 43, BS: 500
+ERROR:	 Run 0: N: 711, M: 48, BS: 500
+ERROR:	 Run 0: N: 711, M: 50, BS: 500
+ERROR:	 Run 0: N: 711, M: 61, BS: 500
+ERROR:	 Run 0: N: 711, M: 64, BS: 500
+ERROR:	 Run 0: N: 711, M: 78, BS: 500
+ERROR:	 Run 0: N: 711, M: 83, BS: 500
+ERROR:	 Run 0: N: 711, M: 97, BS: 500
+ERROR:	 Run 0: N: 711, M: 100, BS: 500
+ERROR:	 Run 0: N: 768, M: 32, BS: 500
+ERROR:	 Run 0: N: 768, M: 37, BS: 500
+ERROR:	 Run 0: N: 768, M: 43, BS: 500
+ERROR:	 Run 0: N: 768, M: 48, BS: 500
+ERROR:	 Run 0: N: 768, M: 50, BS: 500
+ERROR:	 Run 0: N: 768, M: 61, BS: 500
+ERROR:	 Run 0: N: 768, M: 64, BS: 500
+ERROR:	 Run 0: N: 768, M: 78, BS: 500
+ERROR:	 Run 0: N: 768, M: 83, BS: 500
+ERROR:	 Run 0: N: 768, M: 97, BS: 500
+ERROR:	 Run 0: N: 768, M: 100, BS: 500
+ERROR:	 Run 0: N: 800, M: 32, BS: 500
+ERROR:	 Run 0: N: 800, M: 37, BS: 500
+ERROR:	 Run 0: N: 800, M: 43, BS: 500
+ERROR:	 Run 0: N: 800, M: 48, BS: 500
+ERROR:	 Run 0: N: 800, M: 50, BS: 500
+ERROR:	 Run 0: N: 800, M: 61, BS: 500
+ERROR:	 Run 0: N: 800, M: 64, BS: 500
+ERROR:	 Run 0: N: 800, M: 78, BS: 500
+ERROR:	 Run 0: N: 800, M: 83, BS: 500
+ERROR:	 Run 0: N: 800, M: 97, BS: 500
+ERROR:	 Run 0: N: 800, M: 100, BS: 500
+ERROR:	 Run 0: N: 829, M: 32, BS: 500
+ERROR:	 Run 0: N: 829, M: 37, BS: 500
+ERROR:	 Run 0: N: 829, M: 43, BS: 500
+ERROR:	 Run 0: N: 829, M: 48, BS: 500
+ERROR:	 Run 0: N: 829, M: 50, BS: 500
+ERROR:	 Run 0: N: 829, M: 61, BS: 500
+ERROR:	 Run 0: N: 829, M: 64, BS: 500
+ERROR:	 Run 0: N: 829, M: 78, BS: 500
+ERROR:	 Run 0: N: 829, M: 83, BS: 500
+ERROR:	 Run 0: N: 829, M: 97, BS: 500
+ERROR:	 Run 0: N: 829, M: 100, BS: 500
+ERROR:	 Run 0: N: 859, M: 32, BS: 500
+ERROR:	 Run 0: N: 859, M: 37, BS: 500
+ERROR:	 Run 0: N: 859, M: 43, BS: 500
+ERROR:	 Run 0: N: 859, M: 48, BS: 500
+ERROR:	 Run 0: N: 859, M: 50, BS: 500
+ERROR:	 Run 0: N: 859, M: 61, BS: 500
+ERROR:	 Run 0: N: 859, M: 64, BS: 500
+ERROR:	 Run 0: N: 859, M: 78, BS: 500
+ERROR:	 Run 0: N: 859, M: 83, BS: 500
+ERROR:	 Run 0: N: 859, M: 97, BS: 500
+ERROR:	 Run 0: N: 859, M: 100, BS: 500
+ERROR:	 Run 0: N: 907, M: 32, BS: 500
+ERROR:	 Run 0: N: 907, M: 37, BS: 500
+ERROR:	 Run 0: N: 907, M: 43, BS: 500
+ERROR:	 Run 0: N: 907, M: 48, BS: 500
+ERROR:	 Run 0: N: 907, M: 50, BS: 500
+ERROR:	 Run 0: N: 907, M: 61, BS: 500
+ERROR:	 Run 0: N: 907, M: 64, BS: 500
+ERROR:	 Run 0: N: 907, M: 78, BS: 500
+ERROR:	 Run 0: N: 907, M: 83, BS: 500
+ERROR:	 Run 0: N: 907, M: 97, BS: 500
+ERROR:	 Run 0: N: 907, M: 100, BS: 500
+ERROR:	 Run 0: N: 948, M: 32, BS: 500
+ERROR:	 Run 0: N: 948, M: 37, BS: 500
+ERROR:	 Run 0: N: 948, M: 43, BS: 500
+ERROR:	 Run 0: N: 948, M: 48, BS: 500
+ERROR:	 Run 0: N: 948, M: 50, BS: 500
+ERROR:	 Run 0: N: 948, M: 61, BS: 500
+ERROR:	 Run 0: N: 948, M: 64, BS: 500
+ERROR:	 Run 0: N: 948, M: 78, BS: 500
+ERROR:	 Run 0: N: 948, M: 83, BS: 500
+ERROR:	 Run 0: N: 948, M: 97, BS: 500
+ERROR:	 Run 0: N: 948, M: 100, BS: 500
+ERROR:	 Run 0: N: 1000, M: 32, BS: 500
+ERROR:	 Run 0: N: 1000, M: 37, BS: 500
+ERROR:	 Run 0: N: 1000, M: 43, BS: 500
+ERROR:	 Run 0: N: 1000, M: 48, BS: 500
+ERROR:	 Run 0: N: 1000, M: 50, BS: 500
+ERROR:	 Run 0: N: 1000, M: 61, BS: 500
+ERROR:	 Run 0: N: 1000, M: 64, BS: 500
+ERROR:	 Run 0: N: 1000, M: 78, BS: 500
+ERROR:	 Run 0: N: 1000, M: 83, BS: 500
+ERROR:	 Run 0: N: 1000, M: 97, BS: 500
+ERROR:	 Run 0: N: 1000, M: 100, BS: 500
+ERROR:	 Run 0: N: 1024, M: 32, BS: 500
+ERROR:	 Run 0: N: 1024, M: 37, BS: 500
+ERROR:	 Run 0: N: 1024, M: 43, BS: 500
+ERROR:	 Run 0: N: 1024, M: 48, BS: 500
+ERROR:	 Run 0: N: 1024, M: 50, BS: 500
+ERROR:	 Run 0: N: 1024, M: 61, BS: 500
+ERROR:	 Run 0: N: 1024, M: 64, BS: 500
+ERROR:	 Run 0: N: 1024, M: 78, BS: 500
+ERROR:	 Run 0: N: 1024, M: 83, BS: 500
+ERROR:	 Run 0: N: 1024, M: 97, BS: 500
+ERROR:	 Run 0: N: 1024, M: 100, BS: 500
+ERROR:	 Run 0: N: 1111, M: 32, BS: 500
+ERROR:	 Run 0: N: 1111, M: 37, BS: 500
+ERROR:	 Run 0: N: 1111, M: 43, BS: 500
+ERROR:	 Run 0: N: 1111, M: 48, BS: 500
+ERROR:	 Run 0: N: 1111, M: 50, BS: 500
+ERROR:	 Run 0: N: 1111, M: 61, BS: 500
+ERROR:	 Run 0: N: 1111, M: 64, BS: 500
+ERROR:	 Run 0: N: 1111, M: 78, BS: 500
+ERROR:	 Run 0: N: 1111, M: 83, BS: 500
+ERROR:	 Run 0: N: 1111, M: 97, BS: 500
+ERROR:	 Run 0: N: 1111, M: 100, BS: 500
+ERROR:	 Run 0: N: 1213, M: 32, BS: 500
+ERROR:	 Run 0: N: 1213, M: 37, BS: 500
+ERROR:	 Run 0: N: 1213, M: 43, BS: 500
+ERROR:	 Run 0: N: 1213, M: 48, BS: 500
+ERROR:	 Run 0: N: 1213, M: 50, BS: 500
+ERROR:	 Run 0: N: 1213, M: 61, BS: 500
+ERROR:	 Run 0: N: 1213, M: 64, BS: 500
+ERROR:	 Run 0: N: 1213, M: 78, BS: 500
+ERROR:	 Run 0: N: 1213, M: 83, BS: 500
+ERROR:	 Run 0: N: 1213, M: 97, BS: 500
+ERROR:	 Run 0: N: 1213, M: 100, BS: 500
+ERROR:	 Run 0: N: 1264, M: 32, BS: 500
+ERROR:	 Run 0: N: 1264, M: 37, BS: 500
+ERROR:	 Run 0: N: 1264, M: 43, BS: 500
+ERROR:	 Run 0: N: 1264, M: 48, BS: 500
+ERROR:	 Run 0: N: 1264, M: 50, BS: 500
+ERROR:	 Run 0: N: 1264, M: 61, BS: 500
+ERROR:	 Run 0: N: 1264, M: 64, BS: 500
+ERROR:	 Run 0: N: 1264, M: 78, BS: 500
+ERROR:	 Run 0: N: 1264, M: 83, BS: 500
+ERROR:	 Run 0: N: 1264, M: 97, BS: 500
+ERROR:	 Run 0: N: 1264, M: 100, BS: 500
+ERROR:	 Run 0: N: 1333, M: 32, BS: 500
+ERROR:	 Run 0: N: 1333, M: 37, BS: 500
+ERROR:	 Run 0: N: 1333, M: 43, BS: 500
+ERROR:	 Run 0: N: 1333, M: 48, BS: 500
+ERROR:	 Run 0: N: 1333, M: 50, BS: 500
+ERROR:	 Run 0: N: 1333, M: 61, BS: 500
+ERROR:	 Run 0: N: 1333, M: 64, BS: 500
+ERROR:	 Run 0: N: 1333, M: 78, BS: 500
+ERROR:	 Run 0: N: 1333, M: 83, BS: 500
+ERROR:	 Run 0: N: 1333, M: 97, BS: 500
+ERROR:	 Run 0: N: 1333, M: 100, BS: 500
+Run 0: N: 400, M: 32, BS: 800	50.4861 Gflops
+Run 1: N: 400, M: 32, BS: 800	51.5519 Gflops
+Averaged: 			51.019000000000005 Gflops
+
+Run 0: N: 400, M: 37, BS: 800	51.5825 Gflops
+Run 1: N: 400, M: 37, BS: 800	51.1322 Gflops
+Averaged: 			51.35735 Gflops
+
+Run 0: N: 400, M: 43, BS: 800	51.9134 Gflops
+Run 1: N: 400, M: 43, BS: 800	51.9402 Gflops
+Averaged: 			51.9268 Gflops
+
+Run 0: N: 400, M: 48, BS: 800	51.8638 Gflops
+Run 1: N: 400, M: 48, BS: 800	52.0495 Gflops
+Averaged: 			51.956649999999996 Gflops
+
+Run 0: N: 400, M: 50, BS: 800	51.6575 Gflops
+Run 1: N: 400, M: 50, BS: 800	51.4783 Gflops
+Averaged: 			51.567899999999995 Gflops
+
+Run 0: N: 400, M: 61, BS: 800	52.0216 Gflops
+Run 1: N: 400, M: 61, BS: 800	52.1141 Gflops
+Averaged: 			52.06785 Gflops
+
+Run 0: N: 400, M: 64, BS: 800	51.9967 Gflops
+Run 1: N: 400, M: 64, BS: 800	51.8969 Gflops
+Averaged: 			51.946799999999996 Gflops
+
+Run 0: N: 400, M: 78, BS: 800	51.902 Gflops
+Run 1: N: 400, M: 78, BS: 800	52.1162 Gflops
+Averaged: 			52.009100000000004 Gflops
+
+Run 0: N: 400, M: 83, BS: 800	51.4725 Gflops
+Run 1: N: 400, M: 83, BS: 800	51.9714 Gflops
+Averaged: 			51.72195 Gflops
+
+Run 0: N: 400, M: 97, BS: 800	51.9569 Gflops
+Run 1: N: 400, M: 97, BS: 800	51.4247 Gflops
+Averaged: 			51.690799999999996 Gflops
+
+Run 0: N: 400, M: 100, BS: 800	51.8629 Gflops
+Run 1: N: 400, M: 100, BS: 800	51.8448 Gflops
+Averaged: 			51.85385 Gflops
+
+Run 0: N: 439, M: 32, BS: 800	35.6587 Gflops
+Run 1: N: 439, M: 32, BS: 800	37.0366 Gflops
+Averaged: 			36.34765 Gflops
+
+Run 0: N: 439, M: 37, BS: 800	36.6601 Gflops
+Run 1: N: 439, M: 37, BS: 800	36.7091 Gflops
+Averaged: 			36.6846 Gflops
+
+Run 0: N: 439, M: 43, BS: 800	35.9922 Gflops
+Run 1: N: 439, M: 43, BS: 800	36.7616 Gflops
+Averaged: 			36.3769 Gflops
+
+Run 0: N: 439, M: 48, BS: 800	35.6234 Gflops
+Run 1: N: 439, M: 48, BS: 800	36.6474 Gflops
+Averaged: 			36.1354 Gflops
+
+Run 0: N: 439, M: 50, BS: 800	36.8753 Gflops
+Run 1: N: 439, M: 50, BS: 800	36.8626 Gflops
+Averaged: 			36.86895 Gflops
+
+Run 0: N: 439, M: 61, BS: 800	37.0456 Gflops
+Run 1: N: 439, M: 61, BS: 800	36.7478 Gflops
+Averaged: 			36.896699999999996 Gflops
+
+Run 0: N: 439, M: 64, BS: 800	36.3132 Gflops
+Run 1: N: 439, M: 64, BS: 800	36.6353 Gflops
+Averaged: 			36.47425 Gflops
+
+Run 0: N: 439, M: 78, BS: 800	36.773 Gflops
+Run 1: N: 439, M: 78, BS: 800	36.4073 Gflops
+Averaged: 			36.59015 Gflops
+
+Run 0: N: 439, M: 83, BS: 800	36.5962 Gflops
+Run 1: N: 439, M: 83, BS: 800	36.9166 Gflops
+Averaged: 			36.7564 Gflops
+
+Run 0: N: 439, M: 97, BS: 800	36.7321 Gflops
+Run 1: N: 439, M: 97, BS: 800	36.7341 Gflops
+Averaged: 			36.7331 Gflops
+
+Run 0: N: 439, M: 100, BS: 800	35.9874 Gflops
+Run 1: N: 439, M: 100, BS: 800	36.1856 Gflops
+Averaged: 			36.0865 Gflops
+
+Run 0: N: 499, M: 32, BS: 800	40.5268 Gflops
+Run 1: N: 499, M: 32, BS: 800	40.3094 Gflops
+Averaged: 			40.418099999999995 Gflops
+
+Run 0: N: 499, M: 37, BS: 800	39.7834 Gflops
+Run 1: N: 499, M: 37, BS: 800	39.8937 Gflops
+Averaged: 			39.83855 Gflops
+
+Run 0: N: 499, M: 43, BS: 800	40.3543 Gflops
+Run 1: N: 499, M: 43, BS: 800	40.1818 Gflops
+Averaged: 			40.26805 Gflops
+
+Run 0: N: 499, M: 48, BS: 800	40.1633 Gflops
+Run 1: N: 499, M: 48, BS: 800	39.7948 Gflops
+Averaged: 			39.97905 Gflops
+
+Run 0: N: 499, M: 50, BS: 800	40.02 Gflops
+Run 1: N: 499, M: 50, BS: 800	40.1003 Gflops
+Averaged: 			40.06015 Gflops
+
+Run 0: N: 499, M: 61, BS: 800	40.1945 Gflops
+Run 1: N: 499, M: 61, BS: 800	40.3572 Gflops
+Averaged: 			40.27585 Gflops
+
+Run 0: N: 499, M: 64, BS: 800	39.718 Gflops
+Run 1: N: 499, M: 64, BS: 800	40.2279 Gflops
+Averaged: 			39.97295 Gflops
+
+Run 0: N: 499, M: 78, BS: 800	39.2223 Gflops
+Run 1: N: 499, M: 78, BS: 800	39.3888 Gflops
+Averaged: 			39.30555 Gflops
+
+Run 0: N: 499, M: 83, BS: 800	39.9515 Gflops
+Run 1: N: 499, M: 83, BS: 800	40.0998 Gflops
+Averaged: 			40.02565 Gflops
+
+Run 0: N: 499, M: 97, BS: 800	40.0147 Gflops
+Run 1: N: 499, M: 97, BS: 800	40.0757 Gflops
+Averaged: 			40.045199999999994 Gflops
+
+Run 0: N: 499, M: 100, BS: 800	39.6881 Gflops
+Run 1: N: 499, M: 100, BS: 800	39.9043 Gflops
+Averaged: 			39.7962 Gflops
+
+Run 0: N: 512, M: 32, BS: 800	46.6862 Gflops
+Run 1: N: 512, M: 32, BS: 800	46.4476 Gflops
+Averaged: 			46.566900000000004 Gflops
+
+Run 0: N: 512, M: 37, BS: 800	46.4365 Gflops
+Run 1: N: 512, M: 37, BS: 800	46.3948 Gflops
+Averaged: 			46.41565 Gflops
+
+Run 0: N: 512, M: 43, BS: 800	46.5943 Gflops
+Run 1: N: 512, M: 43, BS: 800	46.1982 Gflops
+Averaged: 			46.396249999999995 Gflops
+
+Run 0: N: 512, M: 48, BS: 800	46.0616 Gflops
+Run 1: N: 512, M: 48, BS: 800	46.6838 Gflops
+Averaged: 			46.372699999999995 Gflops
+
+Run 0: N: 512, M: 50, BS: 800	46.4884 Gflops
+Run 1: N: 512, M: 50, BS: 800	45.5269 Gflops
+Averaged: 			46.00765 Gflops
+
+Run 0: N: 512, M: 61, BS: 800	45.1692 Gflops
+Run 1: N: 512, M: 61, BS: 800	45.4027 Gflops
+Averaged: 			45.28595 Gflops
+
+Run 0: N: 512, M: 64, BS: 800	45.3103 Gflops
+Run 1: N: 512, M: 64, BS: 800	45.6043 Gflops
+Averaged: 			45.457300000000004 Gflops
+
+Run 0: N: 512, M: 78, BS: 800	45.4387 Gflops
+Run 1: N: 512, M: 78, BS: 800	44.959 Gflops
+Averaged: 			45.19885 Gflops
+
+Run 0: N: 512, M: 83, BS: 800	44.9428 Gflops
+Run 1: N: 512, M: 83, BS: 800	44.5425 Gflops
+Averaged: 			44.74265 Gflops
+
+Run 0: N: 512, M: 97, BS: 800	44.5986 Gflops
+Run 1: N: 512, M: 97, BS: 800	44.7276 Gflops
+Averaged: 			44.6631 Gflops
+
+Run 0: N: 512, M: 100, BS: 800	44.7133 Gflops
+Run 1: N: 512, M: 100, BS: 800	44.6244 Gflops
+Averaged: 			44.66885 Gflops
+
+Run 0: N: 533, M: 32, BS: 800	41.8613 Gflops
+Run 1: N: 533, M: 32, BS: 800	41.6683 Gflops
+Averaged: 			41.7648 Gflops
+
+Run 0: N: 533, M: 37, BS: 800	41.8184 Gflops
+Run 1: N: 533, M: 37, BS: 800	41.7438 Gflops
+Averaged: 			41.781099999999995 Gflops
+
+Run 0: N: 533, M: 43, BS: 800	41.8756 Gflops
+Run 1: N: 533, M: 43, BS: 800	41.9723 Gflops
+Averaged: 			41.92395 Gflops
+
+Run 0: N: 533, M: 48, BS: 800	41.4078 Gflops
+Run 1: N: 533, M: 48, BS: 800	41.89 Gflops
+Averaged: 			41.6489 Gflops
+
+Run 0: N: 533, M: 50, BS: 800	40.151 Gflops
+Run 1: N: 533, M: 50, BS: 800	41.2501 Gflops
+Averaged: 			40.70055000000001 Gflops
+
+Run 0: N: 533, M: 61, BS: 800	41.4824 Gflops
+Run 1: N: 533, M: 61, BS: 800	41.3097 Gflops
+Averaged: 			41.39605 Gflops
+
+Run 0: N: 533, M: 64, BS: 800	41.3231 Gflops
+Run 1: N: 533, M: 64, BS: 800	40.8448 Gflops
+Averaged: 			41.08395 Gflops
+
+Run 0: N: 533, M: 78, BS: 800	40.8327 Gflops
+Run 1: N: 533, M: 78, BS: 800	41.208 Gflops
+Averaged: 			41.02035 Gflops
+
+Run 0: N: 533, M: 83, BS: 800	40.6325 Gflops
+Run 1: N: 533, M: 83, BS: 800	41.3685 Gflops
+Averaged: 			41.0005 Gflops
+
+Run 0: N: 533, M: 97, BS: 800	40.9068 Gflops
+Run 1: N: 533, M: 97, BS: 800	41.0642 Gflops
+Averaged: 			40.9855 Gflops
+
+Run 0: N: 533, M: 100, BS: 800	40.6288 Gflops
+Run 1: N: 533, M: 100, BS: 800	41.3733 Gflops
+Averaged: 			41.00105 Gflops
+
+Run 0: N: 571, M: 32, BS: 800	42.8824 Gflops
+Run 1: N: 571, M: 32, BS: 800	42.5734 Gflops
+Averaged: 			42.7279 Gflops
+
+Run 0: N: 571, M: 37, BS: 800	42.8161 Gflops
+Run 1: N: 571, M: 37, BS: 800	42.8306 Gflops
+Averaged: 			42.82335 Gflops
+
+Run 0: N: 571, M: 43, BS: 800	42.8355 Gflops
+Run 1: N: 571, M: 43, BS: 800	42.6629 Gflops
+Averaged: 			42.7492 Gflops
+
+Run 0: N: 571, M: 48, BS: 800	42.8796 Gflops
+Run 1: N: 571, M: 48, BS: 800	42.8915 Gflops
+Averaged: 			42.88555 Gflops
+
+Run 0: N: 571, M: 50, BS: 800	43.0246 Gflops
+Run 1: N: 571, M: 50, BS: 800	42.6043 Gflops
+Averaged: 			42.81445 Gflops
+
+Run 0: N: 571, M: 61, BS: 800	42.3716 Gflops
+Run 1: N: 571, M: 61, BS: 800	42.7979 Gflops
+Averaged: 			42.58475 Gflops
+
+Run 0: N: 571, M: 64, BS: 800	42.5894 Gflops
+Run 1: N: 571, M: 64, BS: 800	42.6686 Gflops
+Averaged: 			42.629 Gflops
+
+Run 0: N: 571, M: 78, BS: 800	42.6248 Gflops
+Run 1: N: 571, M: 78, BS: 800	42.3649 Gflops
+Averaged: 			42.49485 Gflops
+
+Run 0: N: 571, M: 83, BS: 800	42.1397 Gflops
+Run 1: N: 571, M: 83, BS: 800	42.2504 Gflops
+Averaged: 			42.195049999999995 Gflops
+
+Run 0: N: 571, M: 97, BS: 800	42.319 Gflops
+Run 1: N: 571, M: 97, BS: 800	42.6161 Gflops
+Averaged: 			42.46755 Gflops
+
+Run 0: N: 571, M: 100, BS: 800	41.1262 Gflops
+Run 1: N: 571, M: 100, BS: 800	41.7245 Gflops
+Averaged: 			41.425349999999995 Gflops
+
+Run 0: N: 600, M: 32, BS: 800	52.0536 Gflops
+Run 1: N: 600, M: 32, BS: 800	52.0623 Gflops
+Averaged: 			52.057950000000005 Gflops
+
+Run 0: N: 600, M: 37, BS: 800	51.9488 Gflops
+Run 1: N: 600, M: 37, BS: 800	52.0821 Gflops
+Averaged: 			52.01545 Gflops
+
+Run 0: N: 600, M: 43, BS: 800	51.979 Gflops
+Run 1: N: 600, M: 43, BS: 800	52.1342 Gflops
+Averaged: 			52.0566 Gflops
+
+Run 0: N: 600, M: 48, BS: 800	51.8934 Gflops
+Run 1: N: 600, M: 48, BS: 800	51.5638 Gflops
+Averaged: 			51.7286 Gflops
+
+Run 0: N: 600, M: 50, BS: 800	52.3244 Gflops
+Run 1: N: 600, M: 50, BS: 800	52.1597 Gflops
+Averaged: 			52.24205 Gflops
+
+Run 0: N: 600, M: 61, BS: 800	51.7972 Gflops
+Run 1: N: 600, M: 61, BS: 800	51.996 Gflops
+Averaged: 			51.8966 Gflops
+
+Run 0: N: 600, M: 64, BS: 800	51.6759 Gflops
+Run 1: N: 600, M: 64, BS: 800	52.0164 Gflops
+Averaged: 			51.846149999999994 Gflops
+
+Run 0: N: 600, M: 78, BS: 800	51.8589 Gflops
+Run 1: N: 600, M: 78, BS: 800	51.7615 Gflops
+Averaged: 			51.810199999999995 Gflops
+
+Run 0: N: 600, M: 83, BS: 800	51.5297 Gflops
+Run 1: N: 600, M: 83, BS: 800	52.0331 Gflops
+Averaged: 			51.7814 Gflops
+
+Run 0: N: 600, M: 97, BS: 800	51.3394 Gflops
+Run 1: N: 600, M: 97, BS: 800	51.7741 Gflops
+Averaged: 			51.556749999999994 Gflops
+
+Run 0: N: 600, M: 100, BS: 800	51.6323 Gflops
+Run 1: N: 600, M: 100, BS: 800	51.7474 Gflops
+Averaged: 			51.68985 Gflops
+
+Run 0: N: 711, M: 32, BS: 800	41.1485 Gflops
+Run 1: N: 711, M: 32, BS: 800	41.1056 Gflops
+Averaged: 			41.12705 Gflops
+
+Run 0: N: 711, M: 37, BS: 800	40.7698 Gflops
+Run 1: N: 711, M: 37, BS: 800	41.2265 Gflops
+Averaged: 			40.998149999999995 Gflops
+
+Run 0: N: 711, M: 43, BS: 800	40.7228 Gflops
+Run 1: N: 711, M: 43, BS: 800	41.2762 Gflops
+Averaged: 			40.9995 Gflops
+
+Run 0: N: 711, M: 48, BS: 800	41.082 Gflops
+Run 1: N: 711, M: 48, BS: 800	41.2459 Gflops
+Averaged: 			41.16395 Gflops
+
+Run 0: N: 711, M: 50, BS: 800	40.9505 Gflops
+Run 1: N: 711, M: 50, BS: 800	41.1181 Gflops
+Averaged: 			41.0343 Gflops
+
+Run 0: N: 711, M: 61, BS: 800	40.97 Gflops
+Run 1: N: 711, M: 61, BS: 800	40.8318 Gflops
+Averaged: 			40.9009 Gflops
+
+Run 0: N: 711, M: 64, BS: 800	41.0181 Gflops
+Run 1: N: 711, M: 64, BS: 800	40.8486 Gflops
+Averaged: 			40.93335 Gflops
+
+Run 0: N: 711, M: 78, BS: 800	40.931 Gflops
+Run 1: N: 711, M: 78, BS: 800	40.9028 Gflops
+Averaged: 			40.9169 Gflops
+
+Run 0: N: 711, M: 83, BS: 800	40.7031 Gflops
+Run 1: N: 711, M: 83, BS: 800	40.9627 Gflops
+Averaged: 			40.832899999999995 Gflops
+
+Run 0: N: 711, M: 97, BS: 800	40.4602 Gflops
+Run 1: N: 711, M: 97, BS: 800	40.7436 Gflops
+Averaged: 			40.6019 Gflops
+
+Run 0: N: 711, M: 100, BS: 800	40.8249 Gflops
+Run 1: N: 711, M: 100, BS: 800	40.7329 Gflops
+Averaged: 			40.7789 Gflops
+
+Run 0: N: 768, M: 32, BS: 800	52.1476 Gflops
+Run 1: N: 768, M: 32, BS: 800	52.0829 Gflops
+Averaged: 			52.11525 Gflops
+
+Run 0: N: 768, M: 37, BS: 800	52.0405 Gflops
+Run 1: N: 768, M: 37, BS: 800	52.3223 Gflops
+Averaged: 			52.1814 Gflops
+
+Run 0: N: 768, M: 43, BS: 800	51.4863 Gflops
+Run 1: N: 768, M: 43, BS: 800	51.6752 Gflops
+Averaged: 			51.580749999999995 Gflops
+
+Run 0: N: 768, M: 48, BS: 800	51.9445 Gflops
+Run 1: N: 768, M: 48, BS: 800	50.9269 Gflops
+Averaged: 			51.4357 Gflops
+
+Run 0: N: 768, M: 50, BS: 800	51.7418 Gflops
+Run 1: N: 768, M: 50, BS: 800	51.8723 Gflops
+Averaged: 			51.807050000000004 Gflops
+
+Run 0: N: 768, M: 61, BS: 800	51.6955 Gflops
+Run 1: N: 768, M: 61, BS: 800	50.8487 Gflops
+Averaged: 			51.2721 Gflops
+
+Run 0: N: 768, M: 64, BS: 800	51.6048 Gflops
+Run 1: N: 768, M: 64, BS: 800	51.4968 Gflops
+Averaged: 			51.550799999999995 Gflops
+
+Run 0: N: 768, M: 78, BS: 800	51.1238 Gflops
+Run 1: N: 768, M: 78, BS: 800	51.366 Gflops
+Averaged: 			51.2449 Gflops
+
+Run 0: N: 768, M: 83, BS: 800	50.7745 Gflops
+Run 1: N: 768, M: 83, BS: 800	51.214 Gflops
+Averaged: 			50.99425 Gflops
+
+Run 0: N: 768, M: 97, BS: 800	51.2905 Gflops
+Run 1: N: 768, M: 97, BS: 800	51.4649 Gflops
+Averaged: 			51.377700000000004 Gflops
+
+Run 0: N: 768, M: 100, BS: 800	51.2139 Gflops
+Run 1: N: 768, M: 100, BS: 800	51.3424 Gflops
+Averaged: 			51.27815 Gflops
+
+Run 0: N: 800, M: 32, BS: 800	52.9747 Gflops
+Run 1: N: 800, M: 32, BS: 800	53.1094 Gflops
+Averaged: 			53.04205 Gflops
+
+Run 0: N: 800, M: 37, BS: 800	52.7826 Gflops
+Run 1: N: 800, M: 37, BS: 800	52.7932 Gflops
+Averaged: 			52.7879 Gflops
+
+Run 0: N: 800, M: 43, BS: 800	53.2773 Gflops
+Run 1: N: 800, M: 43, BS: 800	52.931 Gflops
+Averaged: 			53.10415 Gflops
+
+Run 0: N: 800, M: 48, BS: 800	53.1373 Gflops
+Run 1: N: 800, M: 48, BS: 800	53.3051 Gflops
+Averaged: 			53.2212 Gflops
+
+Run 0: N: 800, M: 50, BS: 800	53.1265 Gflops
+Run 1: N: 800, M: 50, BS: 800	52.6641 Gflops
+Averaged: 			52.8953 Gflops
+
+Run 0: N: 800, M: 61, BS: 800	53.0421 Gflops
+Run 1: N: 800, M: 61, BS: 800	53.3106 Gflops
+Averaged: 			53.17635 Gflops
+
+Run 0: N: 800, M: 64, BS: 800	53.0495 Gflops
+Run 1: N: 800, M: 64, BS: 800	52.7341 Gflops
+Averaged: 			52.8918 Gflops
+
+Run 0: N: 800, M: 78, BS: 800	52.8765 Gflops
+Run 1: N: 800, M: 78, BS: 800	52.9247 Gflops
+Averaged: 			52.9006 Gflops
+
+Run 0: N: 800, M: 83, BS: 800	52.5884 Gflops
+Run 1: N: 800, M: 83, BS: 800	52.6311 Gflops
+Averaged: 			52.609750000000005 Gflops
+
+Run 0: N: 800, M: 97, BS: 800	52.1893 Gflops
+Run 1: N: 800, M: 97, BS: 800	52.4833 Gflops
+Averaged: 			52.3363 Gflops
+
+Run 0: N: 800, M: 100, BS: 800	52.3511 Gflops
+Run 1: N: 800, M: 100, BS: 800	52.3976 Gflops
+Averaged: 			52.37435 Gflops
+
+Run 0: N: 829, M: 32, BS: 800	39.6649 Gflops
+Run 1: N: 829, M: 32, BS: 800	39.5551 Gflops
+Averaged: 			39.61 Gflops
+
+Run 0: N: 829, M: 37, BS: 800	40.057 Gflops
+Run 1: N: 829, M: 37, BS: 800	39.5902 Gflops
+Averaged: 			39.8236 Gflops
+
+Run 0: N: 829, M: 43, BS: 800	39.5448 Gflops
+Run 1: N: 829, M: 43, BS: 800	40.2226 Gflops
+Averaged: 			39.883700000000005 Gflops
+
+Run 0: N: 829, M: 48, BS: 800	40.2123 Gflops
+Run 1: N: 829, M: 48, BS: 800	40.0604 Gflops
+Averaged: 			40.13635 Gflops
+
+Run 0: N: 829, M: 50, BS: 800	39.1681 Gflops
+Run 1: N: 829, M: 50, BS: 800	39.4099 Gflops
+Averaged: 			39.289 Gflops
+
+Run 0: N: 829, M: 61, BS: 800	40.1621 Gflops
+Run 1: N: 829, M: 61, BS: 800	40.2021 Gflops
+Averaged: 			40.182100000000005 Gflops
+
+Run 0: N: 829, M: 64, BS: 800	40.068 Gflops
+Run 1: N: 829, M: 64, BS: 800	40.2632 Gflops
+Averaged: 			40.1656 Gflops
+
+Run 0: N: 829, M: 78, BS: 800	40.0269 Gflops
+Run 1: N: 829, M: 78, BS: 800	40.05 Gflops
+Averaged: 			40.03845 Gflops
+
+Run 0: N: 829, M: 83, BS: 800	39.8092 Gflops
+Run 1: N: 829, M: 83, BS: 800	37.8963 Gflops
+Averaged: 			38.85275 Gflops
+
+Run 0: N: 829, M: 97, BS: 800	40.1811 Gflops
+Run 1: N: 829, M: 97, BS: 800	39.9064 Gflops
+Averaged: 			40.04375 Gflops
+
+Run 0: N: 829, M: 100, BS: 800	39.6004 Gflops
+Run 1: N: 829, M: 100, BS: 800	39.8296 Gflops
+Averaged: 			39.715 Gflops
+
+Run 0: N: 859, M: 32, BS: 800	41.2688 Gflops
+Run 1: N: 859, M: 32, BS: 800	41.2764 Gflops
+Averaged: 			41.2726 Gflops
+
+Run 0: N: 859, M: 37, BS: 800	41.1222 Gflops
+Run 1: N: 859, M: 37, BS: 800	41.3925 Gflops
+Averaged: 			41.25735 Gflops
+
+Run 0: N: 859, M: 43, BS: 800	41.2849 Gflops
+Run 1: N: 859, M: 43, BS: 800	41.2515 Gflops
+Averaged: 			41.2682 Gflops
+
+Run 0: N: 859, M: 48, BS: 800	41.1912 Gflops
+Run 1: N: 859, M: 48, BS: 800	40.6939 Gflops
+Averaged: 			40.94255 Gflops
+
+Run 0: N: 859, M: 50, BS: 800	41.3784 Gflops
+Run 1: N: 859, M: 50, BS: 800	41.2102 Gflops
+Averaged: 			41.2943 Gflops
+
+Run 0: N: 859, M: 61, BS: 800	41.155 Gflops
+Run 1: N: 859, M: 61, BS: 800	41.3171 Gflops
+Averaged: 			41.236050000000006 Gflops
+
+Run 0: N: 859, M: 64, BS: 800	41.2516 Gflops
+Run 1: N: 859, M: 64, BS: 800	41.2964 Gflops
+Averaged: 			41.274 Gflops
+
+Run 0: N: 859, M: 78, BS: 800	40.9685 Gflops
+Run 1: N: 859, M: 78, BS: 800	41.0571 Gflops
+Averaged: 			41.0128 Gflops
+
+Run 0: N: 859, M: 83, BS: 800	41.014 Gflops
+Run 1: N: 859, M: 83, BS: 800	41.0451 Gflops
+Averaged: 			41.02955 Gflops
+
+Run 0: N: 859, M: 97, BS: 800	40.9743 Gflops
+Run 1: N: 859, M: 97, BS: 800	41.0239 Gflops
+Averaged: 			40.9991 Gflops
+
+Run 0: N: 859, M: 100, BS: 800	40.6893 Gflops
+Run 1: N: 859, M: 100, BS: 800	41.0472 Gflops
+Averaged: 			40.86825 Gflops
+
+Run 0: N: 907, M: 32, BS: 800	40.6914 Gflops
+Run 1: N: 907, M: 32, BS: 800	40.8497 Gflops
+Averaged: 			40.77055 Gflops
+
+Run 0: N: 907, M: 37, BS: 800	41.1792 Gflops
+Run 1: N: 907, M: 37, BS: 800	41.1038 Gflops
+Averaged: 			41.1415 Gflops
+
+Run 0: N: 907, M: 43, BS: 800	40.965 Gflops
+Run 1: N: 907, M: 43, BS: 800	40.898 Gflops
+Averaged: 			40.9315 Gflops
+
+Run 0: N: 907, M: 48, BS: 800	40.7465 Gflops
+Run 1: N: 907, M: 48, BS: 800	40.6864 Gflops
+Averaged: 			40.716449999999995 Gflops
+
+Run 0: N: 907, M: 50, BS: 800	40.6416 Gflops
+Run 1: N: 907, M: 50, BS: 800	40.7274 Gflops
+Averaged: 			40.6845 Gflops
+
+Run 0: N: 907, M: 61, BS: 800	40.5375 Gflops
+Run 1: N: 907, M: 61, BS: 800	40.7693 Gflops
+Averaged: 			40.653400000000005 Gflops
+
+Run 0: N: 907, M: 64, BS: 800	40.7248 Gflops
+Run 1: N: 907, M: 64, BS: 800	40.7692 Gflops
+Averaged: 			40.747 Gflops
+
+Run 0: N: 907, M: 78, BS: 800	40.6375 Gflops
+Run 1: N: 907, M: 78, BS: 800	40.5012 Gflops
+Averaged: 			40.56935 Gflops
+
+Run 0: N: 907, M: 83, BS: 800	40.2216 Gflops
+Run 1: N: 907, M: 83, BS: 800	40.6288 Gflops
+Averaged: 			40.425200000000004 Gflops
+
+Run 0: N: 907, M: 97, BS: 800	40.4679 Gflops
+Run 1: N: 907, M: 97, BS: 800	40.4496 Gflops
+Averaged: 			40.458749999999995 Gflops
+
+Run 0: N: 907, M: 100, BS: 800	40.4523 Gflops
+Run 1: N: 907, M: 100, BS: 800	40.3352 Gflops
+Averaged: 			40.39375 Gflops
+
+Run 0: N: 948, M: 32, BS: 800	47.652 Gflops
+Run 1: N: 948, M: 32, BS: 800	47.5243 Gflops
+Averaged: 			47.58815 Gflops
+
+Run 0: N: 948, M: 37, BS: 800	47.5829 Gflops
+Run 1: N: 948, M: 37, BS: 800	47.6358 Gflops
+Averaged: 			47.609350000000006 Gflops
+
+Run 0: N: 948, M: 43, BS: 800	47.3333 Gflops
+Run 1: N: 948, M: 43, BS: 800	47.506 Gflops
+Averaged: 			47.419650000000004 Gflops
+
+Run 0: N: 948, M: 48, BS: 800	47.1786 Gflops
+Run 1: N: 948, M: 48, BS: 800	46.9363 Gflops
+Averaged: 			47.05745 Gflops
+
+Run 0: N: 948, M: 50, BS: 800	46.6704 Gflops
+Run 1: N: 948, M: 50, BS: 800	46.9347 Gflops
+Averaged: 			46.80255 Gflops
+
+Run 0: N: 948, M: 61, BS: 800	47.1705 Gflops
+Run 1: N: 948, M: 61, BS: 800	46.7674 Gflops
+Averaged: 			46.96895 Gflops
+
+Run 0: N: 948, M: 64, BS: 800	47.3096 Gflops
+Run 1: N: 948, M: 64, BS: 800	46.7829 Gflops
+Averaged: 			47.04625 Gflops
+
+Run 0: N: 948, M: 78, BS: 800	46.7287 Gflops
+Run 1: N: 948, M: 78, BS: 800	46.9485 Gflops
