@@ -32,28 +32,29 @@ for bs in bs_sizes:
 
 if __name__ == '__main__':
     for bs in bs_sizes:
-        for n in n_sizes:
-            for m in m_sizes:
-                total = 0
-                run = 0
-                while (run < runs):
-                    proc = subprocess.Popen([file,
-                    str(n), str(m), str(bs)], stdout=subprocess.PIPE)
-                    result = proc.communicate()[0].decode("utf-8")
-                    curr = pat.match(result).group()
-                    try:
-                        curr = float(curr)
-                    except ValueError:
-                        print("ERROR:\t Run {0}: N: {1}, M: {2}, BS: {3}".format(run, n, m, bs))
-                        bs_sizes.remove(bs)
-                        break
-                    print("Run {0}: N: {1}, M: {2}, BS: {3}\t{4} Gflops".format(run, n, m, bs, curr))
-                    total += curr
-                    run += 1
-                total /= runs
-                if total > 0:
-                    print("Averaged: \t\t\t" + str(total) + " Gflops\n")
-                all_runs[bs] += [total]
+        if not (bad_shit and bs2 == bs):
+            for n in n_sizes:
+                for m in m_sizes:
+                    total = 0
+                    run = 0
+                    while (run < runs):
+                        proc = subprocess.Popen([file,
+                        str(n), str(m), str(bs)], stdout=subprocess.PIPE)
+                        result = proc.communicate()[0].decode("utf-8")
+                        curr = pat.match(result).group()
+                        try:
+                            curr = float(curr)
+                        except ValueError:
+                            print("ERROR:\t Run {0}: N: {1}, M: {2}, BS: {3}".format(run, n, m, bs))
+                            bad_shit = True
+                            bs2 = bs
+                            break
+                        print("Run {0}: N: {1}, M: {2}, BS: {3}\t{4} Gflops".format(run, n, m, bs, curr))
+                        total += curr
+                    total /= runs
+                    if total > 0:
+                        print("Averaged: \t\t\t" + str(total) + " Gflops\n")
+                    all_runs[bs] += [total]
     print(all_runs)
     print()
     for item in all_runs:
