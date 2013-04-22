@@ -24,6 +24,7 @@ n_sizes.sort()
 m_sizes = [32,100,64,97,37,43,61,78,83,50] #bounded 32,100
 m_sizes.sort()
 bs_sizes = [400,800,1600,1000,1200,1400]
+bs_sizes = [500,700,1500,2000,900,1300]
 bs_sizes.sort()
 for bs in bs_sizes:
     all_runs[bs] = []
@@ -44,6 +45,7 @@ if __name__ == '__main__':
                         curr = float(curr)
                     except ValueError:
                         print("ERROR:\t Run {0}: N: {1}, M: {2}, BS: {3}".format(run, n, m, bs))
+                        bs_sizes.remove(bs)
                         break
                     print("Run {0}: N: {1}, M: {2}, BS: {3}\t{4} Gflops".format(run, n, m, bs, curr))
                     total += curr
