@@ -1,0 +1,14 @@
+22 - write?
+21-6 data (16 bit)
+5-4 write to reg num.
+3-2 output contents of reg to disp 0
+0-1 output contents of reg to disp 1
+22 21-6           543210 #
+ 10101010101010101000110 # 555546
+ 01111111111111111000000 # 3FFFC0
+ 11111111111111111010001 # 7FFFD1
+
+
+
+=================================
+555546 3FFFC0 7FFFD1
