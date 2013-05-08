@@ -1,0 +1,46 @@
+CS61C Lab 12
+
+Ex 1:
+TLB: 3 hits, 4 misses
+Page Table: 0 hits, 8 misses
+27 2D A9 C0 A1 61 DE CC DD SF
+
+STEPS:
+1) Looks up VA Page and Offset based on Address Reference String
+2) Based on binary -> decimal, determines VA Page number (so TLB is searched)
+3) Memory has empty space -> available frame filled
+4) Page brought from disk to memory (& PA generated)
+
+
+Ex2:
+Address Reference String:
+00
+20
+40
+60
+80
+A0
+C0
+E0
+00
+20
+
+Ex3:
+Could increase RAM size to keep more pages in RAM at one time.
+Could decrease Page Size to keep more pages in RAM.
+(Only decreases page faults on small, spread out accesses.)
+
+Ex4:
+P1...P4
+Processes - switch to new process, TLB gets updated
+TLB misses more often because you have to update it for more processors.
+More misses (for TLB) because there is a smaller TLB and the page table is larger.
+TLB: gets updated more often because the processors update the TLB faster
+Page table is bigger so you can hold more stuff in it.
+
+Need one page table for each process (page table represented in memory)
+each process has its own virtual space
+Only need one TLB because it's hardware -
+TLB has to swap mappings for each process
+
+
